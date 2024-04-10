@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nemanja\\Desktop\\backend\\WebTemplate\\WebTemplate.csproj": {}
+    "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\WebTemplate\\WebTemplate.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nemanja\\Desktop\\backend\\WebTemplate\\WebTemplate.csproj": {
+    "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\WebTemplate\\WebTemplate.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nemanja\\Desktop\\backend\\WebTemplate\\WebTemplate.csproj",
+        "projectUniqueName": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\WebTemplate\\WebTemplate.csproj",
         "projectName": "WebTemplate",
-        "projectPath": "C:\\Users\\Nemanja\\Desktop\\backend\\WebTemplate\\WebTemplate.csproj",
+        "projectPath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\WebTemplate\\WebTemplate.csproj",
         "packagesPath": "C:\\Users\\Nemanja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nemanja\\Desktop\\backend\\WebTemplate\\obj\\",
+        "outputPath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\WebTemplate\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nemanja\\AppData\\Roaming\\NuGet\\NuGet.Config",

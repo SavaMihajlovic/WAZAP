@@ -1,10 +1,15 @@
 namespace WebTemplate.Controllers;
+
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using Microsoft.IdentityModel.Tokens;
 using BCrypt = BCrypt.Net.BCrypt;
 
 [ApiController]
 [Route("[controller]")]
 public class AuthController : ControllerBase
-{   
+{       
     public Context Context { get; set; }
      public AuthController(Context context)
      {
@@ -21,8 +26,14 @@ public class AuthController : ControllerBase
         {
             UserName = username,
             Password = BCrypt.HashPassword(password),
-            TipUsera = tipUsera
+            TipUsera = tipUsera,
+            Zabrana = false
         };
+        var Postoji = await Context.Useri.Where(p => p.UserName == NoviUser.UserName).FirstOrDefaultAsync();
+        if(Postoji!= null){
+            return BadRequest("Vec postoji korisnik sa tim korisnickim imenom");
+        }
+        await Context.Useri.AddAsync(NoviUser);
         await Context.SaveChangesAsync();
         return Ok(NoviUser);
         }
@@ -30,5 +41,54 @@ public class AuthController : ControllerBase
             return BadRequest(ex.Message);
         }
      }
-    
+    [HttpPost("login/{username}/{password}")]
+    public ActionResult login(string username, string password)
+    {
+        try
+        {
+            var user = Context.Useri.Where(p => p.UserName == username).FirstOrDefault();
+            if (user == null)
+            {
+                return BadRequest("Nepostojeci user");
+            }
+            if (!BCrypt.Verify(password , user.Password))
+                return BadRequest("Pogresna lozinka");
+
+            string token = CreateToken(user);
+            return Ok(token);
+
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+  private string CreateToken(User user)
+{
+    List<Claim> claims = new List<Claim> {
+        new Claim(ClaimTypes.Name , user.UserName),
+        new Claim(ClaimTypes.Role , user.TipUsera),
+        new Claim("UserID" , user.ID.ToString())
+    };
+
+    // Generate a secure random key of appropriate size (64 bytes for HMAC-SHA512)
+    var key = new byte[64];
+    using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+    {
+        rng.GetBytes(key);
+    }
+
+    var securityKey = new SymmetricSecurityKey(key);
+    var creds = new SigningCredentials(securityKey , SecurityAlgorithms.HmacSha512);
+
+    var token = new JwtSecurityToken(
+        claims: claims,
+        expires: DateTime.Now.AddDays(1),
+        signingCredentials: creds
+    );
+
+    var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+    return jwt;
+}
+
 }

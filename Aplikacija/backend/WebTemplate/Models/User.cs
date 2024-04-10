@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace WebTemplate.Models;
 
 public class User {
@@ -14,4 +16,7 @@ public class User {
     [MaxLength(50)]
     public string? Sertifikat { get; set; }
     public List<Rezervacije>? Rezervacije { get; set; }
+
+    [DefaultValue(false)]
+    public bool? Zabrana { get; set; }
 }

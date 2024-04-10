@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UjrGrGd80G14Ftm0OTFw3xPFOysdlHkLfLZkorsXJOy1fsDBBFVzDaXuvvtDN6vHCoYGxpHVQKELrqH671kQBQ==",
+  "dgSpecHash": "GeQBc30lHrthQY5ZSvl1Giu/2KAjjB0j3OuXi5f1PCU09E3sH4lct5owVG9DklSvNzvDvvQpqVCYiqtXAgvKpA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nemanja\\Desktop\\backend\\WebTemplate\\WebTemplate.csproj",
+  "projectFilePath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\WebTemplate\\WebTemplate.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nemanja\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
