@@ -70,8 +70,6 @@ public class AuthController : ControllerBase
         new Claim(ClaimTypes.Role , user.TipUsera),
         new Claim("UserID" , user.ID.ToString())
     };
-
-    // Generate a secure random key of appropriate size (64 bytes for HMAC-SHA512)
     var key = new byte[64];
     using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
     {
