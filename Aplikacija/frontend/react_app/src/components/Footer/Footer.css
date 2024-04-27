@@ -1,0 +1,18 @@
+.footer.light {
+    background-color: white; /* Svetla boja pozadine */
+    color: #333; /* Tamniji tekst */
+  }
+  
+  .footer.dark {
+    background-color: black; /* Tamna boja pozadine */
+    color: #f5f5f5; /* Svetliji tekst */
+  }
+
+  .description.light {
+
+    background-color: white;
+  }
+
+  .description.dark {
+    background-color: black;
+  }

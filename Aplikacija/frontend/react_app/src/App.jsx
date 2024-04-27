@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import {Home,Login,Register,About} from './pages'
 
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/register' element={<Register />}/>
         <Route path='/about' element={<About />}/>
       </Routes>
+        <Footer theme={theme} />
       </BrowserRouter>
     </div>
   )
