@@ -1,0 +1,15 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Models;
+
+public class Radnik {
+    [Key]
+    public int ID { get; set; }
+    [MaxLength(50)]
+    public string? Slika { get; set; }
+    [MaxLength(50)]
+    public string? Sertifikat { get; set; }
+    public List<ZahtevPosao>? ZahtevPosao { get; set; }
+    [ForeignKey("RID")]
+    public required Korisnik Korisnik { get; set; }
+}
