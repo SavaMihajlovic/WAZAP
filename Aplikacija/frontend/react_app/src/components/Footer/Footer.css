@@ -1,0 +1,22 @@
+  footer, p {
+    transition: 0.7s;
+  }
+
+  .footer.light {
+    background-color: white; /* Svetla boja pozadine */
+    color: black; /* Tamniji tekst */
+  }
+  
+  .footer.dark {
+    background-color: black; /* Tamna boja pozadine */
+    color: white; /* Svetliji tekst */
+  }
+
+  .description.light {
+
+    background-color: white;
+  }
+
+  .description.dark {
+    background-color: black;
+  }
