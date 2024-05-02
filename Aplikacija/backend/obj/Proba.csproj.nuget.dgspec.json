@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nemanja\\Desktop\\backend\\Proba.csproj": {}
+    "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nemanja\\Desktop\\backend\\Proba.csproj": {
+    "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nemanja\\Desktop\\backend\\Proba.csproj",
+        "projectUniqueName": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
         "projectName": "Proba",
-        "projectPath": "C:\\Users\\Nemanja\\Desktop\\backend\\Proba.csproj",
+        "projectPath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
         "packagesPath": "C:\\Users\\Nemanja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nemanja\\Desktop\\backend\\obj\\",
+        "outputPath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nemanja\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -63,6 +63,10 @@
               "target": "Package",
               "version": "[8.0.4, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.5.1, )"
+            },
             "Oracle.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.21.140, )"
@@ -70,6 +74,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.5.1, )"
             }
           },
           "imports": [
