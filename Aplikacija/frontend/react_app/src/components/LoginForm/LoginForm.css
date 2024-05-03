@@ -6,6 +6,7 @@
     align-items: flex-start;
     padding-top: 60px;
     overflow: hidden; 
+    transition: 0.6s;
   }
   
   .login-container {
@@ -16,6 +17,7 @@
     max-width: 600px;
     background: white;
     padding: 3vh 2vw;
+    transition: 0.6s;
   }
 
 .header {
