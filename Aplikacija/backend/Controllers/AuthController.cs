@@ -1,6 +1,8 @@
 
+using System.Net;
 using System.Text;
 using Models;
+using RandomString4Net;
 
 namespace Controllers;
 
@@ -20,13 +22,15 @@ public class AuthController : ControllerBase
      [HttpPost("Register")]
      public async Task<ActionResult> Register([FromBody] Korisnik korisnik){
         try{
+            korisnik.TokenForgotPassword = null;
+            korisnik.ForgotPasswordExp = null;
             if(korisnik.TipKorisnika != "Kupac" && korisnik.TipKorisnika != "Radnik")
                 return BadRequest("Nevalidan tip korisnika");
             if(korisnik.Lozinka.Length < 8)
                 return BadRequest("Lozinka mora imati minimalno 8 karaktera");
             if (!Regex.IsMatch(korisnik.Lozinka, @"\d"))
                 return BadRequest("Lozinka mora sadrzati makar jednu cifru");
-              if (!korisnik.Email.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase))
+            if (!korisnik.Email.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase))
                 return BadRequest("Email adresa mora biti Gmail adresa.");
             korisnik.Lozinka = BCrypt.Net.BCrypt.HashPassword(korisnik.Lozinka);
 
@@ -55,7 +59,83 @@ public class AuthController : ControllerBase
             return BadRequest(ex.Message);
         }
      }
+     [HttpPost("ForgotPassword/{email}")]
+     public async Task<ActionResult> ForgotPassword(string email){
+        try{
+            var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
+            if(user == null)
+                return BadRequest("User sa ovim nalogom ne postoji");
+            string link = configuration.GetSection("AppSettings:FrontendURL").Value!;
+            string fromMail = configuration.GetSection("AppSettings:FromMail").Value!;
+            string fromPassword = configuration.GetSection("AppSettings:FromPassword").Value!;
+            string toMail = email;
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(fromMail);
+            message.Subject = "Forgot Password";
+            message.To.Add(new MailAddress(email));
+            message.Body = $"<html><body> <a href='{link}'>Promenite vasu lozinku za WAZAP aplikaciju </a></body></html>";
+            message.IsBodyHtml = true;
+
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(fromMail , fromPassword),
+                EnableSsl = true,
+            };
+            smtpClient.Send(message);
+            user.TokenForgotPassword = RandomString.GetString(Types.ALPHABET_MIXEDCASE , 8);
+            user.ForgotPasswordExp = DateTime.Now.AddHours(1);
+            await Context.SaveChangesAsync();
+            return Ok("Poruka je poslata na vasu email adresu");
+        }
+        catch(Exception ex){
+            return BadRequest(ex.Message);
+        }
+     }
+    //  [HttpPost("ResetPassword/{email}")]
+    //  public async Task<ActionResult> ResetPassword(string email){
+    //     try{
+    //         var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
+    //         if (user == null)
+    //             return BadRequest("Korisnik sa ovim nalogom ne postoji");
+    //         if(user.TokenForgotPassword == null || user.ForgotPasswordExp == null )
+    //             return BadRequest("Korisnik nema pristup stranici");
+    //         if(user.TokenForgotPassword != null && user.ForgotPasswordExp < DateTime.Now)
+    //             return BadRequest("Nevalidan token , istekao je");
+    //         //1. Provera tokena i email (nalaze se u bazi)
+    //         //2. Provera se da li je token istekao
+    //         return Ok();
+    //     }
+    //     catch(Exception ex){
+    //         return BadRequest(ex.Message);
+    //     }
+    //  }
+    [HttpPost("ChangePassword/{email}/{password}/{confirmPassword}")]
+     public async Task<ActionResult> ChangePassword(string email , string password , string confirmPassword){
+        try{
+            if(password != confirmPassword)
+                return BadRequest("Lozinke se ne poklapaju");
+            var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
+            if (user == null)
+                return BadRequest("Korisnik sa ovim nalogom ne postoji");
+            if(user.TokenForgotPassword == null || user.ForgotPasswordExp == null )
+                return BadRequest("Korisnik nema pristup stranici");
+            if(user.TokenForgotPassword != null && user.ForgotPasswordExp < DateTime.Now)
+                return BadRequest("Nevalidan token , istekao je");
+            user.TokenForgotPassword = null;
+            user.ForgotPasswordExp = null;
+            user.Lozinka = BCrypt.Net.BCrypt.HashPassword(password);
+            await Context.SaveChangesAsync();
+            return Ok("Lozinka je uspesno promenjena");
+            
+        }
+        catch(Exception ex){
+            return BadRequest(ex.Message);
+        }
+     }
      
+
      private string CreateToken(Korisnik korisnik){
         List<Claim> claims = new List<Claim>(){
             new Claim("Name", korisnik.KorisnickoIme),

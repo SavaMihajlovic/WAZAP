@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "F+idsQIEF/xmeItSloT246vkotOSN41Wr+Vw+RyzNDrlq6J+PL1V4EoscZ9Cs0XESz+kwCNOckouI0SIoCJbrw==",
+  "dgSpecHash": "Ym/WDjkh5wgtaM7V/3oTipL6VHvld2nUhHKar/DtduaFytgSF1bdbSVESpyo1/7+oKN/pcaRnJCcCzuJJU17jA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,7 @@
     "C:\\Users\\Nemanja\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\oracle.entityframeworkcore\\8.21.140\\oracle.entityframeworkcore.8.21.140.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\oracle.manageddataaccess.core\\3.21.140\\oracle.manageddataaccess.core.3.21.140.nupkg.sha512",
+    "C:\\Users\\Nemanja\\.nuget\\packages\\randomstring4net\\1.8.0\\randomstring4net.1.8.0.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

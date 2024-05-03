@@ -71,6 +71,10 @@
               "target": "Package",
               "version": "[8.21.140, )"
             },
+            "RandomString4Net": {
+              "target": "Package",
+              "version": "[1.8.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"

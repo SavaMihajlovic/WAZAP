@@ -16,4 +16,8 @@ public class Korisnik {
     [MaxLength(50)]
     public required string TipKorisnika  { get; set; }
     public required DateTime DatumRodjenja { get; set; }
+
+    public string? TokenForgotPassword { get; set; }
+
+    public DateTime? ForgotPasswordExp { get; set; }
 }

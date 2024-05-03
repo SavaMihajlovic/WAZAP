@@ -14,6 +14,7 @@
           "Microsoft.EntityFrameworkCore.Design": "8.0.4",
           "Microsoft.IdentityModel.Tokens": "7.5.1",
           "Oracle.EntityFrameworkCore": "8.21.140",
+          "RandomString4Net": "1.8.0",
           "Swashbuckle.AspNetCore": "6.4.0",
           "System.IdentityModel.Tokens.Jwt": "7.5.1"
         },
@@ -483,6 +484,14 @@
           "lib/netstandard2.1/Oracle.ManagedDataAccess.dll": {
             "assemblyVersion": "3.1.21.1",
             "fileVersion": "3.1.21.1"
+          }
+        }
+      },
+      "RandomString4Net/1.8.0": {
+        "runtime": {
+          "lib/net8.0/RandomString4Net.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
           }
         }
       },
@@ -1031,6 +1040,13 @@
       "sha512": "sha512-F1c4adtCGe6C+h04fryfAeRC3XsTG73Xd6vYhpD/6ABfdWo4IOTLy8EZs4vhya2+OR0BME/751Y3BCZcWdNYiQ==",
       "path": "oracle.manageddataaccess.core/3.21.140",
       "hashPath": "oracle.manageddataaccess.core.3.21.140.nupkg.sha512"
+    },
+    "RandomString4Net/1.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K1BGz/+TI1BheJocKGv2OLa5clA8sSZfnDicTXgBIXWz59RT26ektCn7yvVv5AeNYAMA+LMPYSRQwHRztM/52w==",
+      "path": "randomstring4net/1.8.0",
+      "hashPath": "randomstring4net.1.8.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.4.0": {
       "type": "package",
