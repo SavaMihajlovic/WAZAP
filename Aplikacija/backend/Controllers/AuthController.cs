@@ -1,8 +1,4 @@
-
-using System.Net;
-using System.Text;
 using Models;
-using RandomString4Net;
 
 namespace Controllers;
 
@@ -24,6 +20,8 @@ public class AuthController : ControllerBase
         try{
             korisnik.TokenForgotPassword = null;
             korisnik.ForgotPasswordExp = null;
+            if(DateTime.Now.Year - korisnik.DatumRodjenja.Year < 18)
+                return BadRequest("Neophodno je imati makar 18 godina");
             if(korisnik.TipKorisnika != "Kupac" && korisnik.TipKorisnika != "Radnik")
                 return BadRequest("Nevalidan tip korisnika");
             if(korisnik.Lozinka.Length < 8)
@@ -36,6 +34,7 @@ public class AuthController : ControllerBase
 
             await Context.Korisnici.AddAsync(korisnik);
             await Context.SaveChangesAsync();
+            AddTypeOfUser(korisnik);
             return Ok($"Korisnik {korisnik.Ime} {korisnik.Prezime} je uspesno registrovan");
         }
         catch(Exception ex){
@@ -93,24 +92,22 @@ public class AuthController : ControllerBase
             return BadRequest(ex.Message);
         }
      }
-    //  [HttpPost("ResetPassword/{email}")]
-    //  public async Task<ActionResult> ResetPassword(string email){
-    //     try{
-    //         var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
-    //         if (user == null)
-    //             return BadRequest("Korisnik sa ovim nalogom ne postoji");
-    //         if(user.TokenForgotPassword == null || user.ForgotPasswordExp == null )
-    //             return BadRequest("Korisnik nema pristup stranici");
-    //         if(user.TokenForgotPassword != null && user.ForgotPasswordExp < DateTime.Now)
-    //             return BadRequest("Nevalidan token , istekao je");
-    //         //1. Provera tokena i email (nalaze se u bazi)
-    //         //2. Provera se da li je token istekao
-    //         return Ok();
-    //     }
-    //     catch(Exception ex){
-    //         return BadRequest(ex.Message);
-    //     }
-    //  }
+      [HttpPost("ResetPassword/{email}")]
+      public async Task<ActionResult> ResetPassword(string email){
+         try{
+             var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
+             if (user == null)
+                 return BadRequest("Korisnik sa ovim nalogom ne postoji");
+             if(user.TokenForgotPassword == null || user.ForgotPasswordExp == null )
+                 return BadRequest("Korisnik nema pristup stranici");
+             if(user.TokenForgotPassword != null && user.ForgotPasswordExp < DateTime.Now)
+                 return BadRequest("Nevalidan token , istekao je");
+             return Ok(user.TokenForgotPassword);
+         }
+         catch(Exception ex){
+             return BadRequest(ex.Message);
+         }
+      }
     [HttpPost("ChangePassword/{email}/{password}/{confirmPassword}")]
      public async Task<ActionResult> ChangePassword(string email , string password , string confirmPassword){
         try{
@@ -128,7 +125,6 @@ public class AuthController : ControllerBase
             user.Lozinka = BCrypt.Net.BCrypt.HashPassword(password);
             await Context.SaveChangesAsync();
             return Ok("Lozinka je uspesno promenjena");
-            
         }
         catch(Exception ex){
             return BadRequest(ex.Message);
@@ -155,4 +151,21 @@ public class AuthController : ControllerBase
         var jwt = new JwtSecurityTokenHandler().WriteToken(token);
         return jwt;
     }
+     private async void AddTypeOfUser(Korisnik korisnik){
+         if(korisnik.TipKorisnika == "Kupac"){
+            var Kupac = new Kupac {
+                Korisnik = korisnik
+            };
+             await Context.Kupaci.AddAsync(Kupac);
+         }
+         else {
+            var Radnik = new Radnik{
+                Korisnik = korisnik
+            };
+            await Context.Radnici.AddAsync(Radnik);
+         }
+         await Context.SaveChangesAsync();
+         return;
+         
+     }
 }

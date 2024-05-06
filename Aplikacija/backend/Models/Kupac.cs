@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Models;
 
 public class Kupac {
@@ -7,9 +9,9 @@ public class Kupac {
     public string? Slika { get; set; }
     [MaxLength(50)] 
     public string? Uverenje { get; set; }
-    public int BrojLezaljki { get; set; }
-
+    [JsonIgnore]
     public List<ZahtevIzdavanje>? ZahtevIzdavanje { get; set; }
+    [JsonIgnore]
     public List<Rezervacije>? Rezervacije { get; set; }
     public required Korisnik Korisnik { get; set; }
 }
