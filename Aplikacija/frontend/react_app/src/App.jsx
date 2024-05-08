@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Home, Login, Register, About } from './pages';
+import { Home, Login, Register, About, ForgotPassword } from './pages';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
 const App = () => {
@@ -28,6 +27,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About theme={theme} />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
             {/*Navigacije*/}
             <Route path="/" element={<Navigate to="/login" />} />

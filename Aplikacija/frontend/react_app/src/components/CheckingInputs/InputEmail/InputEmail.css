@@ -1,0 +1,17 @@
+  .icon{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .email-message {
+    display: flex;
+    align-self: center;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .dark .email-message {
+    display: flex;
+    align-self: center;
+    color: rgb(255,255,255,0.8);
+  }

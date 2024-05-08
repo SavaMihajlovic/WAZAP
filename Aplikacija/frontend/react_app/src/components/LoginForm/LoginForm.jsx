@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './LoginForm.css';
 import user_icon from '../../assets/person.png';
-import password_icon from '../../assets/password.png';
 import { useNavigate } from 'react-router-dom';
+import InputPassword from '../CheckingInputs/InputPassword/InputPassword';
 
 const LoginForm = () => {
   const [action, setAction] = useState('Login');
@@ -12,6 +12,8 @@ const LoginForm = () => {
     setAction(newAction);
     if (newAction === 'Register') {
       navigate('/register');
+    } else if (newAction === 'ForgotPassword') {
+      navigate('/forgot-password');
     }
   };
 
@@ -26,12 +28,9 @@ const LoginForm = () => {
           <img src={user_icon} alt=''/>
           <input type='text' placeholder='Username'/>
         </div>
-        <div className="input">
-          <img src={password_icon} alt=''/>
-          <input type='password' placeholder='Password'/>
-        </div>
+        <InputPassword />
       </div>
-      <div className="forgot-password">Forgot password? <span>Send via email!</span> </div>
+      <div className="forgot-password">Forgot password? <span onClick={() => handleActionChange('ForgotPassword')}>Send via email!</span> </div>
       <div className="submit-container">
         <div className={action === "Login" ? "submit" : "submit gray"} onClick={()=> handleActionChange("Register")}>Register</div>
         <div className={action === "Register" ? "submit gray" : "submit"} onClick={()=> handleActionChange("Login")}>Login</div>

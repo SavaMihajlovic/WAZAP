@@ -1,6 +1,6 @@
 .login-content {
     width: 100%;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 10px);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -138,6 +138,7 @@
   
   .light .forgot-password {
     color: #797979;
+    margin-left: 23px;
   }
   
   .light .forgot-password span {
@@ -178,6 +179,7 @@
   
   .dark .forgot-password {
     color: #ccc;
+    margin-left: 23px;
   }
   
   .dark .forgot-password span {
