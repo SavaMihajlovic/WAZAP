@@ -3,17 +3,18 @@ import email_icon from '../../../assets/email.png';
 import { FcOk, FcCancel } from "react-icons/fc";
 import './InputEmail.css'
 
-export const InputEmail = () => {
+export const InputEmail = ({setEmail}) => {
 
-    const [email, setEmail] = useState('');
+    const [email, setEmailLocal] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(false);
     const [emailMessage, setEmailMessage] = useState('Molimo vas unesite vaš email');
   
     const handleEmailChange = (event) => {
       const newEmail = event.target.value;
-      setEmail(newEmail);
+      setEmailLocal(newEmail);
       setIsValidEmail(newEmail.endsWith('@gmail.com'));
       updateEmailMessage(newEmail);
+      setEmail(newEmail);
     };
   
     const updateEmailMessage = (email) => {

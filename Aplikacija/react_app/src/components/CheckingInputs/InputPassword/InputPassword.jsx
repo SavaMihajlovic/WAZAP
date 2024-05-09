@@ -3,16 +3,17 @@ import password_icon from '../../../assets/password.png';
 import { FcOk, FcCancel } from "react-icons/fc";
 import './InputPassword.css';
 
-const InputPassword = () => {
-    const [password, setPassword] = useState('');
+const InputPassword = ({setPassword}) => {
+    const [password, setPasswordLocal] = useState('');
     const [isStrongPassword, setIsStrongPassword] = useState(false);
     const [passwordMessage, setPasswordMessage] = useState('Molimo vas unesite vaš password');
     const [isRequestFulfilled, setIsRequestFulfilled] = useState(false);
 
     const handlePasswordChange = (event) => {
         const newPassword = event.target.value;
-        setPassword(newPassword);
+        setPasswordLocal(newPassword);
         checkPasswordStrength(newPassword);
+        setPassword(newPassword);
     };
 
     const checkPasswordStrength = (password) => {
