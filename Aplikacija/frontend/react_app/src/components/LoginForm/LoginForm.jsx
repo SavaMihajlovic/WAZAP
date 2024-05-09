@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import './LoginForm.css';
+import axios from 'axios';
 import user_icon from '../../assets/person.png';
 import { useNavigate } from 'react-router-dom';
 import InputPassword from '../CheckingInputs/InputPassword/InputPassword';
 
 const LoginForm = () => {
   const [action, setAction] = useState('Login');
+  const [username,setUsername] = useState('');
+  const [password,setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleActionChange = (newAction) => {
@@ -14,6 +17,27 @@ const LoginForm = () => {
       navigate('/register');
     } else if (newAction === 'ForgotPassword') {
       navigate('/forgot-password');
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'korisnickoIme') {
+      setUsername(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(`http://localhost:5212/Auth/Login/${username}/${password}`);
+      console.log('Uspešno:', response.data);
+      localStorage.setItem('token', response.data);
+      navigate('/');
+
+    } catch (error) {
+      console.error('Greška pri prijavljivanju:', error);
     }
   };
 
@@ -26,14 +50,14 @@ const LoginForm = () => {
       <div className="inputs">
         <div className="input">
           <img src={user_icon} alt=''/>
-          <input type='text' placeholder='Username'/>
+          <input type='text' name='korisnickoIme' placeholder='Username' value={username} onChange={handleInputChange}/>
         </div>
-        <InputPassword />
+        <InputPassword setPassword={setPassword}/>
       </div>
       <div className="forgot-password">Forgot password? <span onClick={() => handleActionChange('ForgotPassword')}>Send via email!</span> </div>
       <div className="submit-container">
-        <div className={action === "Login" ? "submit" : "submit gray"} onClick={()=> handleActionChange("Register")}>Register</div>
-        <div className={action === "Register" ? "submit gray" : "submit"} onClick={()=> handleActionChange("Login")}>Login</div>
+        <div className={action === "Login" ? "submit" : "submit gray"} onClick={handleSubmit}>Login</div>
+        <div className={action === "Register" ? "submit gray" : "submit"} onClick={() => handleActionChange("Register")}>Register</div>
       </div>
     </div>
   )

@@ -64,7 +64,7 @@ public class AuthController : ControllerBase
             var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
             if(user == null)
                 return BadRequest("User sa ovim nalogom ne postoji");
-            string link = configuration.GetSection("AppSettings:FrontendURL").Value!;
+            string link = $"{configuration.GetSection("AppSettings:FrontendURL").Value!}/reset-password";
             string fromMail = configuration.GetSection("AppSettings:FromMail").Value!;
             string fromPassword = configuration.GetSection("AppSettings:FromPassword").Value!;
             string toMail = email;
