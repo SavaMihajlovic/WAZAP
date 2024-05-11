@@ -64,7 +64,10 @@ public class AuthController : ControllerBase
             var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
             if(user == null)
                 return BadRequest("User sa ovim nalogom ne postoji");
-            string link = $"{configuration.GetSection("AppSettings:FrontendURL").Value!}/reset-password";
+            user.TokenForgotPassword = RandomString.GetString(Types.ALPHABET_MIXEDCASE , 8);
+            user.ForgotPasswordExp = DateTime.Now.AddHours(1);
+            await Context.SaveChangesAsync();
+            string link = $"{configuration.GetSection("AppSettings:FrontendURL").Value!}/reset-password?email={user.Email}&token={user.TokenForgotPassword}";
             string fromMail = configuration.GetSection("AppSettings:FromMail").Value!;
             string fromPassword = configuration.GetSection("AppSettings:FromPassword").Value!;
             string toMail = email;
@@ -83,24 +86,19 @@ public class AuthController : ControllerBase
                 EnableSsl = true,
             };
             smtpClient.Send(message);
-            user.TokenForgotPassword = RandomString.GetString(Types.ALPHABET_MIXEDCASE , 8);
-            user.ForgotPasswordExp = DateTime.Now.AddHours(1);
-            await Context.SaveChangesAsync();
             return Ok("Poruka je poslata na vasu email adresu");
         }
         catch(Exception ex){
             return BadRequest(ex.Message);
         }
      }
-      [HttpPost("ResetPassword/{email}")]
-      public async Task<ActionResult> ResetPassword(string email){
+      [HttpPost("ResetPassword/{email}/{token}")]
+      public async Task<ActionResult> ResetPassword(string email , string token){
          try{
-             var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
+             var user = await Context.Korisnici.Where(p => p.Email == email && p.TokenForgotPassword == token).FirstOrDefaultAsync();
              if (user == null)
-                 return BadRequest("Korisnik sa ovim nalogom ne postoji");
-             if(user.TokenForgotPassword == null || user.ForgotPasswordExp == null )
-                 return BadRequest("Korisnik nema pristup stranici");
-             if(user.TokenForgotPassword != null && user.ForgotPasswordExp < DateTime.Now)
+                 return BadRequest("Nevazeci token!");
+             if(user.ForgotPasswordExp < DateTime.Now)
                  return BadRequest("Nevalidan token , istekao je");
              return Ok(user.TokenForgotPassword);
          }
@@ -108,18 +106,16 @@ public class AuthController : ControllerBase
              return BadRequest(ex.Message);
          }
       }
-    [HttpPost("ChangePassword/{email}/{password}/{confirmPassword}")]
-     public async Task<ActionResult> ChangePassword(string email , string password , string confirmPassword){
+    [HttpPost("ChangePassword/{email}/{password}/{token}/{confirmPassword}")]
+     public async Task<ActionResult> ChangePassword(string email , string password , string token, string confirmPassword){
         try{
             if(password != confirmPassword)
                 return BadRequest("Lozinke se ne poklapaju");
-            var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
-            if (user == null)
-                return BadRequest("Korisnik sa ovim nalogom ne postoji");
-            if(user.TokenForgotPassword == null || user.ForgotPasswordExp == null )
-                return BadRequest("Korisnik nema pristup stranici");
-            if(user.TokenForgotPassword != null && user.ForgotPasswordExp < DateTime.Now)
-                return BadRequest("Nevalidan token , istekao je");
+             var user = await Context.Korisnici.Where(p => p.Email == email && p.TokenForgotPassword == token).FirstOrDefaultAsync();
+             if (user == null)
+                 return BadRequest("Nevazeci token!");
+             if(user.ForgotPasswordExp < DateTime.Now)
+                 return BadRequest("Nevalidan token , istekao je");
             user.TokenForgotPassword = null;
             user.ForgotPasswordExp = null;
             user.Lozinka = BCrypt.Net.BCrypt.HashPassword(password);
