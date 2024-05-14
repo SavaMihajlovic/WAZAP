@@ -67,9 +67,17 @@
               "target": "Package",
               "version": "[7.5.1, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Oracle.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.21.140, )"
+            },
+            "PayPalCheckoutSdk": {
+              "target": "Package",
+              "version": "[1.0.4, )"
             },
             "RandomString4Net": {
               "target": "Package",

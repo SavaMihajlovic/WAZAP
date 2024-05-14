@@ -40,6 +40,9 @@ public class RezervacijeController : ControllerBase
             var reservation = await Context.Rezervacije.Where(p=> p.Datum.Day == datum.Day && p.Lezaljka!.ID == easyChairID).FirstOrDefaultAsync();
             if(reservation != null)
                 return BadRequest($"Lezaljka:{easyChairID} je vec rezervisana");
+        
+
+            //Ovde bi trebalo da se izvrsi uplata pa tek onda da mu se dodeli lezaljka za zeljeni dan
             var Newreservation = new Rezervacije{
                 Datum = datum,
                 Kupac = swimmer,

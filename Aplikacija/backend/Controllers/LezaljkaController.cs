@@ -38,7 +38,7 @@ public class LezaljkaController : ControllerBase
      [HttpGet("GetAllTaken/{datum}")]
      public async Task<ActionResult> GetAllTaken(DateTime datum){
         try{
-            var taken = await Context.Rezervacije.Where(p => p.Datum.Day == datum.Day).Select(p => new{
+            var taken = await Context.Rezervacije.Where(p => p.Datum.Date == datum.Date).Select(p => new{
                 p.Lezaljka!.ID,
                 p.Lezaljka.Cena
             }).ToListAsync();
@@ -51,7 +51,7 @@ public class LezaljkaController : ControllerBase
      [HttpGet("GetAllFree/{datum}")]
 public async Task<ActionResult> GetAllFree(DateTime datum){
     try{
-        var rezervacijeZaDatum = await Context.Rezervacije.Where(r => r.Datum.Day == datum.Day).Select(r => r.Lezaljka!.ID).ToListAsync();
+        var rezervacijeZaDatum = await Context.Rezervacije.Where(r => r.Datum.Date == datum.Date).Select(r => r.Lezaljka!.ID).ToListAsync();
         var slobodneLezaljke = await Context.Lezaljke
             .Where(l => !rezervacijeZaDatum.Contains(l.ID))
             .Select(l => new {

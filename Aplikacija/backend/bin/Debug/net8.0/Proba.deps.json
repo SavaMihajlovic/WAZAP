@@ -13,7 +13,9 @@
           "Microsoft.EntityFrameworkCore": "8.0.4",
           "Microsoft.EntityFrameworkCore.Design": "8.0.4",
           "Microsoft.IdentityModel.Tokens": "7.5.1",
+          "Newtonsoft.Json": "13.0.3",
           "Oracle.EntityFrameworkCore": "8.21.140",
+          "PayPalCheckoutSdk": "1.0.4",
           "RandomString4Net": "1.8.0",
           "Swashbuckle.AspNetCore": "6.4.0",
           "System.IdentityModel.Tokens.Jwt": "7.5.1"
@@ -461,6 +463,14 @@
           }
         }
       },
+      "Newtonsoft.Json/13.0.3": {
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.3.27908"
+          }
+        }
+      },
       "Oracle.EntityFrameworkCore/8.21.140": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "8.0.4",
@@ -484,6 +494,25 @@
           "lib/netstandard2.1/Oracle.ManagedDataAccess.dll": {
             "assemblyVersion": "3.1.21.1",
             "fileVersion": "3.1.21.1"
+          }
+        }
+      },
+      "PayPalCheckoutSdk/1.0.4": {
+        "dependencies": {
+          "PayPalHttp": "1.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/PayPalCheckoutSdk.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "PayPalHttp/1.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/PayPalHttp-Dotnet.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
           }
         }
       },
@@ -1027,6 +1056,13 @@
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
     },
+    "Newtonsoft.Json/13.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
+    },
     "Oracle.EntityFrameworkCore/8.21.140": {
       "type": "package",
       "serviceable": true,
@@ -1040,6 +1076,20 @@
       "sha512": "sha512-F1c4adtCGe6C+h04fryfAeRC3XsTG73Xd6vYhpD/6ABfdWo4IOTLy8EZs4vhya2+OR0BME/751Y3BCZcWdNYiQ==",
       "path": "oracle.manageddataaccess.core/3.21.140",
       "hashPath": "oracle.manageddataaccess.core.3.21.140.nupkg.sha512"
+    },
+    "PayPalCheckoutSdk/1.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4fsOPj6SOJurbVf5ANg7NQ5TNvSYmtngf3dpJN11xEk6BP+5Rn6OcaaTbUx+bVnnYmgaoe5LbRZe52QpAjuwqg==",
+      "path": "paypalcheckoutsdk/1.0.4",
+      "hashPath": "paypalcheckoutsdk.1.0.4.nupkg.sha512"
+    },
+    "PayPalHttp/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Jlg8e9Egwxk+sfkIoGIkjQS+uxGNIOnY6NbUkWXKJiEGGqryeV9bIRNtSfjSgs/g02JcIQbKRFQW+8amtSo3ig==",
+      "path": "paypalhttp/1.0.1",
+      "hashPath": "paypalhttp.1.0.1.nupkg.sha512"
     },
     "RandomString4Net/1.8.0": {
       "type": "package",

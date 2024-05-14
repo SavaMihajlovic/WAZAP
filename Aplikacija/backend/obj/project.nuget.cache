@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ym/WDjkh5wgtaM7V/3oTipL6VHvld2nUhHKar/DtduaFytgSF1bdbSVESpyo1/7+oKN/pcaRnJCcCzuJJU17jA==",
+  "dgSpecHash": "zDplgwYsvUIz8jwsR5pTXTCiD6nJ3gvGXxYx0cuYwRafsZAsnOFtAZOGYJnHIdLOmrF25K9wvsY6b++3y36k1w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
   "expectedPackageFiles": [
@@ -36,8 +36,11 @@
     "C:\\Users\\Nemanja\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Nemanja\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\oracle.entityframeworkcore\\8.21.140\\oracle.entityframeworkcore.8.21.140.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\oracle.manageddataaccess.core\\3.21.140\\oracle.manageddataaccess.core.3.21.140.nupkg.sha512",
+    "C:\\Users\\Nemanja\\.nuget\\packages\\paypalcheckoutsdk\\1.0.4\\paypalcheckoutsdk.1.0.4.nupkg.sha512",
+    "C:\\Users\\Nemanja\\.nuget\\packages\\paypalhttp\\1.0.1\\paypalhttp.1.0.1.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\randomstring4net\\1.8.0\\randomstring4net.1.8.0.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\Nemanja\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
