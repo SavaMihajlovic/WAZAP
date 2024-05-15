@@ -390,3 +390,4 @@ C:\Users\msava\OneDrive\Desktop\III GODINA\SEMESTAR 6\SOFTVERSKO INZENJERSTVO\pr
 C:\Users\Nemanja\Projekat\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Nemanja\Projekat\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\PayPalCheckoutSdk.dll
 C:\Users\Nemanja\Projekat\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\PayPalHttp-Dotnet.dll
+C:\Users\Nemanja\Projekat\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\PayPal.NET.dll

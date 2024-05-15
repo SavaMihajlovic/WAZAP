@@ -75,6 +75,10 @@
               "target": "Package",
               "version": "[8.21.140, )"
             },
+            "PayPal.NET": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "PayPalCheckoutSdk": {
               "target": "Package",
               "version": "[1.0.4, )"
