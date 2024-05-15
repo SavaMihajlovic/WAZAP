@@ -556,7 +556,6 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.Extensions.Diagnostics/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -566,23 +565,10 @@
         },
         "compile": {
           "lib/net8.0/Microsoft.Extensions.Diagnostics.dll": {
-=======
-      "Microsoft.Extensions.Http/7.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Logging": "7.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0"
-        },
-        "compile": {
-          "lib/net7.0/Microsoft.Extensions.Http.dll": {
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
             "related": ".xml"
           }
         },
         "runtime": {
-<<<<<<< HEAD
           "lib/net8.0/Microsoft.Extensions.Diagnostics.dll": {
             "related": ".xml"
           }
@@ -629,9 +615,6 @@
         },
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.Http.dll": {
-=======
-          "lib/net7.0/Microsoft.Extensions.Http.dll": {
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
             "related": ".xml"
           }
         },
@@ -887,7 +870,19 @@
           "lib/netstandard2.1/Oracle.ManagedDataAccess.dll": {}
         }
       },
-<<<<<<< HEAD
+      "PayPal.NET/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Http": "7.0.0",
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "compile": {
+          "lib/net7.0/PayPal.NET.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/PayPal.NET.dll": {}
+        }
+      },
       "PayPal.Sdk.Checkout/2.5.0": {
         "type": "package",
         "dependencies": {
@@ -902,18 +897,6 @@
         },
         "runtime": {
           "lib/net8.0/PayPal.Sdk.Checkout.dll": {}
-=======
-      "PayPal.NET/7.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Http": "7.0.0",
-          "Newtonsoft.Json": "13.0.3"
-        },
-        "compile": {
-          "lib/net7.0/PayPal.NET.dll": {}
-        },
-        "runtime": {
-          "lib/net7.0/PayPal.NET.dll": {}
         }
       },
       "PayPalCheckoutSdk/1.0.4": {
@@ -935,7 +918,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/PayPalHttp-Dotnet.dll": {}
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
         }
       },
       "RandomString4Net/1.8.0": {
@@ -2649,24 +2631,16 @@
         "useSharedDesignerContext.txt"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.Extensions.Diagnostics/8.0.0": {
       "sha512": "3PZp/YSkIXrF7QK7PfC1bkyRYwqOHpWFad8Qx+4wkuumAeXo1NHaxpS9LboNA9OvNSAu+QOVlXbMyoY+pHSqcw==",
       "type": "package",
       "path": "microsoft.extensions.diagnostics/8.0.0",
-=======
-    "Microsoft.Extensions.Http/7.0.0": {
-      "sha512": "9Pq9f/CvOSz0t9yQa6g1uWpxa2sm13daLFm8EZwy9MaQUjKXWdNUXQwIxwhmba5N83UIqURiPHSNqGK1vfWF2w==",
-      "type": "package",
-      "path": "microsoft.extensions.http/7.0.0",
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-<<<<<<< HEAD
         "buildTransitive/net461/Microsoft.Extensions.Diagnostics.targets",
         "buildTransitive/net462/_._",
         "buildTransitive/net6.0/_._",
@@ -2726,8 +2700,6 @@
         "LICENSE.TXT",
         "PACKAGE.md",
         "THIRD-PARTY-NOTICES.TXT",
-=======
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
         "buildTransitive/net461/Microsoft.Extensions.Http.targets",
         "buildTransitive/net462/_._",
         "buildTransitive/net6.0/_._",
@@ -2738,17 +2710,11 @@
         "lib/net6.0/Microsoft.Extensions.Http.xml",
         "lib/net7.0/Microsoft.Extensions.Http.dll",
         "lib/net7.0/Microsoft.Extensions.Http.xml",
-<<<<<<< HEAD
         "lib/net8.0/Microsoft.Extensions.Http.dll",
         "lib/net8.0/Microsoft.Extensions.Http.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
         "microsoft.extensions.http.8.0.0.nupkg.sha512",
-=======
-        "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
-        "microsoft.extensions.http.7.0.0.nupkg.sha512",
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
         "microsoft.extensions.http.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -3174,7 +3140,19 @@
         "readme.txt"
       ]
     },
-<<<<<<< HEAD
+    "PayPal.NET/7.0.0": {
+      "sha512": "GZaubM1J2t9ic91VGJd7xdj9hQE/kGCP8lA3KO6Qw8dYmYNO6VYFZJmZUmX2+bB0Bn/KjI6GJLeQBeUun4eqdA==",
+      "type": "package",
+      "path": "paypal.net/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Logo.png",
+        "lib/net7.0/PayPal.NET.dll",
+        "paypal.net.7.0.0.nupkg.sha512",
+        "paypal.net.nuspec"
+      ]
+    },
     "PayPal.Sdk.Checkout/2.5.0": {
       "sha512": "vU/6fHF3DOakVU1nbXKTFrYMPJ8iGxpyFt+FO+jhyJ0YCmUahVcyrZnC8qiRTJ1V8PjEb6wojJ9B6zYApS7+3Q==",
       "type": "package",
@@ -3187,18 +3165,6 @@
         "lib/net8.0/PayPal.Sdk.Checkout.dll",
         "paypal.sdk.checkout.2.5.0.nupkg.sha512",
         "paypal.sdk.checkout.nuspec"
-=======
-    "PayPal.NET/7.0.0": {
-      "sha512": "GZaubM1J2t9ic91VGJd7xdj9hQE/kGCP8lA3KO6Qw8dYmYNO6VYFZJmZUmX2+bB0Bn/KjI6GJLeQBeUun4eqdA==",
-      "type": "package",
-      "path": "paypal.net/7.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Logo.png",
-        "lib/net7.0/PayPal.NET.dll",
-        "paypal.net.7.0.0.nupkg.sha512",
-        "paypal.net.nuspec"
       ]
     },
     "PayPalCheckoutSdk/1.0.4": {
@@ -3223,7 +3189,6 @@
         "lib/netstandard2.0/PayPalHttp-Dotnet.dll",
         "paypalhttp.1.0.1.nupkg.sha512",
         "paypalhttp.nuspec"
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
       ]
     },
     "RandomString4Net/1.8.0": {
@@ -4165,31 +4130,28 @@
       "Microsoft.IdentityModel.Tokens >= 7.5.1",
       "Newtonsoft.Json >= 13.0.3",
       "Oracle.EntityFrameworkCore >= 8.21.140",
-<<<<<<< HEAD
-      "PayPal.Sdk.Checkout >= 2.5.0",
-=======
       "PayPal.NET >= 7.0.0",
+      "PayPal.Sdk.Checkout >= 2.5.0",
       "PayPalCheckoutSdk >= 1.0.4",
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
       "RandomString4Net >= 1.8.0",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "System.IdentityModel.Tokens.Jwt >= 7.5.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\msava\\.nuget\\packages\\": {}
+    "C:\\Users\\Nemanja\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
+      "projectUniqueName": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
       "projectName": "Proba",
-      "projectPath": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
-      "packagesPath": "C:\\Users\\msava\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\obj\\",
+      "projectPath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
+      "packagesPath": "C:\\Users\\Nemanja\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\msava\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nemanja\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4209,6 +4171,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -4245,19 +4212,17 @@
             "target": "Package",
             "version": "[8.21.140, )"
           },
-<<<<<<< HEAD
-          "PayPal.Sdk.Checkout": {
-            "target": "Package",
-            "version": "[2.5.0, )"
-=======
           "PayPal.NET": {
             "target": "Package",
             "version": "[7.0.0, )"
           },
+          "PayPal.Sdk.Checkout": {
+            "target": "Package",
+            "version": "[2.5.0, )"
+          },
           "PayPalCheckoutSdk": {
             "target": "Package",
             "version": "[1.0.4, )"
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
           },
           "RandomString4Net": {
             "target": "Package",
@@ -4291,8 +4256,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

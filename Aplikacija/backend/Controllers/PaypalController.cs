@@ -90,7 +90,6 @@ public class PaypalController : ControllerBase
         {
             // Dobijanje access tokena
             string accessToken = await GetAccessToken();
-            Console.WriteLine(accessToken);
             var requestData = new {
                 token = accessToken
             };

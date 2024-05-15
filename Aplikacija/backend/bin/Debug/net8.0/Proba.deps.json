@@ -15,12 +15,9 @@
           "Microsoft.IdentityModel.Tokens": "7.5.1",
           "Newtonsoft.Json": "13.0.3",
           "Oracle.EntityFrameworkCore": "8.21.140",
-<<<<<<< HEAD
-          "PayPal.Sdk.Checkout": "2.5.0",
-=======
           "PayPal.NET": "7.0.0",
+          "PayPal.Sdk.Checkout": "2.5.0",
           "PayPalCheckoutSdk": "1.0.4",
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
           "RandomString4Net": "1.8.0",
           "Swashbuckle.AspNetCore": "6.4.0",
           "System.IdentityModel.Tokens.Jwt": "7.5.1"
@@ -384,7 +381,6 @@
           }
         }
       },
-<<<<<<< HEAD
       "Microsoft.Extensions.Diagnostics/8.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration": "8.0.0",
@@ -404,11 +400,6 @@
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
           "Microsoft.Extensions.Diagnostics": "8.0.0",
-=======
-      "Microsoft.Extensions.Http/7.0.0": {
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
           "Microsoft.Extensions.Logging": "8.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
           "Microsoft.Extensions.Options": "8.0.0"
@@ -552,7 +543,18 @@
           }
         }
       },
-<<<<<<< HEAD
+      "PayPal.NET/7.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Http": "8.0.0",
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/net7.0/PayPal.NET.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
+          }
+        }
+      },
       "PayPal.Sdk.Checkout/2.5.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "8.0.0",
@@ -565,16 +567,6 @@
           "lib/net8.0/PayPal.Sdk.Checkout.dll": {
             "assemblyVersion": "2.5.0.0",
             "fileVersion": "2.5.0.0"
-=======
-      "PayPal.NET/7.0.0": {
-        "dependencies": {
-          "Microsoft.Extensions.Http": "7.0.0",
-          "Newtonsoft.Json": "13.0.3"
-        },
-        "runtime": {
-          "lib/net7.0/PayPal.NET.dll": {
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.0.0"
           }
         }
       },
@@ -594,7 +586,6 @@
           "lib/netstandard2.0/PayPalHttp-Dotnet.dll": {
             "assemblyVersion": "1.0.1.0",
             "fileVersion": "1.0.1.0"
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
           }
         }
       },
@@ -1076,7 +1067,6 @@
       "path": "microsoft.extensions.dependencymodel/8.0.0",
       "hashPath": "microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512"
     },
-<<<<<<< HEAD
     "Microsoft.Extensions.Diagnostics/8.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1097,14 +1087,6 @@
       "sha512": "sha512-cWz4caHwvx0emoYe7NkHPxII/KkTI8R/LC9qdqJqnKv2poTJ4e2qqPGQqvRoQ5kaSA4FU5IV3qFAuLuOhoqULQ==",
       "path": "microsoft.extensions.http/8.0.0",
       "hashPath": "microsoft.extensions.http.8.0.0.nupkg.sha512"
-=======
-    "Microsoft.Extensions.Http/7.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-9Pq9f/CvOSz0t9yQa6g1uWpxa2sm13daLFm8EZwy9MaQUjKXWdNUXQwIxwhmba5N83UIqURiPHSNqGK1vfWF2w==",
-      "path": "microsoft.extensions.http/7.0.0",
-      "hashPath": "microsoft.extensions.http.7.0.0.nupkg.sha512"
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
     },
     "Microsoft.Extensions.Logging/8.0.0": {
       "type": "package",
@@ -1211,20 +1193,19 @@
       "path": "oracle.manageddataaccess.core/3.21.140",
       "hashPath": "oracle.manageddataaccess.core.3.21.140.nupkg.sha512"
     },
-<<<<<<< HEAD
-    "PayPal.Sdk.Checkout/2.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-vU/6fHF3DOakVU1nbXKTFrYMPJ8iGxpyFt+FO+jhyJ0YCmUahVcyrZnC8qiRTJ1V8PjEb6wojJ9B6zYApS7+3Q==",
-      "path": "paypal.sdk.checkout/2.5.0",
-      "hashPath": "paypal.sdk.checkout.2.5.0.nupkg.sha512"
-=======
     "PayPal.NET/7.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-GZaubM1J2t9ic91VGJd7xdj9hQE/kGCP8lA3KO6Qw8dYmYNO6VYFZJmZUmX2+bB0Bn/KjI6GJLeQBeUun4eqdA==",
       "path": "paypal.net/7.0.0",
       "hashPath": "paypal.net.7.0.0.nupkg.sha512"
+    },
+    "PayPal.Sdk.Checkout/2.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vU/6fHF3DOakVU1nbXKTFrYMPJ8iGxpyFt+FO+jhyJ0YCmUahVcyrZnC8qiRTJ1V8PjEb6wojJ9B6zYApS7+3Q==",
+      "path": "paypal.sdk.checkout/2.5.0",
+      "hashPath": "paypal.sdk.checkout.2.5.0.nupkg.sha512"
     },
     "PayPalCheckoutSdk/1.0.4": {
       "type": "package",
@@ -1239,7 +1220,6 @@
       "sha512": "sha512-Jlg8e9Egwxk+sfkIoGIkjQS+uxGNIOnY6NbUkWXKJiEGGqryeV9bIRNtSfjSgs/g02JcIQbKRFQW+8amtSo3ig==",
       "path": "paypalhttp/1.0.1",
       "hashPath": "paypalhttp.1.0.1.nupkg.sha512"
->>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
     },
     "RandomString4Net/1.8.0": {
       "type": "package",
