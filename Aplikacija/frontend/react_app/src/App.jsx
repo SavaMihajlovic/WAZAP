@@ -28,11 +28,13 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About theme={theme} />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/reset-password" element={<Navigate to="/" />} />
+            <Route path="/reset-password/:email/:token" element={<ResetPassword />} />
            
 
             {/*Navigacije*/}
             <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="*" element={<Navigate to="/404" />} />
           </Routes>
           {/*<Footer theme={theme} />*/}
         </div>

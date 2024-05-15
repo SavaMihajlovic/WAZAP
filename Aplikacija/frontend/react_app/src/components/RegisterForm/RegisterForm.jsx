@@ -93,7 +93,7 @@ const RegisterForm = () => {
           <input type='text' name='korisnickoIme' placeholder='Username' value={userData.korisnickoIme} onChange={handleChange}/>
         </div>
           <InputEmail setEmail={handleEmailChange} />
-          <InputPassword setPassword={handlePasswordChange} />
+          <InputPassword setPassword={handlePasswordChange} variant='password'/>
           <div className={`input ${ageError ? 'error' : ''}`}>
         <input type='date' name='datumRodjenja' value={userData.datumRodjenja} onChange={handleDateChange} placeholder='Datum rođenja'/>
         </div>

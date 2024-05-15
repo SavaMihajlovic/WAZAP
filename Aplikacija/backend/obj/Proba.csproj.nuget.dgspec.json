@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj": {}
+    "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj": {
+    "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
+        "projectUniqueName": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
         "projectName": "Proba",
-        "projectPath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
-        "packagesPath": "C:\\Users\\Nemanja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\obj\\",
+        "projectPath": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\Proba.csproj",
+        "packagesPath": "C:\\Users\\msava\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Nemanja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\msava\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -70,6 +65,10 @@
             "Oracle.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.21.140, )"
+            },
+            "PayPal.Sdk.Checkout": {
+              "target": "Package",
+              "version": "[2.5.0, )"
             },
             "RandomString4Net": {
               "target": "Package",
@@ -103,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

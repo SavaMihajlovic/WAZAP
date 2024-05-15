@@ -16,6 +16,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.5.1" />
     <PackageReference Include="Oracle.EntityFrameworkCore" Version="8.21.140" />
+    <PackageReference Include="PayPal.Sdk.Checkout" Version="2.5.0" />
     <PackageReference Include="RandomString4Net" Version="1.8.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />

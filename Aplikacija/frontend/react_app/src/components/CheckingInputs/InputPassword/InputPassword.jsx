@@ -3,17 +3,19 @@ import password_icon from '../../../assets/password.png';
 import { FcOk, FcCancel } from "react-icons/fc";
 import './InputPassword.css';
 
-const InputPassword = ({setPassword}) => {
+const InputPassword = ({ setPassword, variant }) => {
     const [password, setPasswordLocal] = useState('');
     const [isStrongPassword, setIsStrongPassword] = useState(false);
-    const [passwordMessage, setPasswordMessage] = useState('Molimo vas unesite vaš password');
+    const [passwordMessage, setPasswordMessage] = useState(variant === 'password' ? 'Molimo vas unesite vaš password' : 'Molimo vas potvrdite vaš password');
     const [isRequestFulfilled, setIsRequestFulfilled] = useState(false);
+    const [isPasswordEmpty, setIsPasswordEmpty] = useState(true);
 
     const handlePasswordChange = (event) => {
         const newPassword = event.target.value;
         setPasswordLocal(newPassword);
         checkPasswordStrength(newPassword);
         setPassword(newPassword);
+        setIsPasswordEmpty(newPassword === '');
     };
 
     const checkPasswordStrength = (password) => {
@@ -27,25 +29,27 @@ const InputPassword = ({setPassword}) => {
 
     const updatePasswordMessage = (password) => {
         if (!password) {
-            setPasswordMessage('Molimo vas unesite vaš password');
-        } else if (isStrongPassword) {
-            setPasswordMessage('Uneti password je jak');
-        } else {
-            setPasswordMessage('Password koji ste uneli nije dovoljno jak');
-        }
+            if(variant === 'password'){
+                setPasswordMessage('Molimo vas unesite vaš password');
+            } else {
+                setPasswordMessage('Molimo vas potvrdite vaš password');
+            }
+        }       
+        else
+            setPasswordMessage('');
     };
 
     return (
         <>
             <div className="input">
                 <img src={password_icon} alt='' />
-                <input type='password' placeholder='Password' value={password} onChange={handlePasswordChange} />
+                <input type='password' placeholder={variant === 'password' ? 'Password' : 'Confirm password'} value={password} onChange={handlePasswordChange} />
                 {password && (isStrongPassword ? <FcOk className="icon" /> : <FcCancel className="icon" />)}
             </div>
-            <div className="password-message">{passwordMessage}</div>
-            <div className={`password-requests ${isRequestFulfilled ? 'fulfilled' : ''}`}>
+            {password === '' ? (<div className="password-message">{passwordMessage}</div>) :
+            (<div className={`password-requests ${isPasswordEmpty || isStrongPassword ? 'hidden' : ''}`}>
                 Potrebno je uneti minimum 8 karaktera od kojih je 1 cifra!
-            </div>
+            </div>)}
         </>
     );
 };

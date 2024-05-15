@@ -67,7 +67,7 @@ public class AuthController : ControllerBase
             user.TokenForgotPassword = RandomString.GetString(Types.ALPHABET_MIXEDCASE , 8);
             user.ForgotPasswordExp = DateTime.Now.AddHours(1);
             await Context.SaveChangesAsync();
-            string link = $"{configuration.GetSection("AppSettings:FrontendURL").Value!}/reset-password?email={user.Email}&token={user.TokenForgotPassword}";
+            string link = $"{configuration.GetSection("AppSettings:FrontendURL").Value!}/reset-password/{user.Email}/{user.TokenForgotPassword}";
             string fromMail = configuration.GetSection("AppSettings:FromMail").Value!;
             string fromPassword = configuration.GetSection("AppSettings:FromPassword").Value!;
             string toMail = email;

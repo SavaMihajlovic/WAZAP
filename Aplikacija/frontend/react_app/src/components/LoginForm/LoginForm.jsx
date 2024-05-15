@@ -52,7 +52,7 @@ const LoginForm = () => {
           <img src={user_icon} alt=''/>
           <input type='text' name='korisnickoIme' placeholder='Username' value={username} onChange={handleInputChange}/>
         </div>
-        <InputPassword setPassword={setPassword}/>
+        <InputPassword setPassword={setPassword} variant='password'/>
       </div>
       <div className="forgot-password">Forgot password? <span onClick={() => handleActionChange('ForgotPassword')}>Send via email!</span> </div>
       <div className="submit-container">
