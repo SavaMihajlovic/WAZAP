@@ -15,8 +15,14 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.5.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Oracle.EntityFrameworkCore" Version="8.21.140" />
+<<<<<<< HEAD
     <PackageReference Include="PayPal.Sdk.Checkout" Version="2.5.0" />
+=======
+    <PackageReference Include="PayPal.NET" Version="7.0.0" />
+    <PackageReference Include="PayPalCheckoutSdk" Version="1.0.4" />
+>>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
     <PackageReference Include="RandomString4Net" Version="1.8.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />

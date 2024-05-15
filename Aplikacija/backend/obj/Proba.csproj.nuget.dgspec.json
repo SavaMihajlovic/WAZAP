@@ -62,13 +62,27 @@
               "target": "Package",
               "version": "[7.5.1, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Oracle.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.21.140, )"
             },
+<<<<<<< HEAD
             "PayPal.Sdk.Checkout": {
               "target": "Package",
               "version": "[2.5.0, )"
+=======
+            "PayPal.NET": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "PayPalCheckoutSdk": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+>>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
             },
             "RandomString4Net": {
               "target": "Package",
