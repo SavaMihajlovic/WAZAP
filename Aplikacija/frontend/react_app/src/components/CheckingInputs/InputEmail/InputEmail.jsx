@@ -3,7 +3,7 @@ import email_icon from '../../../assets/email.png';
 import { FcOk, FcCancel } from "react-icons/fc";
 import './InputEmail.css'
 
-export const InputEmail = ({setEmail}) => {
+export const InputEmail = ({setEmail, isEmpty}) => {
 
     const [email, setEmailLocal] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(false);
@@ -29,7 +29,7 @@ export const InputEmail = ({setEmail}) => {
 
   return (
     <>
-    <div className="input">
+     <div className={`input ${isEmpty ? 'error' : ''}`}>
           <img src={email_icon} alt=''/>
           <input type='text' placeholder='Email' value={email} onChange={handleEmailChange}/>
           {email && (isValidEmail ? <FcOk className="icon" /> : <FcCancel className="icon" />)}

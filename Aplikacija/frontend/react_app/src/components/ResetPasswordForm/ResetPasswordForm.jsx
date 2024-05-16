@@ -10,7 +10,10 @@ const ResetPasswordForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [showValidationError, setShowValidationError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,18 +32,32 @@ const ResetPasswordForm = () => {
 
   const handleSubmit = async () => {
 
+    if(!password.trim()) {
+      setPasswordError(true);
+    }
+    if(!confirmPassword.trim()){
+      setConfirmPasswordError(true);
+    }
+
+    if(!password.trim() || !confirmPassword.trim()) {
+      setShowValidationError(true);
+      return;
+    } else {
+      setShowValidationError(false);
+    }
+
     setLoading(true);
-    setError('');
 
     try {
       if(password === confirmPassword) {
         await axios.post(`http://localhost:5212/Auth/ChangePassword/${email}/${password}/${token}/${confirmPassword}`);
-        setSuccess(true);
         navigate('/login');
       }
     } catch (error) {
       console.error('Greška prilikom promene lozinke:', error);
-      setError('Došlo je do greške prilikom promene lozinke');
+      if(error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data);
+      }
     } finally {
       setLoading(false);
     }
@@ -53,15 +70,16 @@ const ResetPasswordForm = () => {
         <div className="reset-underline"></div>
       </div>
       <div className="reset-inputs">
-        <InputPassword setPassword={setPassword} variant="password"/>
-        <InputPassword setPassword={setConfirmPassword} variant="confirmPassword"/>
+        <InputPassword setPassword={setPassword} variant="password" isEmpty={passwordError}/>
+        <InputPassword setPassword={setConfirmPassword} variant="confirmPassword" isEmpty={confirmPasswordError}/>
         {confirmPassword && (
           <div className={`reset-password-match ${password === confirmPassword ? 'match' : 'mismatch'}`}>
             {password === confirmPassword ? 'Lozinke se poklapaju' : 'Lozinke se ne poklapaju'}
           </div>
         )}
       </div>
-
+      {showValidationError && <div className="error-message">Sva polja moraju biti popunjena!</div>}
+      <div className="error-message">{errorMessage}</div>
       <div className="reset-submit-container">
         <div className="reset-submit" onClick={handleSubmit}>Resetuj lozinku</div>
       </div>

@@ -8,8 +8,22 @@ const ForgotPasswordForm = () => {
 
   const [email,setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [showValidationError, setShowValidationError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async () => {
+
+    if (!email.trim()) {
+      setEmailError(true);
+    }
+
+    if (!email.trim()) {
+      setShowValidationError(true);
+      return; 
+    } else {
+      setShowValidationError(false);
+    }
 
     setLoading(true);
 
@@ -17,7 +31,12 @@ const ForgotPasswordForm = () => {
       await axios.post(`http://localhost:5212/Auth/ForgotPassword/${email}`);
       alert("Email poslat!");
     } catch (error) {
+
       console.error('Greška pri slanju emaila:', error);
+
+      if(error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data);
+      }
     } finally {
       setLoading(false); 
     }
@@ -30,8 +49,10 @@ const ForgotPasswordForm = () => {
         <div className="underline"></div>
       </div>
       <div className="inputs">
-         <InputEmail setEmail={setEmail}/>
+         <InputEmail setEmail={setEmail} isEmpty={emailError}/>
       </div>
+      {showValidationError && <div className="error-message">Sva polja moraju biti popunjena!</div>}
+      <div className="error-message">{errorMessage}</div>
       <div className="submit-container">
       {loading ? 
         <div className='loading-container'> <LoadingSpinner /></div>

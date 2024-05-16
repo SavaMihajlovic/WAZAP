@@ -195,3 +195,14 @@
     background: #555;
     color: #ccc;
   }
+
+  .input.error {
+    border: 2px solid red;
+  }
+
+  .error-message {
+    font-weight: bold;
+    margin-top: 10px; 
+    color: rgb(255,0,0,);
+  }
+  

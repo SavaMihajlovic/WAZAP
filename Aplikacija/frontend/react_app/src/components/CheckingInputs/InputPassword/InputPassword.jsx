@@ -3,7 +3,7 @@ import password_icon from '../../../assets/password.png';
 import { FcOk, FcCancel } from "react-icons/fc";
 import './InputPassword.css';
 
-const InputPassword = ({ setPassword, variant }) => {
+const InputPassword = ({ setPassword, variant, isEmpty }) => {
     const [password, setPasswordLocal] = useState('');
     const [isStrongPassword, setIsStrongPassword] = useState(false);
     const [passwordMessage, setPasswordMessage] = useState(variant === 'password' ? 'Molimo vas unesite vaš password' : 'Molimo vas potvrdite vaš password');
@@ -41,7 +41,7 @@ const InputPassword = ({ setPassword, variant }) => {
 
     return (
         <>
-            <div className="input">
+            <div className={`input ${isEmpty ? 'error' : ''}`}>
                 <img src={password_icon} alt='' />
                 <input type='password' placeholder={variant === 'password' ? 'Password' : 'Confirm password'} value={password} onChange={handlePasswordChange} />
                 {password && (isStrongPassword ? <FcOk className="icon" /> : <FcCancel className="icon" />)}

@@ -194,11 +194,11 @@
   .radio-buttons label span {
     font-size: 18px; 
   }
-
+  
   .error-message{
     display: flex;
     align-self: center;
-    color: rgb(255,0,0,0.6)
+    color: rgb(255,0,0,1)
   }
 
   .dark .error-message{

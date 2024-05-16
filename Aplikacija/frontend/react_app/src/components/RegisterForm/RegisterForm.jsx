@@ -10,6 +10,8 @@ import InputPassword from '../CheckingInputs/InputPassword/InputPassword';
 const RegisterForm = () => {
   const [action, setAction] = useState('Register');
   const [ageError, setAgeError] = useState(false);
+  const [showValidationError, setShowValidationError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const [userData,setUserData] = useState({
@@ -22,6 +24,15 @@ const RegisterForm = () => {
     datumRodjenja: '',
   });
 
+  const [validationError, setValidationError] = useState({
+    firstNameError : false,
+    lastNameError : false,
+    usernameError : false,
+    emailError : false,
+    password: false,
+    dobError : false
+  });
+
   const handleEmailChange = (value) => {
     setUserData({ ...userData, email: value });
   };
@@ -31,8 +42,8 @@ const RegisterForm = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target; // izvlacimo name i value iz ciljnog objekta
-    setUserData({ ...userData, [name]: value }); // menjamo samo kljuc name i postavljamo joj vrednost value
+    const { name, value } = e.target; 
+    setUserData({ ...userData, [name]: value }); 
   };
   
   const handleActionChange = (newAction) => {
@@ -48,7 +59,26 @@ const RegisterForm = () => {
     setAgeError(false);
   };
 
+  
   const handleSubmit = async () => {
+
+    let errors = {
+      firstNameError: !userData.ime.trim(),
+      lastNameError: !userData.prezime.trim(),
+      usernameError: !userData.korisnickoIme.trim(),
+      emailError: !userData.email.trim(),
+      passwordError: !userData.lozinka.trim(),
+      dobError: !userData.datumRodjenja
+    };
+
+    setValidationError(errors);
+
+    if (Object.values(errors).some(error => error)) {
+      setShowValidationError(true);
+      return; 
+    } else {
+      setShowValidationError(false);
+    }
     const currentDate = new Date();
     const selectedDate = new Date(userData.datumRodjenja);
     const age = currentDate.getFullYear() - selectedDate.getFullYear();
@@ -65,6 +95,10 @@ const RegisterForm = () => {
       navigate('/login');
     } catch (error) {
       console.error('Greška pri registraciji:', error);
+
+      if(error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data);
+      }
     }
   
   };
@@ -80,24 +114,28 @@ const RegisterForm = () => {
         <div className="underline"></div>
       </div>
       <div className="inputs">
-      <div className="input">
+      <div className={validationError.firstNameError ? "input error" : "input"}>
           <img src={user_icon} alt=''/>
           <input type='text' name='ime' placeholder='First Name' value={userData.ime} onChange={handleChange}/>
         </div>
-        <div className="input">
+        <div className={validationError.lastNameError ? "input error" : "input"}>
           <img src={user_icon} alt=''/>
           <input type='text' name='prezime' placeholder='Last Name' value={userData.prezime} onChange={handleChange}/>
         </div>
-        <div className="input">
+        <div className={validationError.usernameError ? "input error" : "input"}>
           <img src={user_icon} alt=''/>
           <input type='text' name='korisnickoIme' placeholder='Username' value={userData.korisnickoIme} onChange={handleChange}/>
         </div>
-          <InputEmail setEmail={handleEmailChange} />
-          <InputPassword setPassword={handlePasswordChange} variant='password'/>
+          <InputEmail setEmail={handleEmailChange} isEmpty={validationError.emailError} />
+          <InputPassword setPassword={handlePasswordChange} variant='password' isEmpty={validationError.passwordError}/>
           <div className={`input ${ageError ? 'error' : ''}`}>
-        <input type='date' name='datumRodjenja' value={userData.datumRodjenja} onChange={handleDateChange} placeholder='Datum rođenja'/>
+          <div className={`input ${validationError.dobError ? 'error' : ''}`}>
+            <input type='date' name='datumRodjenja' value={userData.datumRodjenja} onChange={handleDateChange} placeholder='Datum rođenja'/>
+          </div>
         </div>
         {ageError && <div className="error-message">Morate biti stariji od 18 godina!</div>}
+        {showValidationError && <div className="error-message">Sva polja moraju biti popunjena!</div>}
+        <div className="error-message">{errorMessage}</div>
         <div className="radio-buttons">
           <label>
             <input type="radio" checked={userData.tipKorisnika === 'Kupac'} 

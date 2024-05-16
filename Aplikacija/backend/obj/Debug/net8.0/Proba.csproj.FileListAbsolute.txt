@@ -396,3 +396,7 @@ C:\Users\Nemanja\Projekat\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\PayPal
 C:\Users\Nemanja\Projekat\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\PayPal.NET.dll
 >>>>>>> c4dc0c135466c2ccf59780bcb8c5b78773580bdc
 C:\Users\Nemanja\Projekat\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\PayPal.Sdk.Checkout.dll
+C:\Users\msava\OneDrive\Desktop\III GODINA\SEMESTAR 6\SOFTVERSKO INZENJERSTVO\projekat bitbucket\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\msava\OneDrive\Desktop\III GODINA\SEMESTAR 6\SOFTVERSKO INZENJERSTVO\projekat bitbucket\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\PayPal.NET.dll
+C:\Users\msava\OneDrive\Desktop\III GODINA\SEMESTAR 6\SOFTVERSKO INZENJERSTVO\projekat bitbucket\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\PayPalCheckoutSdk.dll
+C:\Users\msava\OneDrive\Desktop\III GODINA\SEMESTAR 6\SOFTVERSKO INZENJERSTVO\projekat bitbucket\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\PayPalHttp-Dotnet.dll
