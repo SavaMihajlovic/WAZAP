@@ -49,22 +49,36 @@ public class LezaljkaController : ControllerBase
         }
      }
      [HttpGet("GetAllFree/{datum}")]
-public async Task<ActionResult> GetAllFree(DateTime datum){
-    try{
-        var rezervacijeZaDatum = await Context.Rezervacije.Where(r => r.Datum.Date == datum.Date).Select(r => r.Lezaljka!.ID).ToListAsync();
-        var slobodneLezaljke = await Context.Lezaljke
-            .Where(l => !rezervacijeZaDatum.Contains(l.ID))
-            .Select(l => new {
-                l.ID,
-                l.Cena
-            })
-            .ToListAsync();
+    public async Task<ActionResult> GetAllFree(DateTime datum){
+        try{
+            var rezervacijeZaDatum = await Context.Rezervacije.Where(r => r.Datum.Date == datum.Date).Select(r => r.Lezaljka!.ID).ToListAsync();
+            var slobodneLezaljke = await Context.Lezaljke
+                .Where(l => !rezervacijeZaDatum.Contains(l.ID))
+                .Select(l => new {
+                    l.ID,
+                    l.Cena
+                })
+                .ToListAsync();
 
-        return Ok(slobodneLezaljke);
+            return Ok(slobodneLezaljke);
+        }
+        catch(Exception ex){
+            return BadRequest(ex.Message);
+        }
     }
-    catch(Exception ex){
-        return BadRequest(ex.Message);
+    [HttpPut("ChangeAmount/{easyChairID}/{amount}")]
+    public async Task<ActionResult> ChangeAmount(int easyChairID , double amount){
+        try{
+            var easyChair = await Context.Lezaljke.FindAsync(easyChairID);
+            if(easyChair == null)
+                return BadRequest($"Ležaljka {easyChairID} nije nađena");
+            easyChair.Cena = amount;
+            await Context.SaveChangesAsync();
+            return Ok($"Promenjena cena ležaljke :{easyChairID} na {amount} EUR");
+        }
+        catch(Exception ex){
+            return BadRequest(ex.Message);
+        }
     }
-}
 
 }

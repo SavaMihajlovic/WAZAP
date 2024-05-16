@@ -14,20 +14,20 @@ public class AdminController : ControllerBase
          Context = context;
          this.configuration = configuration;
      }
-     [HttpPost("AddAdmin")]
-     public async Task<ActionResult> AddAdmin([FromBody] Korisnik korisnik){
+     [HttpPost("AddAdmin/{korisnikID}")]
+     public async Task<ActionResult> AddAdmin(int korisnikID){
         try{
-            var toBeAdmin = await Context.Korisnici.FindAsync(korisnik.ID); 
+            var toBeAdmin = await Context.Korisnici.FindAsync(korisnikID); 
             if (toBeAdmin == null)
-                return BadRequest("Korisnik nije nadjen");
-            if(korisnik.TipKorisnika == "Kupac"){
-                var roleBefore = await Context.Kupaci.Where(p => p.Korisnik.ID == korisnik.ID).FirstOrDefaultAsync();
+                return BadRequest("Korisnik nije nađen");
+            if(toBeAdmin.TipKorisnika == "Kupac"){
+                var roleBefore = await Context.Kupaci.Where(p => p.Korisnik.ID == korisnikID).FirstOrDefaultAsync();
                 if(roleBefore != null){
                     Context.Kupaci.Remove(roleBefore);
                 }
             }
             else{
-                var roleBefore = await Context.Radnici.Where(p => p.Korisnik.ID == korisnik.ID).FirstOrDefaultAsync();
+                var roleBefore = await Context.Radnici.Where(p => p.Korisnik.ID == korisnikID).FirstOrDefaultAsync();
                 if(roleBefore!= null)
                     Context.Radnici.Remove(roleBefore);
             }

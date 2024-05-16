@@ -27,7 +27,7 @@ public class AuthController : ControllerBase
             if(korisnik.Lozinka.Length < 8)
                 return BadRequest("Lozinka mora imati minimalno 8 karaktera");
             if (!Regex.IsMatch(korisnik.Lozinka, @"\d"))
-                return BadRequest("Lozinka mora sadrzati makar jednu cifru");
+                return BadRequest("Lozinka mora sadržati makar jednu cifru");
             if (!korisnik.Email.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase))
                 return BadRequest("Email adresa mora biti Gmail adresa.");
             korisnik.Lozinka = BCrypt.Net.BCrypt.HashPassword(korisnik.Lozinka);
@@ -35,7 +35,7 @@ public class AuthController : ControllerBase
             await Context.Korisnici.AddAsync(korisnik);
             await Context.SaveChangesAsync();
             AddTypeOfUser(korisnik);
-            return Ok($"Korisnik {korisnik.Ime} {korisnik.Prezime} je uspesno registrovan");
+            return Ok($"Korisnik {korisnik.Ime} {korisnik.Prezime} je uspešno registrovan");
         }
         catch(Exception ex){
             return BadRequest(ex.Message);
@@ -46,10 +46,10 @@ public class AuthController : ControllerBase
         try{
             var user = await Context.Korisnici.Where(p => p.KorisnickoIme == korisnickoIme).FirstOrDefaultAsync();
             if(user == null){
-                return BadRequest("Korisnicko ime nije pronadjeno");
+                return BadRequest("Korisničko ime nije pronadjeno");
             }
             if(!BCrypt.Net.BCrypt.Verify(lozinka , user.Lozinka)){
-                return BadRequest("Pogresna lozinka");
+                return BadRequest("Pogrešna lozinka");
             }
             string token = CreateToken(user);
             return Ok(token);
@@ -63,7 +63,7 @@ public class AuthController : ControllerBase
         try{
             var user = await Context.Korisnici.Where(p => p.Email == email).FirstOrDefaultAsync();
             if(user == null)
-                return BadRequest("User sa ovim nalogom ne postoji");
+                return BadRequest("Korisnik sa ovim nalogom ne postoji");
             user.TokenForgotPassword = RandomString.GetString(Types.ALPHABET_MIXEDCASE , 8);
             user.ForgotPasswordExp = DateTime.Now.AddHours(1);
             await Context.SaveChangesAsync();
@@ -76,7 +76,7 @@ public class AuthController : ControllerBase
             message.From = new MailAddress(fromMail);
             message.Subject = "Forgot Password";
             message.To.Add(new MailAddress(email));
-            message.Body = $"<html><body> <a href='{link}'>Promenite vasu lozinku za WAZAP aplikaciju </a></body></html>";
+            message.Body = $"<html><body> <a href='{link}'>Promenite vašu lozinku za WAZAP aplikaciju </a></body></html>";
             message.IsBodyHtml = true;
 
             var smtpClient = new SmtpClient("smtp.gmail.com")
@@ -97,7 +97,7 @@ public class AuthController : ControllerBase
          try{
              var user = await Context.Korisnici.Where(p => p.Email == email && p.TokenForgotPassword == token).FirstOrDefaultAsync();
              if (user == null)
-                 return BadRequest("Nevazeci token!");
+                 return BadRequest("Nevažeći token!");
              if(user.ForgotPasswordExp < DateTime.Now)
                  return BadRequest("Nevalidan token , istekao je");
              return Ok(user.TokenForgotPassword);
@@ -113,14 +113,14 @@ public class AuthController : ControllerBase
                 return BadRequest("Lozinke se ne poklapaju");
              var user = await Context.Korisnici.Where(p => p.Email == email && p.TokenForgotPassword == token).FirstOrDefaultAsync();
              if (user == null)
-                 return BadRequest("Nevazeci token!");
+                 return BadRequest("Nevažeci token!");
              if(user.ForgotPasswordExp < DateTime.Now)
                  return BadRequest("Nevalidan token , istekao je");
             user.TokenForgotPassword = null;
             user.ForgotPasswordExp = null;
             user.Lozinka = BCrypt.Net.BCrypt.HashPassword(password);
             await Context.SaveChangesAsync();
-            return Ok("Lozinka je uspesno promenjena");
+            return Ok("Lozinka je uspešno promenjena");
         }
         catch(Exception ex){
             return BadRequest(ex.Message);
