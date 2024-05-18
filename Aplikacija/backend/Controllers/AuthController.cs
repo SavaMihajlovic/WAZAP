@@ -130,7 +130,7 @@ public class AuthController : ControllerBase
 
      private string CreateToken(Korisnik korisnik){
         List<Claim> claims = new List<Claim>(){
-            new Claim("Name", korisnik.KorisnickoIme),
+            new Claim("Username", korisnik.KorisnickoIme),
             new Claim("Type", korisnik.TipKorisnika),
             new Claim("Email",korisnik.Email),
             new Claim("KorisnikID" , korisnik.ID.ToString())

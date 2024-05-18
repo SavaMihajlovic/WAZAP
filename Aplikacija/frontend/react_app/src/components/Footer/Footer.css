@@ -15,8 +15,10 @@
   .description.light {
 
     background-color: white;
+    font-weight: bold;
   }
 
   .description.dark {
     background-color: black;
+    font-weight: bold;
   }

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Home, Login, Register, About, ForgotPassword, ResetPassword } from './pages';
+import { Home, Login, Register, About, ForgotPassword, ResetPassword,
+         HomeKupac, KupovinaKarata, RezervisanjeLezaljki,
+         HomeRadnik, ZahtevZaPosao,
+         HomeAdmin, ObradaZahteva, AdminPanel,} from './pages';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
 const App = () => {
@@ -30,11 +33,23 @@ const App = () => {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<Navigate to="/" />} />
             <Route path="/reset-password/:email/:token" element={<ResetPassword />} />
-           
 
+            {/*Rute sa privilegijama prava pristupa*/}
+            <Route path="/kupac" element={<HomeKupac theme={theme} />} />
+            <Route path="/kupac-kupovina-karata" element={<KupovinaKarata />} />
+            <Route path="/kupac-rezervisanje-lezaljki" element={<RezervisanjeLezaljki/>} />
+
+            <Route path="/radnik" element={<HomeRadnik theme={theme} />} />
+            <Route path="/radnik-zahtev-za-posao" element={<ZahtevZaPosao />} />
+
+            <Route path="/administrator" element={<HomeAdmin />} />
+            <Route path="/administrator-obrada-zahteva" element={<ObradaZahteva />} />
+            <Route path="/administrator-admin-panel" element={<AdminPanel />} />
+          
             {/*Navigacije*/}
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="*" element={<Navigate to="/404" />} />
+            <Route path="/logout" element={<Navigate to="/"/> }/>
           </Routes>
           {/*<Footer theme={theme} />*/}
         </div>

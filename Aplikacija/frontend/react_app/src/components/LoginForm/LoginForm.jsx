@@ -4,6 +4,7 @@ import axios from 'axios';
 import user_icon from '../../assets/person.png';
 import { useNavigate } from 'react-router-dom';
 import InputPassword from '../CheckingInputs/InputPassword/InputPassword';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const LoginForm = () => {
   const [action, setAction] = useState('Login');
@@ -13,6 +14,7 @@ const LoginForm = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showValidationError, setShowValidationError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleActionChange = (newAction) => {
@@ -51,6 +53,8 @@ const LoginForm = () => {
       setShowValidationError(false);
     }
 
+    setLoading(true);
+
     try {
       const response = await axios.post(`http://localhost:5212/Auth/Login/${username}/${password}`);
       console.log('Uspešno:', response.data);
@@ -75,6 +79,8 @@ const LoginForm = () => {
       } else {
         console.error('Greška pri prijavljivanju:', error);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -95,7 +101,8 @@ const LoginForm = () => {
       <div className="error-message">{errorMessage}</div>
       <div className="forgot-password">Forgot password? <span onClick={() => handleActionChange('ForgotPassword')}>Send via email!</span> </div>
       <div className="submit-container">
-        <div className={action === "Login" ? "submit" : "submit gray"} onClick={handleSubmit}>Login</div>
+      {loading ? <div className='loading-container'> <LoadingSpinner /></div> :
+        <div className={action === "Login" ? "submit" : "submit gray"} onClick={handleSubmit}>Login</div>}
         <div className={action === "Register" ? "submit gray" : "submit"} onClick={() => handleActionChange("Register")}>Register</div>
       </div>
     </div>

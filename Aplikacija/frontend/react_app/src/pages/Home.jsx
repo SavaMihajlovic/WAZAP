@@ -1,9 +1,52 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, {useEffect}from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import videoBG from '../assets/videoBG.mp4'
 import Footer from '../components/Footer/Footer';
+import { jwtDecode } from 'jwt-decode';
 
 export const Home = ({theme}) => {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+
+    const redirectToCorrectPage = () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        return;
+      }
+
+      try {
+        const decoded = jwtDecode(token);
+        const { Type, exp } = decoded;
+
+        if (exp * 1000 < Date.now()) {
+
+          localStorage.removeItem('token'); // brisemo token
+          return;
+        }
+
+        switch (Type) {
+          case 'Kupac':
+            navigate('/kupac');  
+            break;
+          case 'Radnik':
+            navigate('/radnik');
+            break;
+          case 'Administrator':
+            navigate('/administrator');
+            break;
+          default:
+            break;
+        }
+      } catch (error) {
+        console.error('Invalid token', error);
+      }
+    };
+
+    redirectToCorrectPage();
+  }, [navigate]);
+
   return (
     <div className='main'>
 
@@ -19,3 +62,4 @@ export const Home = ({theme}) => {
     </div>
   )
 }
+
