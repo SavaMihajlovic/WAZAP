@@ -6,6 +6,7 @@ import { Home, Login, Register, About, ForgotPassword, ResetPassword,
          HomeRadnik, ZahtevZaPosao,
          HomeAdmin, ObradaZahteva, AdminPanel,} from './pages';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import PrivateRoutes from './utils/PrivateRoutes';
 
 const App = () => {
   const current_theme = localStorage.getItem('current_theme');
@@ -34,18 +35,24 @@ const App = () => {
             <Route path="/reset-password" element={<Navigate to="/" />} />
             <Route path="/reset-password/:email/:token" element={<ResetPassword />} />
 
-            {/*Rute sa privilegijama prava pristupa*/}
-            <Route path="/kupac" element={<HomeKupac theme={theme} />} />
-            <Route path="/kupac-kupovina-karata" element={<KupovinaKarata />} />
-            <Route path="/kupac-rezervisanje-lezaljki" element={<RezervisanjeLezaljki/>} />
+            {/* Rute sa privilegijama pristupa */}
+            <Route element={<PrivateRoutes role='Kupac'/>}>
+              <Route path="/kupac" element={<HomeKupac theme={theme} />} />
+              <Route path="/kupac-kupovina-karata" element={<KupovinaKarata />} />
+              <Route path="/kupac-rezervisanje-lezaljki" element={<RezervisanjeLezaljki />} />
+            </Route>
 
-            <Route path="/radnik" element={<HomeRadnik theme={theme} />} />
-            <Route path="/radnik-zahtev-za-posao" element={<ZahtevZaPosao />} />
+            <Route element={<PrivateRoutes role='Radnik'/>}>
+              <Route path="/radnik" element={<HomeRadnik theme={theme} />} />
+              <Route path="/radnik-zahtev-za-posao" element={<ZahtevZaPosao />} />
+            </Route>
 
-            <Route path="/administrator" element={<HomeAdmin />} />
-            <Route path="/administrator-obrada-zahteva" element={<ObradaZahteva />} />
-            <Route path="/administrator-admin-panel" element={<AdminPanel />} />
-          
+            <Route element={<PrivateRoutes role='Admin' />}>
+              <Route path="/administrator" element={<HomeAdmin />} />
+              <Route path="/administrator-obrada-zahteva" element={<ObradaZahteva />} />
+              <Route path="/administrator-admin-panel" element={<AdminPanel />} />
+            </Route>
+
             {/*Navigacije*/}
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="*" element={<Navigate to="/404" />} />
