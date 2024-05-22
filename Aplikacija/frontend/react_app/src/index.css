@@ -39,6 +39,11 @@
   object-fit: cover; /*skaliranje videa bez deformacija*/
 }
 
+.rezervisanje-lezaljki {
+  height: calc(100vh - 86px);
+  position: relative;
+}
+
 .pool-img {
   position: absolute;
   width: 100%;
@@ -84,4 +89,18 @@
 
 .about-button:hover {
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.counter-checked {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.dark .counter-checked {
+  color: white;
 }

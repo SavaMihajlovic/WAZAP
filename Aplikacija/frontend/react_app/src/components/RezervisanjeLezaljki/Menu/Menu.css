@@ -1,0 +1,134 @@
+.menu-container {
+  margin-bottom: 30px;
+  background-color: white;
+  border-top: 2px solid #ccc; 
+  border-bottom: 2px solid #ccc;
+}
+.menu-elements {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; 
+  padding: 10px;
+  color: black;
+}
+
+.menu-date-input {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 40px; 
+  background: #eaeaea;
+  border-radius: 6px;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  margin-left: 80px;
+}
+
+.menu-date-input [type='date'] {
+  text-align: center;
+  margin-left: 0;
+  width: calc(100% - 20px); 
+  height: 30px; 
+}
+
+.menu-date-input input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #797979;
+  font-size: 14px; 
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.menu-button {
+  width: 200px;
+  height: 40px;
+  font-size: 16px; 
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.menu-button.green {
+  background-color: green;
+}
+
+.menu-button.red {
+  background-color: red;
+}
+
+.menu-button.blue {
+  background-color: #4169e1;
+}
+
+.dark .menu-container {
+  background-color: #333;
+  border-top: 2px solid #797979;
+  border-bottom: 2px solid #797979;
+  color: white;
+}
+
+.dark .menu-date-input {
+  background: #666;
+  color: white;
+}
+
+.dark .menu-date-input input {
+  color: white;
+}
+
+.dark .menu-button.green {
+  background-color: #32cd32;
+}
+
+.dark .menu-button.red {
+  background-color: red;
+}
+
+.dark .menu-button.blue {
+  background-color: #007bff;
+}
+
+.light .menu-container {
+  background-color: white;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  color: black;
+}
+
+.light .menu-date-input {
+  background: #eaeaea;
+  color: #797979;
+}
+
+.light .menu-date-input input {
+  color: #797979;
+}
+
+.light .menu-button.green {
+  background-color: green;
+}
+
+.light .menu-button.red {
+  background-color: red;
+}
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
+.menu-date-input.error{
+  border: 2px solid red;
+}
