@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Grid, GridItem } from '@chakra-ui/react';
 
 const LezaljkeGrid = ({ lezaljke, freeLezaljke, showFreeLezaljke, 
-                        reservedLezaljke, showReservedLezaljke, setChecked }) => {
-
-  const [checkedLezaljke, setCheckedLezaljke] = useState([]);
+                        reservedLezaljke, showReservedLezaljke, setChecked,
+                        checkedLezaljke, setCheckedLezaljke }) => {
 
   const isLezaljkaFree = (id) => {
     return freeLezaljke.some(o => o.id === id);
@@ -37,7 +36,7 @@ const LezaljkeGrid = ({ lezaljke, freeLezaljke, showFreeLezaljke,
 
   return (
     <div className="grid-container">
-      <Grid templateColumns='repeat(5, 1fr)' gap={20} margin={30}>
+      <Grid gridTemplateColumns='repeat(5,1fr)' gap={20} margin={30}>
         {showFreeLezaljke && lezaljke.map((lezaljka) => {
 
           // uslovi
@@ -47,9 +46,7 @@ const LezaljkeGrid = ({ lezaljke, freeLezaljke, showFreeLezaljke,
 
           return (
             <GridItem
-              key={lezaljka.id}
-              w='200px'
-              h='80px'
+              key={lezaljka.id} // h 80px w 200px
               bg={isChecked ? 'red' : (isFree ? '#008000' : '#6a89cc')}
               p={4}
               style={{ visibility: isFree ? 'visible' : 'hidden', cursor: isFree && canBeChecked ? 'pointer' : 'not-allowed' }}
@@ -63,8 +60,6 @@ const LezaljkeGrid = ({ lezaljke, freeLezaljke, showFreeLezaljke,
         {showReservedLezaljke && lezaljke.map((lezaljka) => (
           <GridItem
             key={lezaljka.id}
-            w='200px'
-            h='80px'
             bg={isLezaljkaReserved(lezaljka.id) ? '#ff0000' : '#6a89cc'}
             p={4}
             style={{ visibility: isLezaljkaReserved(lezaljka.id) ? 'visible' : 'hidden' }}
@@ -76,8 +71,6 @@ const LezaljkeGrid = ({ lezaljke, freeLezaljke, showFreeLezaljke,
         {(!showFreeLezaljke && !showReservedLezaljke) && lezaljke.map((lezaljka) => (
           <GridItem
             key={lezaljka.id}
-            w='200px'
-            h='80px'
             bg='#6a89cc'
             p={4}
           >

@@ -1,0 +1,71 @@
+.failure-payment-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f0f0f0; 
+    padding-top: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .failure-payment-header {
+    margin-bottom: 20px;
+  }
+  
+  .failure-payment-text {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .failure-payment-underline {
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+    margin-top: 10px;
+  }
+  
+  .failure-payment-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .failure-capsule-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .failure-capsule-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .dark .failure-payment-container {
+    background-color: #333;
+    color: white;
+  }
+  
+  .dark .failure-payment-text {
+    color: white;
+  }
+  
+  .dark .failure-payment-underline {
+    background-color: #007bff;
+  }
+  
+  .dark .failure-capsule-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .dark .failure-capsule-button:hover {
+    background-color: #0056b3;
+  }
+  

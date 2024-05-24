@@ -44,7 +44,7 @@ public class PaypalController : ControllerBase
             }
             double amount = totalAmount; 
             amount = Math.Round(amount, 2);
-            string successUrl = "http://localhost:5173/?";
+            string successUrl = "http://localhost:5173/payment-success?";
             foreach (var easyChairID in easyChairIDs)
             {
                 
@@ -65,7 +65,7 @@ public class PaypalController : ControllerBase
                     LandingPage = "LOGIN",
                     UserAction = "PAY_NOW",
                     ReturnUrl = successUrl,
-                    CancelUrl = "http://localhost:5173/login"
+                    CancelUrl = "http://localhost:5173/payment-failure?"
                 },
                 PurchaseUnits = new List<PurchaseUnitRequest>()
                 {

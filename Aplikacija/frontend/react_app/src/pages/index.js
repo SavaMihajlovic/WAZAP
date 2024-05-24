@@ -19,5 +19,9 @@ export * from './Admin/HomeAdmin';
 export * from './Admin/ObradaZahteva';
 export * from './Admin/AdminPanel';
 
+// PaymentPages
+
+export * from './PayPal/PaymentSuccess';
+export * from './PayPal/PaymentFailure';
 
 // svi bitni import-ovi

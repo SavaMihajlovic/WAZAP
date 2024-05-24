@@ -1,0 +1,148 @@
+.payment-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background-color: #f0f0f0; 
+  padding-top: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.payment-header {
+  margin-bottom: 20px;
+}
+
+.payment-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.payment-underline {
+  width: 100%;
+  height: 2px;
+  background-color: #007bff;
+  margin-top: 10px;
+}
+
+.payment-buttons {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.capsule-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.capsule-button:hover {
+  background-color: #0056b3;
+}
+
+.collaboration-image-container {
+    margin-bottom: 20px; 
+    max-width: 300px; 
+  }
+  
+  .collaboration-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; 
+  }
+
+.confirmation-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 420px; 
+}
+
+.confirmation-text {
+  font-size: 18px; 
+  font-weight: bold;
+  margin-bottom: 30px; 
+}
+
+.confirmation-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.confirmation-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 24px; 
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 16px; 
+}
+
+.confirmation-button:hover {
+  background-color: #0056b3;
+}
+
+
+.dark .payment-container {
+  background-color: #333;
+  color: white;
+}
+
+.dark .payment-text {
+  color: white;
+}
+
+.dark .payment-underline {
+  background-color: #007bff;
+}
+
+.dark .capsule-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.dark .capsule-button:hover {
+  background-color: #0056b3;
+}
+
+.dark .collaboration-image-container {
+  margin-bottom: 20px;
+}
+
+.dark .collaboration-image-container img {
+  border-radius: 10px;
+}
+
+.dark .confirmation-dialog {
+  background-color: #444;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .confirmation-text {
+  color: white;
+}
+
+.dark .confirmation-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.dark .confirmation-button:hover {
+  background-color: #0056b3;
+}

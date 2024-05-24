@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home, Login, Register, About, ForgotPassword, ResetPassword,
          HomeKupac, KupovinaKarata, RezervisanjeLezaljki,
          HomeRadnik, ZahtevZaPosao,
-         HomeAdmin, ObradaZahteva, AdminPanel,} from './pages';
+         HomeAdmin, ObradaZahteva, AdminPanel,
+         PaymentSuccess, PaymentFailure} from './pages';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import PrivateRoutes from './utils/PrivateRoutes';
 
@@ -34,6 +35,9 @@ const App = () => {
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<Navigate to="/" />} />
             <Route path="/reset-password/:email/:token" element={<ResetPassword />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/payment-failure" element={<PaymentFailure />} />
 
             {/* Rute sa privilegijama pristupa */}
             <Route element={<PrivateRoutes role='Kupac'/>}>

@@ -8,6 +8,7 @@ export const RezervisanjeLezaljki = () => {
   const [lezaljke, setLezaljke] = useState([]);
   const [freeLezaljke, setFreeLezaljke] = useState([]);
   const [reservedLezaljke, setReservedLezaljke] = useState([]);
+  const [checkedLezaljke, setCheckedLezaljke] = useState([]);
   const [showFreeLezaljke, setShowFreeLezaljke] = useState(false);
   const [showReservedLezaljke, setShowReservedLezaljke] = useState(false);
   const [checked, setChecked] = useState(0);
@@ -37,12 +38,14 @@ export const RezervisanjeLezaljki = () => {
       <div className="menu-content">
         <Menu setFreeLezaljke={setFreeLezaljke} showFreeLezaljke={showFreeLezaljke}
               setShowFreeLezaljke={setShowFreeLezaljke} setReservedLezaljke={setReservedLezaljke}
-              showReservedLezaljke={showReservedLezaljke} setShowReservedLezaljke={setShowReservedLezaljke}/>
+              showReservedLezaljke={showReservedLezaljke} setShowReservedLezaljke={setShowReservedLezaljke}
+              checkedLezaljke={checkedLezaljke}/>
       </div>
       <div className="grid-content">
         <LezaljkeGrid lezaljke={lezaljke} freeLezaljke={freeLezaljke}
                       showFreeLezaljke={showFreeLezaljke} reservedLezaljke={reservedLezaljke}
-                      showReservedLezaljke={showReservedLezaljke} setChecked={setChecked}/>
+                      showReservedLezaljke={showReservedLezaljke} setChecked={setChecked}
+                      checkedLezaljke={checkedLezaljke} setCheckedLezaljke={setCheckedLezaljke}/>
       </div>
       <div className="counter-checked">
          <p> Selektovano ležaljki: {checked}</p>

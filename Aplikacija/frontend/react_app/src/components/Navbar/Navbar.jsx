@@ -15,7 +15,7 @@ const Navbar = ({ theme, setTheme }) => {
 
   useEffect(() => {
     const pathname = location.pathname;
-    if (pathname.startsWith('/kupac')) {
+    if (pathname.startsWith('/kupac') || pathname.startsWith('/payment')) {
       setRole('Kupac');
     } else if (pathname.startsWith('/radnik')) {
       setRole('Radnik');
