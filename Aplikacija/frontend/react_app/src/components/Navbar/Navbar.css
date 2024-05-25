@@ -29,6 +29,9 @@ ul li {
     font-size: 18px;
     cursor: pointer;
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .light ul li a {
@@ -47,32 +50,6 @@ ul li {
     cursor: pointer;
     margin-left: 40px;
 }
-.search-box{
-    display: flex;
-    align-items: center;
-    background: #242424;
-    padding: 10px 20px;
-    border-radius: 50px;
-}
-
-.search-box input{
-    padding: 6px;
-    background: transparent;
-    border: 0;
-    outline: 0;
-    color: #fff;
-    font-size: 18px;
-    max-width: 200px;
-}
-
-.search-box input::placeholder{
-    color: white;   
-}
-
-.search-box img{
-    width: 20px;
-    cursor: pointer;
-}
 
 .dark .navbar{
     background: #000;
@@ -90,7 +67,7 @@ button{
     display: none;
   }
 
-@media (max-width: 768px) {
+@media (max-width: 870px) {
     ul {
         flex-direction: column;
         background-color: #f4f4f4;
@@ -100,11 +77,11 @@ button{
         width: 100%;
         padding: 20px;
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-        display: none; /* Sakrij <ul> po defaultu */
+        display: none;
     }
 
     ul.active {
-        display: flex; /* Prikazi <ul> kad je aktiviran burger meni */
+        display: flex;
     }
 
     ul li {
@@ -122,5 +99,4 @@ button{
     .dark .navbar ul.active {
         background-color: #333;
     }
-
   }

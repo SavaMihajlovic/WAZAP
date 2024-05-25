@@ -14,7 +14,11 @@ export const Menu = ({setFreeLezaljke,showFreeLezaljke,
   const [loading, setLoading] = useState(false);
 
 
-  useEffect(() => {},[checkedLezaljke])
+  useEffect(() => {
+    if (date) {
+      fetchLezaljke(date);
+    }
+  },[checkedLezaljke,date]);
 
   const handleDateChange = (event) => {
     const selectedDate = new Date(event.target.value);
@@ -35,21 +39,45 @@ export const Menu = ({setFreeLezaljke,showFreeLezaljke,
     setDate(event.target.value);
   };
 
-  // Prikaz slobodnih lezaljki
+  const fetchLezaljke = async () => {
 
-  const showFreeEasyChairs = async () => {
-    
     if(dateError || !date) {
       return;
     }
 
     try {
-    
-      const response = await axios.get(`http://localhost:5212/Lezaljka/GetAllFree/${date}`);
 
-      if (response.data && typeof response.data == "object") {
-        const freelezaljkeArray = Object.values(response.data);
+      const token = localStorage.getItem('token'); 
+      const decodedToken = jwtDecode(token); 
+      const userID = decodedToken.KorisnikID;
+    
+      const responseFree = await axios.get(`http://localhost:5212/Lezaljka/GetAllFree/${date}`);
+
+      if (responseFree.data && typeof responseFree.data == "object") {
+        const freelezaljkeArray = Object.values(responseFree.data);
         setFreeLezaljke(freelezaljkeArray);
+        console.log(freelezaljkeArray);
+      }
+
+      const responseReserved = await axios.get(`http://localhost:5212/Rezervacije/GetReservations/${userID}/${date}`);
+    
+      if (responseReserved.data && typeof responseReserved.data === "object") {
+        const reservationsArray = Object.values(responseReserved.data);
+        setReservedLezaljke(reservationsArray);
+        console.log(reservationsArray);
+               
+      } else {
+        console.error('Podaci nisu u očekivanom formatu (objekat).');
+      }
+    } catch (error) {
+      console.error('Greška prilikom dobijanja podataka:', error);
+    }
+
+  }
+
+  // Prikaz slobodnih lezaljki
+
+  const showFreeEasyChairs = async () => {
 
         if(showFreeLezaljke === true && showReservedLezaljke === false) {
           setShowFreeLezaljke(false); 
@@ -58,34 +86,12 @@ export const Menu = ({setFreeLezaljke,showFreeLezaljke,
           setShowFreeLezaljke(true);
           setShowReservedLezaljke(false);
         }
-
-        
-      } else {
-        console.error('Podaci nisu u očekivanom formatu (objekat).');
-      }
-    } catch (error) {
-      console.error('Greška prilikom dobijanja podataka:', error);
-    }
   };
 
   // Prikaz korisnikovih rezervacija
 
   const showMyReservations = async () => {
-  if (dateError || !date) {
-    return;
-  }
 
-  try {
-
-    const token = localStorage.getItem('token'); 
-    const decodedToken = jwtDecode(token); 
-    const userID = decodedToken.KorisnikID;
-
-    const response = await axios.get(`http://localhost:5212/Rezervacije/GetReservations/${userID}/${date}`);
-    
-    if (response.data && typeof response.data === "object") {
-      const reservationsArray = Object.values(response.data);
-      setReservedLezaljke(reservationsArray);
       if(showReservedLezaljke === true && showFreeLezaljke === false) {
         setShowReservedLezaljke(false); 
       }
@@ -93,13 +99,6 @@ export const Menu = ({setFreeLezaljke,showFreeLezaljke,
         setShowReservedLezaljke(true);
         setShowFreeLezaljke(false);
       }
-
-    } else {
-      console.error('Podaci nisu u očekivanom formatu (objekat).');
-    }
-  } catch (error) {
-    console.error('Greška prilikom dobijanja podataka:', error);
-  }
 };
 
   // Pravljenje rezervacije
