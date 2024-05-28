@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "qiQgMs2HaovERKyV6vsVFI7KATOaZzJIUSRuIxl9nZY=",
+  "Hash": "apoh2NB0cBOl8h/dEeGXd87Eqh1/7tDXw1rUQAGhnDQ=",
   "Source": "Proba",
   "BasePath": "_content/Proba",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "Proba\\wwwroot",
+      "Source": "Proba",
+      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "BasePath": "_content/Proba",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\22_slika.png",
+      "SourceId": "Proba",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "BasePath": "_content/Proba",
+      "RelativePath": "Images/22_slika.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\22_slika.png"
+    }
+  ]
 }

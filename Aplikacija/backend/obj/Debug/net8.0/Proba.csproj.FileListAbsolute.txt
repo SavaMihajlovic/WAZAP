@@ -673,3 +673,4 @@ C:\Users\Windows\Desktop\SWE projekat\si.24.5.web\Aplikacija\backend\obj\Debug\n
 C:\Users\Windows\Desktop\SWE projekat\si.24.5.web\Aplikacija\backend\obj\Debug\net8.0\Proba.pdb
 C:\Users\Windows\Desktop\SWE projekat\si.24.5.web\Aplikacija\backend\obj\Debug\net8.0\Proba.genruntimeconfig.cache
 C:\Users\Windows\Desktop\SWE projekat\si.24.5.web\Aplikacija\backend\obj\Debug\net8.0\ref\Proba.dll
+C:\Users\Nemanja\Projekat\si.24.5.web\Aplikacija\backend\bin\Debug\net8.0\Proba.staticwebassets.runtime.json

@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\22_slika.png",
+      "PackagePath": "staticwebassets\\Images\\22_slika.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Proba.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Proba.props",
+      "PackagePath": "build\\Proba.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Proba.props",
+      "PackagePath": "buildMultiTargeting\\Proba.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Proba.props",
+      "PackagePath": "buildTransitive\\Proba.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
