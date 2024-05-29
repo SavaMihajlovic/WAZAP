@@ -51,9 +51,9 @@ const App = () => {
               <Route path="/radnik-zahtev-za-posao" element={<ZahtevZaPosao />} />
             </Route>
 
-            <Route element={<PrivateRoutes role='Admin' />}>
-              <Route path="/administrator" element={<HomeAdmin />} />
-              <Route path="/administrator-obrada-zahteva" element={<ObradaZahteva />} />
+            <Route element={<PrivateRoutes role='Admin'/>}>
+              <Route path="/administrator" element={<HomeAdmin theme={theme} />} />
+              <Route path="/administrator-obrada-zahteva" element={<ObradaZahteva theme={theme} />} />
               <Route path="/administrator-admin-panel" element={<AdminPanel />} />
             </Route>
 

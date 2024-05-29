@@ -1,0 +1,79 @@
+.zahtev-posao-content {
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
+    overflow: auto;
+    transition: 0.6s;
+}
+
+.zahtev-posao-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto 40px;
+    width: 90vw;
+    max-width: 600px;
+    background: white;
+    padding: 3vh 2vw;
+    transition: 0.6s;
+}
+
+
+.text-area {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .text-area textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin: 0; 
+    resize: none;
+  }
+  
+  .dark .text-area textarea {
+    background: #555;
+    color: #ccc;
+  }
+
+  .dark .text-area textarea::placeholder {
+    color: #ccc;
+  }
+
+
+  .dark .zahtev-posao-container {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .dark .header .text {
+    color: white;
+  }
+  
+  .dark .underline {
+    background: white;
+  }
+  
+  .dark .input {
+    background: #555;
+    color: #ccc;
+  }
+  
+  .dark .input input {
+    color: #ccc;
+  }
+  
+  .dark .submit {
+    background: #4c00b4;
+    color: white;
+  }
+  

@@ -33,7 +33,7 @@ export const Home = ({theme}) => {
           case 'Radnik':
             navigate('/radnik');
             break;
-          case 'Administrator':
+          case 'Admin':
             navigate('/administrator');
             break;
           default:

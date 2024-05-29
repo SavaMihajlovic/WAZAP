@@ -56,7 +56,6 @@ export const Menu = ({setFreeLezaljke,showFreeLezaljke,
       if (responseFree.data && typeof responseFree.data == "object") {
         const freelezaljkeArray = Object.values(responseFree.data);
         setFreeLezaljke(freelezaljkeArray);
-        console.log(freelezaljkeArray);
       }
 
       const responseReserved = await axios.get(`http://localhost:5212/Rezervacije/GetReservations/${userID}/${date}`);
@@ -64,7 +63,6 @@ export const Menu = ({setFreeLezaljke,showFreeLezaljke,
       if (responseReserved.data && typeof responseReserved.data === "object") {
         const reservationsArray = Object.values(responseReserved.data);
         setReservedLezaljke(reservationsArray);
-        console.log(reservationsArray);
                
       } else {
         console.error('Podaci nisu u očekivanom formatu (objekat).');

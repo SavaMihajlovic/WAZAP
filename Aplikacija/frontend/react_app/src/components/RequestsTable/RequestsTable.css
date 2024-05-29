@@ -1,0 +1,10 @@
+.select-request{
+    color: black;
+    background-color: white;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 7px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}

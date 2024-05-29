@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from '../../components/Footer/Footer'
 import pool from '../../assets/pool.png';
+import {jwtDecode} from 'jwt-decode';
 
 export const HomeAdmin = ({theme}) => {
 

@@ -12,6 +12,18 @@ const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken }) => {
   const [path, setPath] = useState('');
   const [loading, setLoading] = useState(false);
 
+  function formatDate(inputDatum) {
+    let date1 = new Date(inputDatum);
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let day = date1.getDate();
+    let month = months[date1.getMonth()];
+    let year = date1.getFullYear().toString().substr(-2);
+    let time = date1.toLocaleTimeString('en-US');
+    let formated = `${day}-${month}-${year} ${time}`;
+
+    return formated;
+}
+
   const handleConfirmPayment = () => {
     setShowConfirmation(true);
   };
@@ -36,11 +48,10 @@ const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken }) => {
 
     if(role === 'Kupac')
       setPath('kupac');
-
       const response = await axios.post(`http://localhost:5212/Paypal/ConfirmOrder/${paymentToken}`);
 
       if (response.data === "Uspešno plaćanje!") {
-
+        date = formatDate(date);
         const reservationResponse = await axios.post(`http://localhost:5212/Rezervacije/MakeAReservation/${userID}/${date}`,easyChairIDs);
 
         if(reservationResponse.status === 200) {
