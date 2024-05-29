@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 using Oracle.EntityFrameworkCore.Metadata;
@@ -11,9 +12,11 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace Proba.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240529150554_v5")]
+    partial class v5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,12 +239,9 @@ namespace Proba.Migrations
                     b.Property<int?>("AID")
                         .HasColumnType("NUMBER(10)");
 
-                    b.Property<DateTime?>("DatumZaposlenja")
-                        .HasMaxLength(150)
-                        .HasColumnType("TIMESTAMP(7)");
-
                     b.Property<string>("Opis")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasMaxLength(150)
+                        .HasColumnType("NVARCHAR2(150)");
 
                     b.Property<int?>("SRID")
                         .HasColumnType("NUMBER(10)");

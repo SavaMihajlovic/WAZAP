@@ -12,8 +12,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace Proba.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240525112206_v4")]
-    partial class v4
+    [Migration("20240529155056_v7")]
+    partial class v7
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,9 +239,12 @@ namespace Proba.Migrations
                     b.Property<int?>("AID")
                         .HasColumnType("NUMBER(10)");
 
-                    b.Property<string>("Opis")
+                    b.Property<DateTime?>("DatumZaposlenja")
                         .HasMaxLength(150)
-                        .HasColumnType("NVARCHAR2(150)");
+                        .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<string>("Opis")
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<int?>("SRID")
                         .HasColumnType("NUMBER(10)");

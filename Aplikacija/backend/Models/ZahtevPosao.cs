@@ -10,6 +10,9 @@ public class ZahtevPosao {
     [MaxLength(20)]
     public required string Status { get; set; }
     [MaxLength(150)]
+
+    public DateTime? DatumZaposlenja { get; set; }
+
     public string? Opis { get; set; }
 
     [ForeignKey("SRID")]

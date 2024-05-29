@@ -9,6 +9,10 @@ public class ZahtevIzdavanje {
     [MaxLength(20)]
     public required string Status { get; set; }
 
+    public DateTime? DatumOd { get; set; }
+
+    public DateTime? DatumDo { get; set; }
+
     [ForeignKey("KID")]
     public Kupac? Kupac { get; set; }
     [ForeignKey("AID")]

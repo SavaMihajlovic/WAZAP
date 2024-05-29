@@ -5,30 +5,30 @@ namespace Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ZahtevIzdavanjeController : ControllerBase
+public class ZahtevPosaoController : ControllerBase
 {   
     public Context Context { get; set; }
     private readonly IConfiguration configuration;
     private readonly IWebHostEnvironment environment;
-     public ZahtevIzdavanjeController(Context context , IConfiguration configuration , IWebHostEnvironment environment)
+     public ZahtevPosaoController(Context context , IConfiguration configuration , IWebHostEnvironment environment)
      {
          Context = context;
          this.configuration = configuration;
          this.environment = environment;
      }
      [HttpPost("AddRequest/{userId}/{typeOfCard}")]
-     public async Task<ActionResult> AddRequest(int userId , string typeOfCard ,  IFormFile slika ,  IFormFile? uverenje){
+     public async Task<ActionResult> AddRequest(int userId , string typeOfJob ,  IFormFile slika ,  IFormFile? sertifikat){
         try{
             if(slika == null || slika.Length == 0)
                 return BadRequest("Slika je obavezna");
-            if(typeOfCard!= "mesecna" && typeOfCard!="polumesecna")
-                return BadRequest("Tip karte mora biti mesečna ili polumesećna");
+            if(typeOfJob!= "Spasilac" && typeOfJob!="Čistač bazena" && typeOfJob!="Prodavac karata")
+                return BadRequest("Tip posla nije odgovarajući");
             var user = await Context.Korisnici.FindAsync(userId);
             if(user == null)
                 return BadRequest("Korisnik nije pronađen");
-            var swimmer = await Context.Kupaci.Where(p => p.Korisnik.ID == userId).FirstOrDefaultAsync();
-            if(swimmer == null)
-                return BadRequest("Korisnik nije kupač");
+            var worker = await Context.Radnici.Where(p => p.Korisnik.ID == userId).FirstOrDefaultAsync();
+            if(worker == null)
+                return BadRequest("Korisnik nije radnik");
             string uploadsFolder = Path.Combine(environment.WebRootPath , "Images");
             if(!Directory.Exists(uploadsFolder)){
                 Directory.CreateDirectory(uploadsFolder);
@@ -38,26 +38,25 @@ public class ZahtevIzdavanjeController : ControllerBase
             using(var stream = new FileStream(slikaFilePath , FileMode.Create)){
                 await slika.CopyToAsync(stream);
             }
-            string? uverenjeFileName = null;
-            if(uverenje != null && uverenje.Length > 0){
-                uverenjeFileName = $"{userId}_uverenje.png";
-                string uverenjeFilePath = Path.Combine(uploadsFolder, uverenjeFileName);
+            string? sertifikatFileName = null;
+            if(sertifikat != null && sertifikat.Length > 0){
+                sertifikatFileName = $"{userId}_sertifikat.png";
+                string uverenjeFilePath = Path.Combine(uploadsFolder, sertifikatFileName);
                 using (var stream = new FileStream(uverenjeFilePath, FileMode.Create))
                 {
-                    await uverenje.CopyToAsync(stream);
+                    await sertifikat.CopyToAsync(stream);
                 }
                 
             }
-            swimmer.Slika = slikaFileName;
-            swimmer.Uverenje = uverenjeFileName;
+            worker.Slika = slikaFileName;
+            worker.Sertifikat = sertifikatFileName;
             await Context.SaveChangesAsync();
-            var zahtevIzdavanje = new ZahtevIzdavanje {
-                Tip_Karte = typeOfCard,
+            var zahtevPosao = new ZahtevPosao {
+                Tip_Posla = typeOfJob,
                 Status = "pending",
-                Kupac = swimmer,
-                DatumOd = DateTime.Today
+                Radnik = worker,
             };
-            await Context.ZahtevIzdavanje.AddAsync(zahtevIzdavanje);
+            await Context.ZahtevPosao.AddAsync(zahtevPosao);
             await Context.SaveChangesAsync();
             return Ok("Zahtev je uspešno poslat");
         }
@@ -68,8 +67,8 @@ public class ZahtevIzdavanjeController : ControllerBase
      [HttpGet("GetAll")]
      public async Task<ActionResult> GetAll(){
         try{
-            var zahtevIzdavanje = await Context.ZahtevIzdavanje.ToListAsync();
-            return Ok(zahtevIzdavanje);
+            var zahtevPosao = await Context.ZahtevPosao.ToListAsync();
+            return Ok(zahtevPosao);
         }
         catch(Exception ex)
         {
@@ -79,25 +78,25 @@ public class ZahtevIzdavanjeController : ControllerBase
     [HttpGet("GetAllStatus/{status}")]
      public async Task<ActionResult> GetAll(string status){
         try{
-            if(status != "pending" && status != "readyForPayment" && status != "completed" && status != "blocked"){}
-            var zahtevIzdavanje = await Context.ZahtevIzdavanje.Where(p => p.Status == status).ToListAsync();
-            return Ok(zahtevIzdavanje);
+            if(status != "pending" && status != "completed" && status != "blocked"){}
+            var zahtevPosao = await Context.ZahtevPosao.Where(p => p.Status == status).ToListAsync();
+            return Ok(zahtevPosao);
         }
         catch(Exception ex)
         {
             return BadRequest(ex.Message);
         }
      }
-     [HttpGet("GetDetails/{zahtevID}/{kupacID}")]
-     public async Task<ActionResult> GetDetails(int zahtevID , int kupacID){
+     [HttpGet("GetDetails/{zahtevID}/{radnikID}")]
+     public async Task<ActionResult> GetDetails(int zahtevID , int radnikID){
         try{
-            var zahtevIzdavanje = await Context.ZahtevIzdavanje.Where(p => p.ID == zahtevID && p.Kupac!.ID == kupacID).FirstOrDefaultAsync();
-            if(zahtevIzdavanje == null) 
+            var ZahtevPosao = await Context.ZahtevPosao.Where(p => p.ID == zahtevID && p.Radnik!.ID == radnikID).FirstOrDefaultAsync();
+            if(ZahtevPosao == null) 
                 return BadRequest("Zahtev nije pronađen");
-            var kupac = await Context.Kupaci.FindAsync(kupacID);
-            if(kupac == null)
+            var radnik = await Context.Radnici.FindAsync(radnikID);
+            if(radnik == null)
                 return BadRequest("Kupac nije nađen");
-            return Ok(kupac);
+            return Ok(radnik);
             
         }
         catch(Exception ex)
