@@ -83,7 +83,7 @@ public class AuthController : ControllerBase
             {
                 Port = 587,
                 Credentials = new NetworkCredential(fromMail , fromPassword),
-                EnableSsl = true,
+                EnableSsl = true,   
             };
             smtpClient.Send(message);
             return Ok("Poruka je poslata na vasu email adresu");

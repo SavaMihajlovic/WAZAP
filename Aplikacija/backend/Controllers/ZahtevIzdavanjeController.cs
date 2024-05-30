@@ -105,7 +105,7 @@ public class ZahtevIzdavanjeController : ControllerBase
             return BadRequest(ex.Message);
         }
      }
-    [HttpGet("GetImage/{userId}")]
+   [HttpGet("GetImage/{userId}")]
     public async Task<IActionResult> GetImage(int userId)
     {
         try
@@ -118,7 +118,7 @@ public class ZahtevIzdavanjeController : ControllerBase
             string uploadsFolder = Path.Combine(environment.WebRootPath, "Images");
             string slikaFileName = $"{swimmer.ID}_slika.png";
             string slikaFilePath = Path.Combine(uploadsFolder, slikaFileName);
-            
+
             if (!System.IO.File.Exists(slikaFilePath))
                 return NotFound("Slika nije pronađena");
 

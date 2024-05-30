@@ -1,23 +1,43 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_slika.png",
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\101_slika.png",
+      "PackagePath": "staticwebassets\\Images\\101_slika.png"
+    },
+    {
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\101_uverenje.png",
+      "PackagePath": "staticwebassets\\Images\\101_uverenje.png"
+    },
+    {
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_slika.png",
       "PackagePath": "staticwebassets\\Images\\102_slika.png"
     },
     {
-      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_uverenje.png",
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_uverenje.png",
       "PackagePath": "staticwebassets\\Images\\102_uverenje.png"
     },
     {
-      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\22_slika.png",
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\121_slika.png",
+      "PackagePath": "staticwebassets\\Images\\121_slika.png"
+    },
+    {
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\22_slika.png",
       "PackagePath": "staticwebassets\\Images\\22_slika.png"
     },
     {
-      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_slika.png",
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_sertifikat.png",
+      "PackagePath": "staticwebassets\\Images\\41_sertifikat.png"
+    },
+    {
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_slika.png",
+      "PackagePath": "staticwebassets\\Images\\41_slika.png"
+    },
+    {
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_slika.png",
       "PackagePath": "staticwebassets\\Images\\64_slika.png"
     },
     {
-      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_uverenje.png",
+      "Id": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_uverenje.png",
       "PackagePath": "staticwebassets\\Images\\64_uverenje.png"
     },
     {

@@ -71,7 +71,7 @@ public class AdminController : ControllerBase
         }
      }
 
-      [HttpPut("ProcessRequestWorker/{zahtevID}/{adminID}/{status}")]
+     [HttpPut("ProcessRequestWorker/{zahtevID}/{adminID}/{status}")]
      public async Task<ActionResult> ProcessRequestWorker(int zahtevID , int adminID , string status){
         try{
             if(status != "pending"  && status != "blocked" && status != "completed")
@@ -79,7 +79,12 @@ public class AdminController : ControllerBase
             var zahtev = await Context.ZahtevPosao.FindAsync(zahtevID);
             if(zahtev == null)
                 return BadRequest("Zahtev nije pronađen");
-            var admin = await Context.Admini.FindAsync(adminID);
+           var findAdmin = await Context.Admini.Include(p => p.Korisnik).Where(p => p.Korisnik.ID == adminID).Select(p => new{
+                p.ID
+            }).FirstOrDefaultAsync();
+            var admin = await Context.Admini.FindAsync(findAdmin!.ID);
+            if(admin == null)
+                return BadRequest("Admin nije pronađen");
             if(admin == null)
                 return BadRequest("Admin nije pronađen");
             zahtev.Admin = admin;
@@ -87,7 +92,7 @@ public class AdminController : ControllerBase
             if(status == "completed")
                 zahtev.DatumZaposlenja = DateTime.Today;
             await Context.SaveChangesAsync();
-            return Ok("Zahtev je obrađen");
+            return Ok("Zahtev je pronađen");
         }
         catch(Exception ex){
             return BadRequest(ex.Message);
