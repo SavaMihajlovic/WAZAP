@@ -16,8 +16,8 @@ public class ZahtevPosaoController : ControllerBase
          this.configuration = configuration;
          this.environment = environment;
      }
-     [HttpPost("AddRequest/{userId}/{typeOfJob}")]
-     public async Task<ActionResult> AddRequest(int userId , string typeOfJob ,  IFormFile slika ,  IFormFile? sertifikat){
+     [HttpPost("AddRequest/{userId}/{typeOfJob}/{opis}")]
+     public async Task<ActionResult> AddRequest(int userId , string typeOfJob , string? opis ,  IFormFile slika ,  IFormFile? sertifikat){
         try{
             if(slika == null || slika.Length == 0)
                 return BadRequest("Slika je obavezna");
@@ -55,6 +55,7 @@ public class ZahtevPosaoController : ControllerBase
                 Tip_Posla = typeOfJob,
                 Status = "pending",
                 Radnik = worker,
+                Opis = opis
             };
             await Context.ZahtevPosao.AddAsync(zahtevPosao);
             await Context.SaveChangesAsync();

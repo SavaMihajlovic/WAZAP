@@ -46,7 +46,10 @@ public class AdminController : ControllerBase
             var zahtev = await Context.ZahtevIzdavanje.FindAsync(zahtevID);
             if(zahtev == null)
                 return BadRequest("Zahtev nije pronađen");
-            var admin = await Context.Admini.FindAsync(adminID);
+            var findAdmin = await Context.Admini.Include(p => p.Korisnik).Where(p => p.Korisnik.ID == adminID).Select(p => new{
+                p.ID
+            }).FirstOrDefaultAsync();
+            var admin = await Context.Admini.FindAsync(findAdmin!.ID);
             if(admin == null)
                 return BadRequest("Admin nije pronađen");
             zahtev.Admin = admin;
