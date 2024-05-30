@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './ZahtevZaPosaoForm.css'; 
+import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
 
 const ZahtevZaPosaoForm = () => {
 
@@ -20,7 +22,7 @@ const ZahtevZaPosaoForm = () => {
       [name]: files ? files[0] : value
     });
 
-    if (name === 'selectedOption' && value === 'spasilac') {
+    if (name === 'selectedOption' && value === 'Spasilac') {
       setShowDodatniInput(true);
     } else if (name === 'selectedOption') {
       setShowDodatniInput(false);
@@ -36,8 +38,30 @@ const ZahtevZaPosaoForm = () => {
     }
 
     try {
-      // Implementacija za slanje podataka na server
-      // const response = await axios.post(...);
+
+      const token = localStorage.getItem('token');
+      const decodedToken = jwtDecode(token);
+      const userID = decodedToken.KorisnikID;
+
+      const formData = new FormData();
+      formData.append('slika', data.selectedFileLicnaSlika);
+      formData.append('sertifikat', data.dodatniInput);
+
+      console.log(userID);
+      console.log(data.selectedOption);
+      console.log(data.motivacionoPismo);
+      console.log(data.selectedFileLicnaSlika);
+      console.log(data.dodatniInput);
+
+    await axios.post(`http://localhost:5212/ZahtevPosao/AddRequest/${userID}/${data.selectedOption}`, formData, {
+      params: {
+       opis: data.motivacionoPismo
+      },
+       headers: {
+          'Content-Type' : 'multipart/form-data'
+      }
+    });
+
       console.log('Zahtev je uspešno poslat');
     } catch (error) {
       console.error('Greška pri slanju zahteva', error);
@@ -57,13 +81,13 @@ const ZahtevZaPosaoForm = () => {
         <label className="input-message">Unesite svoju ličnu sliku</label>
         <div className="radio-buttons">
           <label>
-            <input type="radio" name="selectedOption" value="spasilac" checked={data.selectedOption === 'spasilac'} onChange={handleInputChange} /> Spasilac
+            <input type="radio" name="selectedOption" value="Spasilac" checked={data.selectedOption === 'Spasilac'} onChange={handleInputChange} /> Spasilac
           </label>
           <label>
-            <input type="radio" name="selectedOption" value="cistac_bazena" checked={data.selectedOption === 'cistac_bazena'} onChange={handleInputChange} /> Čistač bazena
+            <input type="radio" name="selectedOption" value="Čistač bazena" checked={data.selectedOption === 'Čistač bazena'} onChange={handleInputChange} /> Čistač bazena
           </label>
           <label>
-            <input type="radio" name="selectedOption" value="prodavac_karata" checked={data.selectedOption === 'prodavac_karata'} onChange={handleInputChange} /> Prodavac karata
+            <input type="radio" name="selectedOption" value="Prodavac karata" checked={data.selectedOption === 'Prodavac karata'} onChange={handleInputChange} /> Prodavac karata
           </label>
         </div>
         {showDodatniInput && (
