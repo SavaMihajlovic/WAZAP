@@ -38,5 +38,57 @@ public class AdminController : ControllerBase
             return BadRequest(ex.Message);
         }
      }
+     [HttpPut("ProcessRequestSwimmer/{zahtevID}/{adminID}/{status}")]
+     public async Task<ActionResult> ProcessRequestSwimmer(int zahtevID , int adminID , string status){
+        try{
+            if(status != "pending" && status != "readyForPayment" && status != "blocked" && status != "completed")
+                return BadRequest("Status je nevalidan");
+            var zahtev = await Context.ZahtevIzdavanje.FindAsync(zahtevID);
+            if(zahtev == null)
+                return BadRequest("Zahtev nije pronađen");
+            var admin = await Context.Admini.FindAsync(adminID);
+            if(admin == null)
+                return BadRequest("Admin nije pronađen");
+            zahtev.Admin = admin;
+            zahtev.Status = status;
+            if(status == "completed"){
+                zahtev.DatumOd = DateTime.Today;
+                DateTime datum = DateTime.Today;
+                if(zahtev.Tip_Karte == "mesecna")
+                    zahtev.DatumDo = datum.AddDays(30);
+                else{
+                    zahtev.DatumDo = datum.AddDays(15);
+                }
+            }
+            await Context.SaveChangesAsync();
+            return Ok("Zahtev je obrađen");
+        }
+        catch(Exception ex){
+            return BadRequest(ex.Message);
+        }
+     }
+
+      [HttpPut("ProcessRequestWorker/{zahtevID}/{adminID}/{status}")]
+     public async Task<ActionResult> ProcessRequestWorker(int zahtevID , int adminID , string status){
+        try{
+            if(status != "pending"  && status != "blocked" && status != "completed")
+                return BadRequest("Status je nevalidan");
+            var zahtev = await Context.ZahtevPosao.FindAsync(zahtevID);
+            if(zahtev == null)
+                return BadRequest("Zahtev nije pronađen");
+            var admin = await Context.Admini.FindAsync(adminID);
+            if(admin == null)
+                return BadRequest("Admin nije pronađen");
+            zahtev.Admin = admin;
+            zahtev.Status = status;
+            if(status == "completed")
+                zahtev.DatumZaposlenja = DateTime.Today;
+            await Context.SaveChangesAsync();
+            return Ok("Zahtev je obrađen");
+        }
+        catch(Exception ex){
+            return BadRequest(ex.Message);
+        }
+     }
      
 }

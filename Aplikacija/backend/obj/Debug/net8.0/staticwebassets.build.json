@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "apoh2NB0cBOl8h/dEeGXd87Eqh1/7tDXw1rUQAGhnDQ=",
+  "Hash": "yLVlhpdb2YSli3CIJAxFvq5xw8MdHb9OtyN9Ic+G21I=",
   "Source": "Proba",
   "BasePath": "_content/Proba",
   "Mode": "Default",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_slika.png",
+      "SourceId": "Proba",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "BasePath": "_content/Proba",
+      "RelativePath": "Images/102_slika.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\102_slika.png"
+    },
+    {
+      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_uverenje.png",
+      "SourceId": "Proba",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "BasePath": "_content/Proba",
+      "RelativePath": "Images/102_uverenje.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\102_uverenje.png"
+    },
     {
       "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\22_slika.png",
       "SourceId": "Proba",
@@ -34,6 +72,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\22_slika.png"
+    },
+    {
+      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_slika.png",
+      "SourceId": "Proba",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "BasePath": "_content/Proba",
+      "RelativePath": "Images/64_slika.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\64_slika.png"
+    },
+    {
+      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_uverenje.png",
+      "SourceId": "Proba",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "BasePath": "_content/Proba",
+      "RelativePath": "Images/64_uverenje.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\64_uverenje.png"
     }
   ]
 }

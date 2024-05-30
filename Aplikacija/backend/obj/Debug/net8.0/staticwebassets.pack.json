@@ -1,8 +1,24 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_slika.png",
+      "PackagePath": "staticwebassets\\Images\\102_slika.png"
+    },
+    {
+      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_uverenje.png",
+      "PackagePath": "staticwebassets\\Images\\102_uverenje.png"
+    },
+    {
       "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\22_slika.png",
       "PackagePath": "staticwebassets\\Images\\22_slika.png"
+    },
+    {
+      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_slika.png",
+      "PackagePath": "staticwebassets\\Images\\64_slika.png"
+    },
+    {
+      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_uverenje.png",
+      "PackagePath": "staticwebassets\\Images\\64_uverenje.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Proba.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -16,7 +16,7 @@ public class ZahtevPosaoController : ControllerBase
          this.configuration = configuration;
          this.environment = environment;
      }
-     [HttpPost("AddRequest/{userId}/{typeOfCard}")]
+     [HttpPost("AddRequest/{userId}/{typeOfJob}")]
      public async Task<ActionResult> AddRequest(int userId , string typeOfJob ,  IFormFile slika ,  IFormFile? sertifikat){
         try{
             if(slika == null || slika.Length == 0)
@@ -76,7 +76,7 @@ public class ZahtevPosaoController : ControllerBase
         }
      }
     [HttpGet("GetAllStatus/{status}")]
-     public async Task<ActionResult> GetAll(string status){
+     public async Task<ActionResult> GetAllStatus(string status){
         try{
             if(status != "pending" && status != "completed" && status != "blocked"){}
             var zahtevPosao = await Context.ZahtevPosao.Where(p => p.Status == status).ToListAsync();
@@ -104,4 +104,59 @@ public class ZahtevPosaoController : ControllerBase
             return BadRequest(ex.Message);
         }
      }
+     [HttpGet("GetImage/{userId}")]
+    public async Task<IActionResult> GetImage(int userId)
+    {
+        try
+        {
+            var worker = await Context.Radnici.Include(p => p.Korisnik).Where(p => p.ID == userId).Select(p => new{
+                p.Korisnik.ID
+            } ).FirstOrDefaultAsync();
+            if (worker == null)
+                return NotFound("Radnik nije pronađen");
+            
+
+            string uploadsFolder = Path.Combine(environment.WebRootPath, "Images");
+            string slikaFileName = $"{worker.ID}_slika.png";
+            string slikaFilePath = Path.Combine(uploadsFolder, slikaFileName);
+            
+            if (!System.IO.File.Exists(slikaFilePath))
+                return NotFound("Slika nije pronađena");
+
+            var fileStream = new FileStream(slikaFilePath, FileMode.Open, FileAccess.Read);
+            return File(fileStream, "image/png"); // Vraća sliku kao odgovor
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet("GetImageSertifikat/{userId}")]
+    public async Task<IActionResult> GetImageSertifikat(int userId)
+    {
+        try
+        {
+             var worker = await Context.Radnici.Include(p => p.Korisnik).Where(p => p.ID == userId).Select(p => new{
+                p.Korisnik.ID
+            } ).FirstOrDefaultAsync();
+            if (worker == null)
+                return NotFound("Kupač nije pronađen");
+            string uploadsFolder = Path.Combine(environment.WebRootPath, "Images");
+            string uverenjeFileName = $"{worker.ID}_sertifikat.png";
+            string uverenjeFilePath = Path.Combine(uploadsFolder, uverenjeFileName);
+            
+            if (!System.IO.File.Exists(uverenjeFilePath))
+                return NotFound("Slika nije pronađena");
+
+            var fileStream = new FileStream(uverenjeFilePath, FileMode.Open, FileAccess.Read);
+            return File(fileStream, "image/png"); 
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+
 }

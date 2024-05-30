@@ -68,7 +68,7 @@ public class ZahtevIzdavanjeController : ControllerBase
      [HttpGet("GetAll")]
      public async Task<ActionResult> GetAll(){
         try{
-            var zahtevIzdavanje = await Context.ZahtevIzdavanje.ToListAsync();
+            var zahtevIzdavanje = await Context.ZahtevIzdavanje.Include(p => p.Admin).Include(p => p.Kupac).ToListAsync();
             return Ok(zahtevIzdavanje);
         }
         catch(Exception ex)
@@ -77,7 +77,7 @@ public class ZahtevIzdavanjeController : ControllerBase
         }
      }
     [HttpGet("GetAllStatus/{status}")]
-     public async Task<ActionResult> GetAll(string status){
+     public async Task<ActionResult> GetAllStatus(string status){
         try{
             if(status != "pending" && status != "readyForPayment" && status != "completed" && status != "blocked"){}
             var zahtevIzdavanje = await Context.ZahtevIzdavanje.Where(p => p.Status == status).ToListAsync();
@@ -105,4 +105,56 @@ public class ZahtevIzdavanjeController : ControllerBase
             return BadRequest(ex.Message);
         }
      }
+    [HttpGet("GetImage/{userId}")]
+    public async Task<IActionResult> GetImage(int userId)
+    {
+        try
+        {
+            var swimmer = await Context.Kupaci.Include(p => p.Korisnik).Where(p => p.ID == userId).Select(p => new{
+                p.Korisnik.ID
+            } ).FirstOrDefaultAsync();
+            if (swimmer == null)
+                return NotFound("Kupac nije pronađen");
+            string uploadsFolder = Path.Combine(environment.WebRootPath, "Images");
+            string slikaFileName = $"{swimmer.ID}_slika.png";
+            string slikaFilePath = Path.Combine(uploadsFolder, slikaFileName);
+            
+            if (!System.IO.File.Exists(slikaFilePath))
+                return NotFound("Slika nije pronađena");
+
+            var fileStream = new FileStream(slikaFilePath, FileMode.Open, FileAccess.Read);
+            return File(fileStream, "image/png"); 
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet("GetImageUverenje/{userId}")]
+    public async Task<IActionResult> GetImageUverenje(int userId)
+    {
+        try
+        {
+             var swimmer = await Context.Kupaci.Include(p => p.Korisnik).Where(p => p.ID == userId).Select(p => new{
+                p.Korisnik.ID
+            } ).FirstOrDefaultAsync();
+            if (swimmer == null)
+                return NotFound("Kupač nije pronađen");
+            string uploadsFolder = Path.Combine(environment.WebRootPath, "Images");
+            string uverenjeFileName = $"{swimmer.ID}_uverenje.png";
+            string uverenjeFilePath = Path.Combine(uploadsFolder, uverenjeFileName);
+            
+            if (!System.IO.File.Exists(uverenjeFilePath))
+                return NotFound("Slika nije pronađena");
+
+            var fileStream = new FileStream(uverenjeFilePath, FileMode.Open, FileAccess.Read);
+            return File(fileStream, "image/png"); 
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
 }
