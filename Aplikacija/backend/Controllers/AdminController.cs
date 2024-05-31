@@ -63,6 +63,17 @@ public class AdminController : ControllerBase
                     zahtev.DatumDo = datum.AddDays(15);
                 }
             }
+            else if(status == "blocked"){
+                zahtev.DatumDo = DateTime.Today;
+                var zahtevKupac = await Context.ZahtevIzdavanje.Include(p => p.Kupac).Where(p => p.ID == zahtevID).Select(p => new{
+                    p.Kupac!.ID
+                }).FirstOrDefaultAsync();
+                var kupac = await Context.Kupaci.FindAsync(zahtevKupac!.ID);
+                if(kupac == null)
+                    return NotFound("Kupač nije nađen");
+                kupac.Slika = null;
+                kupac.Uverenje = null;
+            }
             await Context.SaveChangesAsync();
             return Ok("Zahtev je obrađen");
         }
@@ -71,7 +82,7 @@ public class AdminController : ControllerBase
         }
      }
 
-     [HttpPut("ProcessRequestWorker/{zahtevID}/{adminID}/{status}")]
+      [HttpPut("ProcessRequestWorker/{zahtevID}/{adminID}/{status}")]
      public async Task<ActionResult> ProcessRequestWorker(int zahtevID , int adminID , string status){
         try{
             if(status != "pending"  && status != "blocked" && status != "completed")
@@ -91,6 +102,16 @@ public class AdminController : ControllerBase
             zahtev.Status = status;
             if(status == "completed")
                 zahtev.DatumZaposlenja = DateTime.Today;
+            else if(status == "blocked"){
+                var zahtevRadnik = await Context.ZahtevPosao.Include(p => p.Radnik).Where(p => p.ID == zahtevID).Select(p => new{
+                    p.Radnik!.ID
+                }).FirstOrDefaultAsync();
+                var radnik = await Context.Radnici.FindAsync(zahtevRadnik!.ID);
+                if(radnik == null)
+                    return NotFound("Radnik nije nađen");
+                radnik.Slika = null;
+                radnik.Sertifikat = null;
+            }
             await Context.SaveChangesAsync();
             return Ok("Zahtev je pronađen");
         }

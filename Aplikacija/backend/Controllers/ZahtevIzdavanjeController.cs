@@ -156,5 +156,74 @@ public class ZahtevIzdavanjeController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+    [HttpGet("GetMyRequest/{userID}")]
+    public async Task<ActionResult> GetMyRequest(int userID){
+        try{
+            var swimmer = await Context.Kupaci.Include(p => p.Korisnik).Where(p => p.Korisnik.ID == userID).Select(p => new
+            {
+            p.ID
+            }).FirstOrDefaultAsync();
+            if(swimmer == null)
+            {
+                return NotFound("Korisnik nije kupač");
+            }
+            var odobrenZahtev= await Context.ZahtevIzdavanje.Include(p => p.Kupac).Where(p => p.DatumDo > DateTime.Now && p.Status == "completed" && p.Kupac!.ID == swimmer.ID).Select(p => new{
+            p.DatumOd,
+            p.DatumDo
+            }).FirstOrDefaultAsync();
+            if(odobrenZahtev == null)
+            {
+                var placanjeIzdavanja = await Context.ZahtevIzdavanje.Include(p => p.Kupac).Where(p => p.Status == "readyForPayment" && p.Kupac!.ID == swimmer.ID).Select(p => new{
+                p.Status,
+                p.ID,
+                p.Tip_Karte,
+                p.Kupac!.Uverenje
+                }).FirstOrDefaultAsync();
+
+                if(placanjeIzdavanja != null)
+                    return Ok(placanjeIzdavanja);
+                else {
+                     var cekanjeZahteva = await Context.ZahtevIzdavanje.Include(p => p.Kupac).Where(p => p.Status == "pending" && p.Kupac!.ID == swimmer.ID).Select(p => new{
+                     p.Status
+                     }).FirstOrDefaultAsync();
+
+                     if(cekanjeZahteva != null)
+                        return Ok(cekanjeZahteva);
+                     else
+                        return Ok("Nema poslatih zahteva");
+                }
+            }
+            else{
+                return Ok(odobrenZahtev);
+            }
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+    [HttpPost("CompletedPurchase/{zahtevID}")]
+
+    public async Task<ActionResult> CompletedPurchase(int zahtevID){
+        try{
+            var kompletiranZahtev = await Context.ZahtevIzdavanje.FindAsync(zahtevID);
+            if(kompletiranZahtev == null)
+                return BadRequest("Zahtev nije nađen");
+            DateTime datum = DateTime.Today;
+            kompletiranZahtev.DatumOd = datum;
+            if(kompletiranZahtev.Tip_Karte == "mesecna")
+                kompletiranZahtev.DatumDo = datum.AddDays(30);
+            else
+                kompletiranZahtev.DatumDo = datum.AddDays(15);
+            kompletiranZahtev.Status = "completed";
+            await Context.SaveChangesAsync();
+            return Ok("Zahtev je kompletiran");
+        }
+        catch(Exception ex){
+            return BadRequest(ex.Message);
+        }
+    }
+
+   
 
 }

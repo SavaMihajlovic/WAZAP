@@ -176,6 +176,42 @@ public async Task<ActionResult> AddRequest(int userId, string typeOfJob, string?
             return BadRequest(ex.Message);
         }
     }
+    [HttpGet("GetMyRequest/{userID}")]
+    public async Task<ActionResult> GetMyRequest(int userID){
+        try{
+            var radnik = await Context.Radnici.Include(p => p.Korisnik).Where(p => p.Korisnik.ID == userID).Select(p => new
+            {
+            p.ID
+            }).FirstOrDefaultAsync();
+            if(radnik == null)
+            {
+                return NotFound("Korisnik nije kupač");
+            }
+            var odobrenZahtev= await Context.ZahtevPosao.Include(p => p.Radnik).Where(p =>  p.Status == "completed" && p.Radnik!.ID == radnik.ID).Select(p => new{
+            p.Status
+            }).FirstOrDefaultAsync();
+            if(odobrenZahtev == null)
+            {
+                     var cekanjeZahteva = await Context.ZahtevPosao.Include(p => p.Radnik).Where(p => p.Status == "pending" && p.Radnik!.ID == radnik.ID).Select(p => new{
+                     p.Status
+                     }).FirstOrDefaultAsync();
+
+                     if(cekanjeZahteva != null)
+                        return Ok(cekanjeZahteva);
+                     else
+                        return Ok("Nema poslatih zahteva");
+                
+            }
+            else{
+                return Ok(odobrenZahtev);
+            }
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+    
 
 
 }

@@ -17,11 +17,14 @@ public class PaypalController : ControllerBase
 
     public int maxNumberOfReservations {get; set;}
     public int DaysInAdvance { get; set; }
+
+    public double CenaKarte { get; set;}
      public PaypalController(Context context , IConfiguration configuration)
      {
          Context = context;
          this.configuration = configuration;
          _httpClient = new HttpClient();
+         CenaKarte = 17.08f;
          
     }
     [HttpPost("MakePaymentLezaljka/{datum}")]
@@ -101,6 +104,76 @@ public class PaypalController : ControllerBase
             return BadRequest(ex.Message);
         }
      }
+
+    [HttpPost("MakePaymentKarta/{zahtevID}/{tipKarte}/{uverenje}")]
+    public async Task<ActionResult> MakePaymentLezaljka(int zahtevID , string tipKarte , bool uverenje)
+    {
+        try
+        {
+            if(tipKarte != "mesecna" && tipKarte != "polumesecna")
+                return BadRequest("Nevalidna karta");
+            string ClientId = configuration.GetSection("PaypalOptions:ClientID").Value!;
+            string Secret = configuration.GetSection("PaypalOptions:ClientSecret").Value!;
+            string Mode = configuration.GetSection("PaypalOptions:ClientMode").Value!;
+            double amount = 0;
+            if(tipKarte == "mesecna")
+                amount = CenaKarte;
+            else
+                amount = CenaKarte/2;
+            if(uverenje)
+                amount -= amount * 0.10f;
+            amount = Math.Round(amount, 2);
+            string successUrl = $"http://localhost:5173/payment-success?reqID={zahtevID}&typeOfCard={tipKarte}&uverenje={uverenje}";
+            PayPalEnvironment environment = Mode == "sandbox" ? new SandboxEnvironment(ClientId , Secret) : new LiveEnvironment(ClientId,Secret);
+            var client = new PayPalHttpClient(environment);
+
+        
+            var order = new OrderRequest()
+            {
+                CheckoutPaymentIntent = "CAPTURE",
+                ApplicationContext = new ApplicationContext()
+                {
+                    BrandName = "WAZAP",
+                    LandingPage = "LOGIN",
+                    UserAction = "PAY_NOW",
+                    ReturnUrl = successUrl,
+                    CancelUrl = "http://localhost:5173/payment-failure?"
+                },
+                PurchaseUnits = new List<PurchaseUnitRequest>()
+                {
+                    new PurchaseUnitRequest()
+                    {
+                        AmountWithBreakdown = new AmountWithBreakdown()
+                        {
+                            CurrencyCode = "EUR",
+                            Value = amount.ToString()
+                        }
+                    }
+                }
+            };
+            var request = new OrdersCreateRequest();
+            request.Prefer("return=representation");
+            request.RequestBody(order);
+            var response = await client.Execute(request);
+            var statusCode = response.StatusCode;
+
+            if (statusCode == HttpStatusCode.Created)
+            {
+                var result = response.Result<Order>();
+                var approvalUrl = result.Links.First(link => link.Rel == "approve").Href;
+                return Ok(approvalUrl);
+            }
+            else
+            {
+                return StatusCode((int)statusCode, "Neuspela kreacija narudžbine");
+            }
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+     }
+
     [HttpPost("ConfirmOrder/{token}")]
     public async Task<ActionResult> ConfirmOrder(string token)
     {
