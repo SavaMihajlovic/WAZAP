@@ -9,18 +9,26 @@ import './RequestsTable.css';
 
 const RequestsTable = ({ theme }) => {
   const [selectedType, setSelectedType] = useState('ZahtevIzdavanje');
-  const [selectedStatus, setSelectedStatus] = useState('Svi statusi');
+  const [selectedStatus, setSelectedStatus] = useState('All statuses');
   const [data, setData] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false); 
   const [opis, setOpis] = useState('');
-  const [slikaLica,setSlikaLica] = useState('');
+  const [slikaLicaKupaca,setSlikaLicaKupaca] = useState('');
+  const [slikaLicaRadnika,setSlikaLicaRadnika] = useState('');
   const [slikaUverenja,setSlikaUverenja] = useState('');
+  const [page, setPage] = useState(1);
+  const [request, setRequest] = useState('');
   const [slikaSertifikata,setSlikaSertifikata] = useState('');
 
+
+  const handlePage = () => {
+    page === 1 ? setPage(2) : setPage(1);
+  };
   const handleTypeChange = async (e) => {
     const type = e.target.value;
     setSelectedType(type);
+    setSelectedStatus('All statuses'); // reset filtera statusa
     await fetchData(type);
   };
 
@@ -41,11 +49,16 @@ const RequestsTable = ({ theme }) => {
     fetchData(selectedType);
   }, [selectedType]);
 
-  const filteredData = (data) => {
-    if (selectedStatus === 'Svi statusi') {
-      return data;
+  const filterData = (data) => {
+    let filteredData = data;
+  
+    if (selectedStatus !== 'All statuses') {
+      filteredData = filteredData.filter((item) => item.status === selectedStatus);
     }
-    return data.filter((item) => item.status === selectedStatus);
+    
+    filteredData.sort((a, b) => a.id - b.id);
+  
+    return filteredData;
   };
 
   const handleRowClick = (row) => {
@@ -53,41 +66,68 @@ const RequestsTable = ({ theme }) => {
   };
 
   const openDialog = async (request, row) => {
+    setPage(1);
     setIsDialogOpen(true);
+    setRequest(request);
 
-    if(selectedType === 'ZahtevPosao' && request === 'opis')
-      setOpis(opis);
-    else if (selectedType === 'ZahtevIzdavanje' && request === 'verifikacija') {
+    if(selectedType === 'ZahtevPosao' && request === 'opis') {
+      setOpis(row.opis);
+    }
+    else {
 
       try {
+
+        if (selectedType === 'ZahtevIzdavanje' && request === 'verifikacija') {
 
         const responseSlikaLica = await axios.get(`http://localhost:5212/ZahtevIzdavanje/GetImage/${row.kupac.id}`, {
           responseType: 'arraybuffer',
         });
-        const responseSlikaUverenja = await axios.get(`http://localhost:5212/ZahtevIzdavanje/GetImageUverenje/${row.kupac.id}`);
+        const responseSlikaUverenja = await axios.get(`http://localhost:5212/ZahtevIzdavanje/GetImageUverenje/${row.kupac.id}`, {
+          responseType: 'arraybuffer',
+        });
 
-        const blob = new Blob([responseSlikaLica.data], { type: 'image/png' }); 
-        const imgUrl = URL.createObjectURL(blob);
-        setSlikaLica(imgUrl);
-        //setSlikaUverenja(responseSlikaUverenja.data);
+        const blobSlikaLica = new Blob([responseSlikaLica.data], { type: 'image/png' }); 
+        const imgUrlSlikaLica = URL.createObjectURL(blobSlikaLica);
+        setSlikaLicaKupaca(imgUrlSlikaLica);
 
-        console.log(slikaLica);
-        //console.log("Slika uverenja:", slikaUverenja);
+        const blobSlikaUverenja = new Blob([responseSlikaUverenja.data], { type: 'image/png' }); 
+        const imgUrlSlikaUverenja = URL.createObjectURL(blobSlikaUverenja);
+        setSlikaUverenja(imgUrlSlikaUverenja);
+
+      } else {
+        
+        const responseSlikaLica = await axios.get(`http://localhost:5212/ZahtevPosao/GetImage/${row.radnik.id}`, {
+          responseType: 'arraybuffer',
+        });
+        const responseSlikaSertifikata = await axios.get(`http://localhost:5212/ZahtevPosao/GetImageSertifikat/${row.radnik.id}`, {
+          responseType: 'arraybuffer',
+        });
+
+        const blobSlikaLica = new Blob([responseSlikaLica.data], { type: 'image/png' }); 
+        const imgUrlSlikaLica = URL.createObjectURL(blobSlikaLica);
+        setSlikaLicaRadnika(imgUrlSlikaLica);
+
+        const blobSlikaSertifikata = new Blob([responseSlikaSertifikata.data], { type: 'image/png' }); 
+        const imgUrlSlikaSertifikata = URL.createObjectURL(blobSlikaSertifikata);
+        setSlikaSertifikata(imgUrlSlikaSertifikata);
+      }
+      
       } catch (error) {
-        console.error("Greska pri dobijanju slike lica korisnika",error);
+        console.error("Greska pri dobijanju slika.",error);
       }
     }
   };
 
   const closeDialog = () => {
     setIsDialogOpen(false);
+    setPage(1);
   };
 
   const handleApproveClick = async () => {
 
     if (!selectedRow) return;
 
-    const selectedRequest = filteredData(data).find(row => row.id === selectedRow);
+    const selectedRequest = filterData(data).find(row => row.id === selectedRow);
   
     if (selectedRequest.status === "completed" || selectedRequest.status === "blocked" || selectedRequest.status === "readyForPayment") {
       console.log("Zahtev je već odobren, u stanju plaćanja ili je blokiran. Ne može se odobriti.");
@@ -123,12 +163,12 @@ const RequestsTable = ({ theme }) => {
         </select>
 
         <select onChange={handleStatusChange} value={selectedStatus} style={{ marginBottom: '4px' }} className="select-request">
-          <option value="Svi statusi">Svi statusi</option>
-          <option value="Odobren">Odobren</option>
-          <option value="Na čekanju">Na čekanju</option>
+          <option value="All statuses">Svi statusi</option>
+          <option value="completed">Odobren</option>
+          <option value="pending">Na čekanju</option>
           {selectedType === 'ZahtevIzdavanje' &&
-          <option value="Spreman za plaćanje">Spreman za plaćanje</option>}
-          <option value="Odbijen">Odbijen</option>
+          <option value="readyForPayment">Spreman za plaćanje</option>}
+          <option value="blocked">Odbijen</option>
         </select>
 
         <Button 
@@ -153,21 +193,70 @@ const RequestsTable = ({ theme }) => {
           Odbij zahtev
         </Button>
 
-        <Modal isOpen={isDialogOpen} onClose={closeDialog}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Detalji zahteva</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-                <img src={slikaLica} alt="Slika lica korisnika" />
-            </ModalBody>
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={closeDialog}>
-                Zatvori
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+    <Modal isOpen={isDialogOpen} onClose={closeDialog}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>
+          {request === 'verifikacija' ? (selectedType === 'ZahtevIzdavanje' ? (page === 1 ? <>Slika lica</> : <>Slika uverenja</>)
+           : (page === 1 ? <>Slika lica</> : <>Slika sertifikata</>)) : <>Opis</>}
+        </ModalHeader>
+        <ModalCloseButton />
+        {request === 'opis' ?
+        (
+        <ModalBody>
+          <p>{opis === null ? <>Korisnik nije napisao motivaciono pismo.</> : opis}</p>
+        </ModalBody>
+        ) : 
+        (
+          <ModalBody>
+            {(selectedType === 'ZahtevIzdavanje' && request === 'verifikacija') ? 
+            (
+              <>
+                {page === 1 && (
+                  <>
+                    <img src={slikaLicaKupaca} alt="Slika lica korisnika"/>
+                  </>
+                )}
+                {page === 2 && (
+                  <>
+                    <img src={slikaUverenja} alt="Slika uverenja korisnika" />
+                  </>
+                )}
+              </>
+            ) :
+            (
+              <>
+              {page === 1 && (
+                <>
+                  <img src={slikaLicaRadnika} alt="Slika lica korisnika"/>
+                </>
+              )}
+              {page === 2 && (
+                <>
+                  <img src={slikaSertifikata} alt="Slika sertifikata korisnika" />
+                </>
+              )}    
+              </>
+            )
+        }
+        </ModalBody>
+        )}
+        <ModalFooter>
+          {request !== 'opis' &&
+           (
+           <>
+          <Button onClick={handlePage} cursor={page === 1 ? 'not-allowed' : 'pointer'}>
+            1
+          </Button>
+          <Button onClick={handlePage} ml={2} cursor={page === 2 ? 'not-allowed' : 'pointer'}>
+            2
+          </Button>
+          </>
+           )
+          }   
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
 
         <TableContainer marginTop={10}>
           <Table variant="striped">
@@ -180,7 +269,7 @@ const RequestsTable = ({ theme }) => {
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>KID</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>AID</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black', textAlign: 'center', margin: 'auto', width: '50px' }}>Datum od</Th>
-                  <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Datum do</Th>
+                  <Th style={{ color: theme === 'dark' ? 'white' : 'black', textAlign: 'center', margin: 'auto', width: '50px' }}>Datum do</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Verifikacija zahteva</Th>
                 </Tr>
               ) : (
@@ -197,7 +286,7 @@ const RequestsTable = ({ theme }) => {
             </Thead>
             <Tbody>
               {selectedType === 'ZahtevIzdavanje'
-                ? filteredData(data).map((row, index) => (
+                ? filterData(data).map((row, index) => (
                     <Tr 
                       key={row.id}
                       bg={theme === 'dark' ? '#333' : '#d6e2ff'} 
@@ -228,7 +317,7 @@ const RequestsTable = ({ theme }) => {
                       </Td>
                     </Tr>
                   ))
-                : filteredData(data).map((row, index) => (
+                : filterData(data).map((row, index) => (
                     <Tr 
                       key={row.id}
                       bg={theme === 'dark' ? '#333' : '#d6e2ff'} 
