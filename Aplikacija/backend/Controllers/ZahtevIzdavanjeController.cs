@@ -39,9 +39,14 @@ public class ZahtevIzdavanjeController : ControllerBase
                 await slika.CopyToAsync(stream);
             }
             string? uverenjeFileName = null;
+            uverenjeFileName = $"{userId}_uverenje.png";
+            string uverenjeFilePath = Path.Combine(uploadsFolder, uverenjeFileName);
+            if (System.IO.File.Exists(uverenjeFilePath))
+            {
+                    System.IO.File.Delete(uverenjeFilePath);
+            }
+
             if(uverenje != null && uverenje.Length > 0){
-                uverenjeFileName = $"{userId}_uverenje.png";
-                string uverenjeFilePath = Path.Combine(uploadsFolder, uverenjeFileName);
                 using (var stream = new FileStream(uverenjeFilePath, FileMode.Create))
                 {
                     await uverenje.CopyToAsync(stream);
@@ -146,7 +151,7 @@ public class ZahtevIzdavanjeController : ControllerBase
             string uverenjeFilePath = Path.Combine(uploadsFolder, uverenjeFileName);
             
             if (!System.IO.File.Exists(uverenjeFilePath))
-                return NotFound("Slika nije pronađena");
+                return Ok("Slika nije nađena");
 
             var fileStream = new FileStream(uverenjeFilePath, FileMode.Open, FileAccess.Read);
             return File(fileStream, "image/png"); 

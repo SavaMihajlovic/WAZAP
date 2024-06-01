@@ -58,7 +58,9 @@ const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken, reqID, typeOfCar
           if(paymentTicketResponse.status === 200) {
             setShowConfirmation(false);
             navigate(`/${path}`); 
-        } else {
+        } 
+      }
+      else {
 
           date = formatDate(date);
           const reservationResponse = await axios.post(`http://localhost:5212/Rezervacije/MakeAReservation/${userID}/${date}`,easyChairIDs);
@@ -68,9 +70,10 @@ const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken, reqID, typeOfCar
             navigate(`/${path}`); 
           }
         }
-      }
+      
     } else {
       console.error('Greška prilikom potvrde narudžbine:', response.data);
+      navigate(`/${path}`); 
     }
     
     } catch (error) {

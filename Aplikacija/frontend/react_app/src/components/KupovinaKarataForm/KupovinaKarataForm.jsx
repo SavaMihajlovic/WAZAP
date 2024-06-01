@@ -16,8 +16,6 @@ const KupovinaKarataForm = ({apiResponse}) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  console.log(apiResponse)
-
   useEffect(() => {
 
   if(apiResponse && apiResponse.status === "readyForPayment") {
@@ -39,7 +37,6 @@ const KupovinaKarataForm = ({apiResponse}) => {
       }
       makePaymentKarta();
    };
-
   }, [apiResponse]);
 
   const handleInputChange = (event) => {
@@ -93,7 +90,7 @@ const KupovinaKarataForm = ({apiResponse}) => {
   };
 
   return (
-     apiResponse && apiResponse.status === "Nema poslatih zahteva" ? (
+     apiResponse && apiResponse === "Nema poslatih zahteva" ? (
         <div className="kupovina-container">
           <div className="header">
             <div className="text">Kupovina Karata</div>

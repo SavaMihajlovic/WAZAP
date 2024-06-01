@@ -53,6 +53,10 @@ public async Task<ActionResult> AddRequest(int userId, string typeOfJob, string?
         {
             sertifikatFileName = $"{userId}_sertifikat.png";
             string uverenjeFilePath = Path.Combine(uploadsFolder, sertifikatFileName);
+            if (System.IO.File.Exists(uverenjeFilePath))
+            {
+                    System.IO.File.Delete(uverenjeFilePath);
+            }
             using (var stream = new FileStream(uverenjeFilePath, FileMode.Create))
             {
                 await sertifikat.CopyToAsync(stream);

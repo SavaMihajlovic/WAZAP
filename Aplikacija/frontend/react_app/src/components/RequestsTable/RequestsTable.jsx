@@ -154,6 +154,36 @@ const RequestsTable = ({ theme }) => {
     }
   };
 
+  const handleDisapproveClick = async () => {
+    if (!selectedRow) return;
+
+    const selectedRequest = filterData(data).find(row => row.id === selectedRow);
+  
+    if (selectedRequest.status === "completed" || selectedRequest.status === "blocked" || selectedRequest.status === "readyForPayment") {
+      console.log("Zahtev je već odobren, u stanju plaćanja ili je blokiran. Ne može se odobriti.");
+      return;
+    }
+
+    try {
+
+      const token = localStorage.getItem('token');
+      const decodedToken = jwtDecode(token);
+      const userID = decodedToken.KorisnikID;
+
+      if(selectedType === 'ZahtevIzdavanje') {
+
+        const response = await axios.put(`http://localhost:5212/Admin/ProcessRequestSwimmer/${selectedRequest.id}/${userID}/blocked`);
+        await fetchData(selectedType);
+        
+      } else if (selectedType === 'ZahtevPosao') {
+        const response = await axios.put(`http://localhost:5212/Admin/ProcessRequestWorker/${selectedRequest.id}/${userID}/blocked`);
+        await fetchData(selectedType);
+      }
+    } catch (error) {
+      console.error("Greška pri odobravanju zahteva", error);
+    }
+  }
+
   return (
     <ChakraProvider>
       <Box className="select-menu" p={4}>
@@ -189,7 +219,9 @@ const RequestsTable = ({ theme }) => {
           _hover={{ bg: '#cc0000' }}
           disabled={!selectedRow}
           cursor={!selectedRow ? 'not-allowed' : 'pointer'}
+          onClick={handleDisapproveClick}
         >
+
           Odbij zahtev
         </Button>
 
@@ -219,7 +251,7 @@ const RequestsTable = ({ theme }) => {
                 )}
                 {page === 2 && (
                   <>
-                    <img src={slikaUverenja} alt="Slika uverenja korisnika" />
+                    <img src={slikaUverenja} alt="Korisnik nema uverenje" />
                   </>
                 )}
               </>
