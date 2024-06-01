@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IIvAooQeAUnneLiJ6tAdJ4iQKiZuCqBR+Uu9iCY9Fog=",
+  "Hash": "5cGpUYWPUzoEx5r1tohN2gUyMZinoqC0BNx/xvo9zPY=",
   "Source": "Proba",
   "BasePath": "_content/Proba",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Proba\\wwwroot",
       "Source": "Proba",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\101_slika.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\101_slika.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/101_slika.png",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\101_slika.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\101_uverenje.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\101_uverenje.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/101_uverenje.png",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\101_uverenje.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_slika.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_slika.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/102_slika.png",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\102_slika.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_uverenje.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\102_uverenje.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/102_uverenje.png",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\102_uverenje.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\121_slika.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\121_slika.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/121_slika.png",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\121_slika.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\22_slika.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\22_slika.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/22_slika.png",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\22_slika.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_sertifikat.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_sertifikat.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/41_sertifikat.png",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\41_sertifikat.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_slika.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_slika.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/41_slika.png",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\41_slika.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_slika.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_slika.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/64_slika.png",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\64_slika.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_uverenje.png",
+      "Identity": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_uverenje.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\msava\\OneDrive\\Desktop\\III GODINA\\SEMESTAR 6\\SOFTVERSKO INZENJERSTVO\\projekat bitbucket\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
       "BasePath": "_content/Proba",
       "RelativePath": "Images/64_uverenje.png",
       "AssetKind": "All",

@@ -3,8 +3,9 @@ import './KupovinaKarataForm.css';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
-const KupovinaKarataForm = () => {
+const KupovinaKarataForm = ({apiResponse}) => {
   const [data, setData] = useState({
     selectedFileLicnaSlika: null,
     selectedFileSlikaUverenja: null,
@@ -12,19 +13,34 @@ const KupovinaKarataForm = () => {
   });
 
   const [showInputsError, setShowInputsError] = useState(false);
-  const [requestStatus, setRequestStatus] = useState('');
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  console.log(apiResponse)
 
   useEffect(() => {
-    const status = localStorage.getItem('requestStatus');
-    if (status === 'pending') {
-      setLoading(true);
-    } else {
-      setLoading(false);
-      //navigate('/kupovina-karata');
-    }
-  }, []);
+
+  if(apiResponse && apiResponse.status === "readyForPayment") {
+      const makePaymentKarta = async () => {
+
+        setLoading(true);
+        try {
+
+        const response = await axios.post(`http://localhost:5212/Paypal/MakePaymentKarta/${apiResponse.id}/${apiResponse.tip_Karte}/${apiResponse.uverenje === null ? 'false' : 'true'}`);
+
+        if(response.data && response.status === 200)
+          window.location.href = response.data;
+        } catch (error) {
+          console.error(error.message);
+          setLoading(false);
+        } finally {
+          setLoading(false);
+        }
+      }
+      makePaymentKarta();
+   };
+
+  }, [apiResponse]);
 
   const handleInputChange = (event) => {
     const { name, value, files } = event.target;
@@ -56,21 +72,28 @@ const KupovinaKarataForm = () => {
       });
 
       if (response.status === 200 && response.data === 'Zahtev je uspešno poslat') {
-        setRequestStatus('pending');
-        localStorage.setItem('requestStatus', 'pending');
-        console.log(response.data);
         navigate('/');
       }
 
     } catch (error) {
-      setRequestStatus('error');
-      localStorage.setItem('requestStatus', 'error');
+      console.error(error.message);
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
+  const handleGoBack = () => {
+    navigate('/');
+  };
+
   return (
-    <>
-      {requestStatus !== 'pending' ? (
+     apiResponse && apiResponse.status === "Nema poslatih zahteva" ? (
         <div className="kupovina-container">
           <div className="header">
             <div className="text">Kupovina Karata</div>
@@ -99,12 +122,27 @@ const KupovinaKarataForm = () => {
             <button className="submit" onClick={handleSubmit}>Pošalji zahtev</button>
           </div>
         </div>
-      ) : (
-           <div className='message-container'>
-              <div className='request-message'>Poslaćemo Vam email poruku kad zahtev bude obrađen.</div>
+     ) : apiResponse && apiResponse.status === 'pending' ?
+     (
+      <div className="status-container">
+        <div className="status-header">
+          <div className="status-text">Poslaćemo Vam email poruku kad zahtev bude obrađen.</div>
+          <div className="status-underline"></div>
+        </div>
+        <button className="go-back-button" onClick={handleGoBack}>Idi nazad na stranicu</button>
+      </div>
+     ) : apiResponse && apiResponse.status === 'completed' ?
+     (
+      <div className="status-container">
+            <div className="status-header">
+              <div className="status-text">
+                Vaš zahtev je odobren i važi od <span className='red-text'>{formatDate(apiResponse.datumOd)}</span> do <span className='red-text'>{formatDate(apiResponse.datumDo)}</span>
+                </div>
+              <div className="status-underline"></div>
           </div>
-      )}
-    </>
+            <button className="go-back-button" onClick={handleGoBack}>Idi nazad na stranicu</button>
+          </div>
+     ) : (loading && <div className='loading-container'> <LoadingSpinner /></div>)
   );
 };
 

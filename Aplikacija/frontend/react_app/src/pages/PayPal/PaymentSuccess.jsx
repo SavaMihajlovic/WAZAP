@@ -11,7 +11,13 @@ export const PaymentSuccess = () => {
     const date = queryParams.get('date');
     const paymentToken = queryParams.get('token');
 
+    const reqID = queryParams.get('reqID');
+    const typeOfCard = queryParams.get('typeOfCard');
+    const uverenje = queryParams.get('uverenje');
+
+
   return (
-    <PaymentSuccessForm easyChairIDs={easyChairIDs} date={date} paymentToken={paymentToken}/>
+    <PaymentSuccessForm easyChairIDs={easyChairIDs} date={date} paymentToken={paymentToken}
+                        reqID={reqID} typeOfCard={typeOfCard} uverenje={uverenje}/>
   )
 }

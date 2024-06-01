@@ -6,7 +6,7 @@ import collaborationImage from '../../../assets/wazapxpaypal.png';
 import { jwtDecode } from 'jwt-decode';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 
-const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken }) => {
+const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken, reqID, typeOfCard, uverenje }) => {
   const navigate = useNavigate();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [path, setPath] = useState('');
@@ -51,16 +51,28 @@ const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken }) => {
       const response = await axios.post(`http://localhost:5212/Paypal/ConfirmOrder/${paymentToken}`);
 
       if (response.data === "Uspešno plaćanje!") {
-        date = formatDate(date);
-        const reservationResponse = await axios.post(`http://localhost:5212/Rezervacije/MakeAReservation/${userID}/${date}`,easyChairIDs);
 
-        if(reservationResponse.status === 200) {
-          setShowConfirmation(false);
-          navigate(`/${path}`); 
+        if(reqID && typeOfCard && uverenje) {
+          const paymentTicketResponse = await axios.post(`http://localhost:5212/ZahtevIzdavanje/CompletedPurchase/${reqID}`);
+
+          if(paymentTicketResponse.status === 200) {
+            setShowConfirmation(false);
+            navigate(`/${path}`); 
+        } else {
+
+          date = formatDate(date);
+          const reservationResponse = await axios.post(`http://localhost:5212/Rezervacije/MakeAReservation/${userID}/${date}`,easyChairIDs);
+  
+          if(reservationResponse.status === 200) {
+            setShowConfirmation(false);
+            navigate(`/${path}`); 
+          }
         }
-      } else {
-        console.error('Greška prilikom potvrde narudžbine:', response.data);
       }
+    } else {
+      console.error('Greška prilikom potvrde narudžbine:', response.data);
+    }
+    
     } catch (error) {
       console.error('Greška prilikom slanja zahteva:', error);
     } finally {
@@ -69,9 +81,11 @@ const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken }) => {
   };
 
   return (
+    (easyChairIDs && date ?
+    (
     <div className="payment-container">
       <div className="payment-header">
-        <div className="payment-text">Uspešno kreiran zahtev za plaćanje</div>
+        <div className="payment-text">Uspešno kreiran zahtev za plaćanje ležaljki</div>
         <div className="payment-underline"></div>
       </div>
       <div className="payment-buttons">
@@ -79,7 +93,7 @@ const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken }) => {
         <button className="capsule-button" onClick={handleCancelPayment}>Otkaži plaćanje</button>
       </div>
       <div className="collaboration-image-container">
-        <img src={collaborationImage} alt="WhatsApp and PayPal Collaboration" width='250px' />
+        <img src={collaborationImage} alt="WAZAP and PayPal Collaboration" width='250px' />
       </div>
 
       {showConfirmation && (
@@ -93,6 +107,34 @@ const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken }) => {
       )}
         {loading && (<div className='loading-container'> <LoadingSpinner /></div>)}
     </div>
+    )
+    :
+    (
+      <div className="payment-container">
+      <div className="payment-header">
+        <div className="payment-text">Uspešno kreiran zahtev za plaćanje karata</div>
+        <div className="payment-underline"></div>
+      </div>
+      <div className="payment-buttons">
+        <button className="capsule-button" onClick={handleConfirmPayment}>Potvrdi plaćanje</button>
+        <button className="capsule-button" onClick={handleCancelPayment}>Otkaži plaćanje</button>
+      </div>
+      <div className="collaboration-image-container">
+        <img src={collaborationImage} alt="WAZAP and PayPal Collaboration" width='250px' />
+      </div>
+
+      {showConfirmation && (
+        <div className="confirmation-dialog">
+          <div className="confirmation-text">Da li ste sigurni da želite da nastavite sa plaćanjem?</div>
+          <div className="confirmation-buttons">
+            <button className="confirmation-button" onClick={handleConfirmYes}>Da</button>
+            <button className="confirmation-button" onClick={handleConfirmNo}>Ne</button>
+          </div>
+        </div>
+      )}
+        {loading && (<div className='loading-container'> <LoadingSpinner /></div>)}
+    </div>
+    ))
   );
 };
 

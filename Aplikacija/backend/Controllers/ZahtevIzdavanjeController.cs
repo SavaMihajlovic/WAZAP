@@ -168,6 +168,7 @@ public class ZahtevIzdavanjeController : ControllerBase
                 return NotFound("Korisnik nije kupač");
             }
             var odobrenZahtev= await Context.ZahtevIzdavanje.Include(p => p.Kupac).Where(p => p.DatumDo > DateTime.Now && p.Status == "completed" && p.Kupac!.ID == swimmer.ID).Select(p => new{
+            p.Status,
             p.DatumOd,
             p.DatumDo
             }).FirstOrDefaultAsync();
