@@ -186,5 +186,145 @@ public class AdminController : ControllerBase
             throw new Exception(ex.Message);
         }
      }
+
+     [HttpGet("GetAllUsers")]
+     public async Task<ActionResult> GetAllUsers(){
+        try{
+            var users = await Context.Korisnici.Select(p => new{
+                p.ID,
+                p.Ime,
+                p.Prezime,
+                p.KorisnickoIme,
+                p.TipKorisnika
+            }).ToListAsync();
+            return Ok(users);
+        }
+        catch(Exception ex){
+            return BadRequest(ex.Message);
+        }
+     }
+     [HttpGet("GetUsers/{type}")]
+     public async Task<ActionResult> GetUsers(string type){
+        try{
+            if(type != "Kupac" && type != "Radnik" && type != "Admin")
+                return BadRequest("Nevalidan tip korisnika");
+            var users = await Context.Korisnici.Where(p => p.TipKorisnika == type).Select(p => new{
+                    p.ID,
+                p.Ime,
+                p.Prezime,
+                p.KorisnickoIme,
+                p.TipKorisnika
+            }).ToListAsync();
+            return Ok(users);
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+     }
+    [HttpDelete("DeleteUser/{userID}")]
+    public async Task<ActionResult> DeleteUser(int userID)
+    {
+        using (var transaction = await Context.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                var user = await Context.Korisnici.FindAsync(userID);
+                if (user == null)
+                    return BadRequest("Korisnik nije pronađen");
+
+                if (user.TipKorisnika == "Admin")
+                    return BadRequest("Ne možete obrisati admina");
+
+                if (user.TipKorisnika == "Kupac")
+                {
+                    var kupac = await Context.Kupaci.Include(k => k.Rezervacije)
+                                                    .Include(k => k.ZahtevIzdavanje)
+                                                    .FirstOrDefaultAsync(k => k.Korisnik.ID == userID);
+                    if (kupac == null)
+                        return BadRequest("Korisnik nije kupač");
+                    Context.RemoveRange(kupac.Rezervacije!);
+                    Context.RemoveRange(kupac.ZahtevIzdavanje!);
+                    Context.Remove(kupac);
+                }
+                else // Radnik
+                {
+                    var radnik = await Context.Radnici.Include(r => r.ZahtevPosao)
+                                                    .FirstOrDefaultAsync(r => r.Korisnik.ID == userID);
+                    if (radnik == null)
+                        return BadRequest("Korisnik nije radnik");
+
+                    Context.RemoveRange(radnik.ZahtevPosao!);
+                    Context.Remove(radnik);
+                }
+
+                Context.Remove(user);
+                await Context.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                return Ok("Korisnik je obrisan");
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return BadRequest(ex.Message);
+            }
+        }
+    }
+    [HttpPut("PromoteToAdmin/{userID}")]
+    public async Task<ActionResult> PromoteToAdmin(int userID)
+    {
+        using (var transaction = await Context.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                var user = await Context.Korisnici.FindAsync(userID);
+                if (user == null)
+                    return BadRequest("Korisnik nije pronađen");
+                if(user.TipKorisnika == "Admin")
+                    return BadRequest("Korisnik je već admin");
+
+                if(user.TipKorisnika == "Kupac"){
+                     var kupac = await Context.Kupaci.Include(k => k.Rezervacije)
+                                                    .Include(k => k.ZahtevIzdavanje)
+                                                    .FirstOrDefaultAsync(k => k.Korisnik.ID == userID);
+                    if (kupac == null)
+                        return BadRequest("Korisnik nije kupač");
+                    Context.RemoveRange(kupac.Rezervacije!);
+                    Context.RemoveRange(kupac.ZahtevIzdavanje!);
+                    Context.Remove(kupac);
+                }
+                else{
+                     var radnik = await Context.Radnici.Include(k => k.ZahtevPosao)
+                                                    .FirstOrDefaultAsync(k => k.Korisnik.ID == userID);
+                    if (radnik == null)
+                        return BadRequest("Korisnik nije kupač");
+                    Context.RemoveRange(radnik.ZahtevPosao!);
+                    Context.Remove(radnik);
+                }
+
+                user.TipKorisnika = "Admin"; 
+
+                var admin = new Admin
+                {
+                    Korisnik = user
+                };
+
+                Context.Admini.Add(admin); 
+                await Context.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                return Ok("Korisnik je promovisan u admina");
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return BadRequest(ex.Message);
+            }
+        }
+    }
+
+
+
      
 }
