@@ -68,7 +68,7 @@ button{
   }
 
 @media (max-width: 870px) {
-    ul {
+    .nav-links {
         flex-direction: column;
         background-color: #f4f4f4;
         position: absolute;

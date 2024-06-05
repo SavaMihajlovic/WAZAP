@@ -57,7 +57,6 @@ const LoginForm = () => {
 
     try {
       const response = await axios.post(`http://localhost:5212/Auth/Login/${username}/${password}`);
-      console.log('Uspešno:', response.data);
       localStorage.setItem('token', response.data);
       navigate('/');
 

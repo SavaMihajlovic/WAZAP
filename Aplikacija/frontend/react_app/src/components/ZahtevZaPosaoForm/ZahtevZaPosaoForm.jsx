@@ -17,8 +17,6 @@ const ZahtevZaPosaoForm = ({status}) => {
   const [showDodatniInput, setShowDodatniInput] = useState(false);
   const navigate = useNavigate();
 
-
-
   const handleInputChange = (event) => {
     const { name, value, files } = event.target;
     setData({
@@ -51,12 +49,6 @@ const ZahtevZaPosaoForm = ({status}) => {
       formData.append('slika', data.selectedFileLicnaSlika);
       formData.append('sertifikat', data.dodatniInput);
 
-      console.log(userID);
-      console.log(data.selectedOption);
-      console.log(data.motivacionoPismo);
-      console.log(data.selectedFileLicnaSlika);
-      console.log(data.dodatniInput);
-
     await axios.post(`http://localhost:5212/ZahtevPosao/AddRequest/${userID}/${data.selectedOption}`, formData, {
       params: {
        opis: data.motivacionoPismo
@@ -66,7 +58,8 @@ const ZahtevZaPosaoForm = ({status}) => {
       }
     });
 
-      console.log('Zahtev je uspešno poslat');
+    navigate('/');
+
     } catch (error) {
       console.error('Greška pri slanju zahteva', error);
     }

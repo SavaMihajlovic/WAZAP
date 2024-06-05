@@ -186,7 +186,8 @@ const RequestsTable = ({ theme }) => {
 
   return (
     <ChakraProvider>
-      <Box className="select-menu" p={4}>
+      <Box style={{display: "flex", flexDirection: "column"}}>
+      <Box className="select-menu" p={4} style={{display: "flex", flexWrap: 'wrap'}}>
         <select onChange={handleTypeChange} value={selectedType} style={{ marginBottom: '4px' }} className="select-request">
           <option value="ZahtevIzdavanje">Zahtev Izdavanje</option>
           <option value="ZahtevPosao">Zahtev Posao</option>
@@ -201,29 +202,33 @@ const RequestsTable = ({ theme }) => {
           <option value="blocked">Odbijen</option>
         </select>
 
-        <Button 
-          width='150px' mr={4} ml={20}
-          bg={theme === 'dark' ? '#32cd32' : 'green'} 
-          color='white' 
-          _hover={{ bg: theme === 'dark' ? '#28a828' : '#2e8b57' }}
-          disabled={!selectedRow}
-          cursor={!selectedRow ? 'not-allowed' : 'pointer'}
-          onClick={handleApproveClick}
-        >
-          Odobri zahtev
-        </Button>
-        <Button 
-          width='150px' mr={4}
-          bg='red' 
-          color='white' 
-          _hover={{ bg: '#cc0000' }}
-          disabled={!selectedRow}
-          cursor={!selectedRow ? 'not-allowed' : 'pointer'}
-          onClick={handleDisapproveClick}
-        >
+        <Box className='buttons-container' style={{ display: 'flex', flexGrow: 1, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+          <Button 
+            width='150px' mr={4}
+            bg={theme === 'dark' ? '#32cd32' : 'green'} 
+            color='white' 
+            _hover={{ bg: theme === 'dark' ? '#28a828' : '#2e8b57' }}
+            disabled={!selectedRow}
+            cursor={!selectedRow ? 'not-allowed' : 'pointer'}
+            onClick={handleApproveClick}
+          >
+            Odobri zahtev
+          </Button>
+          <Button 
+            width='150px' mr={4}
+            bg='red' 
+            color='white' 
+            _hover={{ bg: '#cc0000' }}
+            disabled={!selectedRow}
+            cursor={!selectedRow ? 'not-allowed' : 'pointer'}
+            onClick={handleDisapproveClick}
+          >
 
-          Odbij zahtev
-        </Button>
+            Odbij zahtev
+          </Button>
+        </Box>
+      </Box>
+
 
     <Modal isOpen={isDialogOpen} onClose={closeDialog}>
       <ModalOverlay />
@@ -290,7 +295,7 @@ const RequestsTable = ({ theme }) => {
       </ModalContent>
     </Modal>
 
-        <TableContainer marginTop={10}>
+        <TableContainer marginTop={10} p={4}>
           <Table variant="striped">
             <Thead style={{ color: theme === 'dark' ? 'white' : 'black' }}>
               {selectedType === 'ZahtevIzdavanje' ? (

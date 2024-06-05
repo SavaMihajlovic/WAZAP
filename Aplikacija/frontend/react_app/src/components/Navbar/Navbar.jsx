@@ -4,7 +4,7 @@ import logo_light from '../../assets/logo-black.png';
 import logo_dark from '../../assets/logo-white.png';
 import toggle_light from '../../assets/night.png';
 import toggle_dark from '../../assets/day.png';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IoMenu } from 'react-icons/io5';
 import { RxCross2 } from 'react-icons/rx';
 
@@ -12,6 +12,7 @@ const Navbar = ({ theme, setTheme }) => {
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
   const location = useLocation();
   const [role, setRole] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const pathname = location.pathname;
@@ -45,6 +46,10 @@ const Navbar = ({ theme, setTheme }) => {
   const closeBurgerMenu = () => {
     setBurgerMenuOpen(false);
   };
+
+  const onImgClick = () => {
+    navigate('/');
+  }
 
   const getMenuItems = () => {
     switch (role) {
@@ -88,8 +93,8 @@ const Navbar = ({ theme, setTheme }) => {
 
   return (
     <div className='navbar'>
-      <img src={theme === 'light' ? logo_light : logo_dark} alt='' className='logo' />
-      <ul className={`${theme} ${burgerMenuOpen ? 'active' : ''}`}>
+      <img onClick={onImgClick} src={theme === 'light' ? logo_light : logo_dark} alt='' className='logo'/>
+      <ul className={`nav-links ${theme} ${burgerMenuOpen ? 'active' : ''}`}>
         {getMenuItems()}
       </ul>
       <img onClick={toggle_mode} src={theme === 'light' ? toggle_light : toggle_dark} alt='' className='toggle-icon' />

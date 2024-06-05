@@ -78,6 +78,7 @@ const PaymentSuccessForm = ({ easyChairIDs, date, paymentToken, reqID, typeOfCar
     
     } catch (error) {
       console.error('Greška prilikom slanja zahteva:', error);
+      navigate('/payment-failure');
     } finally {
       setLoading(false);
     }
