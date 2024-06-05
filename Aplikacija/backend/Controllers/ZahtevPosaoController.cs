@@ -49,19 +49,19 @@ public async Task<ActionResult> AddRequest(int userId, string typeOfJob, string?
         }
 
         string? sertifikatFileName = null;
-        if (sertifikat != null && sertifikat.Length > 0)
-        {
             sertifikatFileName = $"{userId}_sertifikat.png";
-            string uverenjeFilePath = Path.Combine(uploadsFolder, sertifikatFileName);
-            if (System.IO.File.Exists(uverenjeFilePath))
+            string sertifikatFilePath = Path.Combine(uploadsFolder, sertifikatFileName);
+            if (System.IO.File.Exists(sertifikatFilePath))
             {
-                    System.IO.File.Delete(uverenjeFilePath);
+                    System.IO.File.Delete(sertifikatFilePath);
             }
-            using (var stream = new FileStream(uverenjeFilePath, FileMode.Create))
+            if (sertifikat != null && sertifikat.Length > 0)
             {
-                await sertifikat.CopyToAsync(stream);
+                using (var stream = new FileStream(sertifikatFilePath, FileMode.Create))
+                {
+                    await sertifikat.CopyToAsync(stream);
+                }
             }
-        }
 
         worker.Slika = slikaFileName;
         worker.Sertifikat = sertifikatFileName;
@@ -164,13 +164,13 @@ public async Task<ActionResult> AddRequest(int userId, string typeOfJob, string?
                 p.Korisnik.ID
             } ).FirstOrDefaultAsync();
             if (worker == null)
-                return NotFound("Kupač nije pronađen");
+                return Ok("Kupač nije pronađen");
             string uploadsFolder = Path.Combine(environment.WebRootPath, "Images");
             string uverenjeFileName = $"{worker.ID}_sertifikat.png";
             string uverenjeFilePath = Path.Combine(uploadsFolder, uverenjeFileName);
             
             if (!System.IO.File.Exists(uverenjeFilePath))
-                return NotFound("Slika nije pronađena");
+                return Ok("Korisnik nema sertifikat");
 
             var fileStream = new FileStream(uverenjeFilePath, FileMode.Open, FileAccess.Read);
             return File(fileStream, "image/png"); 

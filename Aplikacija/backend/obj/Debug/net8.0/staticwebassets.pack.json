@@ -25,10 +25,6 @@
       "PackagePath": "staticwebassets\\Images\\22_slika.png"
     },
     {
-      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_sertifikat.png",
-      "PackagePath": "staticwebassets\\Images\\41_sertifikat.png"
-    },
-    {
       "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_slika.png",
       "PackagePath": "staticwebassets\\Images\\41_slika.png"
     },
@@ -39,6 +35,14 @@
     {
       "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\64_uverenje.png",
       "PackagePath": "staticwebassets\\Images\\64_uverenje.png"
+    },
+    {
+      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\81_sertifikat.png",
+      "PackagePath": "staticwebassets\\Images\\81_sertifikat.png"
+    },
+    {
+      "Id": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\81_slika.png",
+      "PackagePath": "staticwebassets\\Images\\81_slika.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Proba.Microsoft.AspNetCore.StaticWebAssets.props",

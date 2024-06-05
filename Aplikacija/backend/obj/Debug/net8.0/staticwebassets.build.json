@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IIvAooQeAUnneLiJ6tAdJ4iQKiZuCqBR+Uu9iCY9Fog=",
+  "Hash": "C27zQKjfaAbzlTynrwkD+xXQuJLCK7+oc2p5yVO3tEo=",
   "Source": "Proba",
   "BasePath": "_content/Proba",
   "Mode": "Default",
@@ -131,25 +131,6 @@
       "OriginalItemSpec": "wwwroot\\Images\\22_slika.png"
     },
     {
-      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_sertifikat.png",
-      "SourceId": "Proba",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
-      "BasePath": "_content/Proba",
-      "RelativePath": "Images/41_sertifikat.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\41_sertifikat.png"
-    },
-    {
       "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\41_slika.png",
       "SourceId": "Proba",
       "SourceType": "Discovered",
@@ -205,6 +186,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\64_uverenje.png"
+    },
+    {
+      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\81_sertifikat.png",
+      "SourceId": "Proba",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "BasePath": "_content/Proba",
+      "RelativePath": "Images/81_sertifikat.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\81_sertifikat.png"
+    },
+    {
+      "Identity": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\Images\\81_slika.png",
+      "SourceId": "Proba",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nemanja\\Projekat\\si.24.5.web\\Aplikacija\\backend\\wwwroot\\",
+      "BasePath": "_content/Proba",
+      "RelativePath": "Images/81_slika.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\81_slika.png"
     }
   ]
 }
