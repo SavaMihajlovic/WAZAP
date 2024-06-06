@@ -54,7 +54,7 @@ const App = () => {
             <Route element={<PrivateRoutes role='Admin'/>}>
               <Route path="/administrator" element={<HomeAdmin theme={theme} />} />
               <Route path="/administrator-obrada-zahteva" element={<ObradaZahteva theme={theme} />} />
-              <Route path="/administrator-admin-panel" element={<AdminPanel />} />
+              <Route path="/administrator-admin-panel" element={<AdminPanel theme={theme} />} />
             </Route>
 
             {/*Navigacije*/}

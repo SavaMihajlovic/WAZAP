@@ -1,7 +1,11 @@
 import React from 'react'
+import AdminPanelTable from '../../components/AdminPanelTable/AdminPanelTable'
 
-export const AdminPanel = () => {
+
+export const AdminPanel = ({theme}) => {
   return (
-    <div>AdminPanel</div>
+    <div className='admin-panel-content'>
+      <AdminPanelTable theme={theme} />
+    </div>
   )
 }

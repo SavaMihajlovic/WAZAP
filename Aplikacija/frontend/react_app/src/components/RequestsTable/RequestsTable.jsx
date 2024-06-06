@@ -66,6 +66,10 @@ const RequestsTable = ({ theme }) => {
   };
 
   const openDialog = async (request, row) => {
+
+    if(!selectedRow)
+      return;
+
     setPage(1);
     setIsDialogOpen(true);
     setRequest(request);
@@ -155,6 +159,7 @@ const RequestsTable = ({ theme }) => {
   };
 
   const handleDisapproveClick = async () => {
+    
     if (!selectedRow) return;
 
     const selectedRequest = filterData(data).find(row => row.id === selectedRow);
@@ -347,7 +352,9 @@ const RequestsTable = ({ theme }) => {
                           bg={theme === 'dark' ? '#666' : '#b5bfe6'} 
                           color={theme === 'dark' ? 'white' : 'black'} 
                           _hover={{ bg: theme === 'dark' ? '#555' : '#a5afd6' }}
-                          onClick={() => openDialog('verifikacija',row)}
+                          disabled={!selectedRow}
+                          cursor={!selectedRow ? 'not-allowed' : 'pointer'}
+                          onClick={() => openDialog('verifikacija',row)}      
                         >
                           Prikaži
                         </Button>
@@ -374,6 +381,8 @@ const RequestsTable = ({ theme }) => {
                           bg={theme === 'dark' ? '#666' : '#b5bfe6'} 
                           color={theme === 'dark' ? 'white' : 'black'} 
                           _hover={{ bg: theme === 'dark' ? '#555' : '#a5afd6' }}
+                          cursor={!selectedRow ? 'not-allowed' : 'pointer'}
+                          disabled={!selectedRow}
                           onClick={() => openDialog('opis',row)} 
                         >
                           Prikaži
@@ -387,6 +396,8 @@ const RequestsTable = ({ theme }) => {
                           bg={theme === 'dark' ? '#666' : '#b5bfe6'} 
                           color={theme === 'dark' ? 'white' : 'black'} 
                           _hover={{ bg: theme === 'dark' ? '#555' : '#a5afd6' }}
+                          cursor={!selectedRow ? 'not-allowed' : 'pointer'}
+                          disabled={!selectedRow}
                           onClick={() => openDialog('verifikacija',row)}
                         >
                           Prikaži
