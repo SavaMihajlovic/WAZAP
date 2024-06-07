@@ -56,7 +56,7 @@ const ForgotPasswordForm = () => {
       <div className="submit-container">
       {loading ? 
         <div className='loading-container'> <LoadingSpinner /></div>
-         : <div className="submit" onClick={handleSubmit}>Send</div>}
+         : <div className="submit" onClick={handleSubmit}>Pošaljite</div>}
       </div>
     </div>
   );
