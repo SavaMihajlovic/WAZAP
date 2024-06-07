@@ -19,8 +19,8 @@ export const HomeKupac = ({theme}) => {
         <img src={pool} alt="Pool" className="pool-img" />
         <div className='overlay'></div>
             <div className='content'>
-                <h1>Welcome, {userName}</h1>
-                <p>To WAZAP.</p>
+                <h1>{userName}, dobrodošli</h1>
+                <p>na WAZAP.</p>
         <Footer theme={theme} userType="Kupac" />
           </div>
     </div>

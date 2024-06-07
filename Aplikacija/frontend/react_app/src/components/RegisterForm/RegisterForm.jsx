@@ -110,21 +110,21 @@ const RegisterForm = () => {
   return (
     <div className="register-container">
       <div className="header">
-        <div className="text">{action}</div>
+        <div className="text">Kreiraj nalog</div>
         <div className="underline"></div>
       </div>
       <div className="inputs">
       <div className={validationError.firstNameError ? "input error" : "input"}>
           <img src={user_icon} alt=''/>
-          <input type='text' name='ime' placeholder='First Name' value={userData.ime} onChange={handleChange}/>
+          <input type='text' name='ime' placeholder='Ime' value={userData.ime} onChange={handleChange}/>
         </div>
         <div className={validationError.lastNameError ? "input error" : "input"}>
           <img src={user_icon} alt=''/>
-          <input type='text' name='prezime' placeholder='Last Name' value={userData.prezime} onChange={handleChange}/>
+          <input type='text' name='prezime' placeholder='Prezime' value={userData.prezime} onChange={handleChange}/>
         </div>
         <div className={validationError.usernameError ? "input error" : "input"}>
           <img src={user_icon} alt=''/>
-          <input type='text' name='korisnickoIme' placeholder='Username' value={userData.korisnickoIme} onChange={handleChange}/>
+          <input type='text' name='korisnickoIme' placeholder='Korisničko ime' value={userData.korisnickoIme} onChange={handleChange}/>
         </div>
           <InputEmail setEmail={handleEmailChange} isEmpty={validationError.emailError} />
           <InputPassword setPassword={handlePasswordChange} variant='password' isEmpty={validationError.passwordError}/>
@@ -152,8 +152,8 @@ const RegisterForm = () => {
         </div>
       </div>
       <div className="submit-container">
-      <div className={action === "Register" ? "submit" : "submit gray"} onClick={handleSubmit}>Register</div>
-        <div className={action === "Login" ? "submit gray" : "submit"} onClick={()=> handleActionChange("Login")}>Login</div>
+      <div className={action === "Register" ? "submit" : "submit gray"} onClick={handleSubmit}>Kreiraj nalog</div>
+        <div className={action === "Login" ? "submit gray" : "submit"} onClick={()=> handleActionChange("Login")}>Prijavi se</div>
       </div>
     </div>
   )

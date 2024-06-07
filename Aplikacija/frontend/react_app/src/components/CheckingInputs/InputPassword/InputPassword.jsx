@@ -43,7 +43,7 @@ const InputPassword = ({ setPassword, variant, isEmpty }) => {
         <>
             <div className={`input ${isEmpty ? 'error' : ''}`}>
                 <img src={password_icon} alt='' />
-                <input type='password' placeholder={variant === 'password' ? 'Password' : 'Confirm password'} value={password} onChange={handlePasswordChange} />
+                <input type='password' placeholder={variant === 'password' ? 'Lozinka' : 'Potvrdite lozinku'} value={password} onChange={handlePasswordChange} />
                 {password && (isStrongPassword ? <FcOk className="icon" /> : <FcCancel className="icon" />)}
             </div>
             {password === '' ? (<div className="password-message">{passwordMessage}</div>) :

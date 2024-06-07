@@ -56,36 +56,36 @@ const Navbar = ({ theme, setTheme }) => {
       case 'Kupac':
         return (
           <>
-            <li><Link to="/kupac" onClick={closeBurgerMenu}>Home</Link></li>
+            <li><Link to="/kupac" onClick={closeBurgerMenu}>Početna</Link></li>
             <li><Link to="/kupac-kupovina-karata" onClick={closeBurgerMenu}>Kupovina Karata</Link></li>
             <li><Link to="/kupac-rezervisanje-lezaljki" onClick={closeBurgerMenu}>Rezervisanje ležaljki</Link></li>
-            <li><Link to="/" onClick={handleLogout}>Logout</Link></li>
+            <li><Link to="/" onClick={handleLogout}>Odjavi se</Link></li>
           </>
         );
       case 'Radnik':
         return (
           <>
-            <li><Link to="/radnik" onClick={closeBurgerMenu}>Home</Link></li>
+            <li><Link to="/radnik" onClick={closeBurgerMenu}>Početna</Link></li>
             <li><Link to="/radnik-zahtev-za-posao" onClick={closeBurgerMenu}>Zahtev za posao</Link></li>
-            <li><Link to="/" onClick={handleLogout}>Logout</Link></li>
+            <li><Link to="/" onClick={handleLogout}>Odjavi se</Link></li>
           </>
         );
       case 'Admin':
         return (
           <>
-            <li><Link to="/administrator" onClick={closeBurgerMenu}>Home</Link></li>
+            <li><Link to="/administrator" onClick={closeBurgerMenu}>Početna</Link></li>
             <li><Link to="/administrator-obrada-zahteva" onClick={closeBurgerMenu}>Obrada zahteva</Link></li>
             <li><Link to="/administrator-admin-panel" onClick={closeBurgerMenu}>Admin panel</Link></li>
-            <li><Link to="/" onClick={handleLogout}>Logout</Link></li>
+            <li><Link to="/" onClick={handleLogout}>Odjavi se</Link></li>
           </>
         );
       default:
         return (
           <>
-            <li><Link to="/" onClick={closeBurgerMenu}>Home</Link></li>
-            <li><Link to="/login" onClick={closeBurgerMenu}>Login</Link></li>
-            <li><Link to="/register" onClick={closeBurgerMenu}>Register</Link></li>
-            <li><Link to="/about" onClick={closeBurgerMenu}>About</Link></li>
+            <li><Link to="/" onClick={closeBurgerMenu}>Početna</Link></li>
+            <li><Link to="/login" onClick={closeBurgerMenu}>Prijavi se</Link></li>
+            <li><Link to="/register" onClick={closeBurgerMenu}>Kreiraj nalog</Link></li>
+            <li><Link to="/about" onClick={closeBurgerMenu}>O nama</Link></li>
           </>
         );
     }

@@ -45,7 +45,7 @@ const ForgotPasswordForm = () => {
   return (
     <div className="forgotPassword-container">
       <div className="header">
-        <div className="text">Forgot password</div>
+        <div className="text">Zaboravljena lozinka</div>
         <div className="underline"></div>
       </div>
       <div className="inputs">

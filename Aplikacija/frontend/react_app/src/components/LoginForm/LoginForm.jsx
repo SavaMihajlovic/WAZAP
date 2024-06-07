@@ -86,23 +86,24 @@ const LoginForm = () => {
   return (
     <div className="login-container">
       <div className="header">
-        <div className="text">{action}</div>
+        <div className="text">Prijavi se</div>
         <div className="underline"></div>
       </div>
       <div className="inputs">
         <div className={usernameError ? "input error" : "input"}>
           <img src={user_icon} alt=''/>
-          <input type='text' name='korisnickoIme' placeholder='Username' value={username} onChange={handleInputChange}/>
+          <input type='text' name='korisnickoIme' placeholder='Korisničko ime' value={username} onChange={handleInputChange}/>
         </div>
         <InputPassword setPassword={setPassword} variant='password' isEmpty={passwordError}/>
       </div>
       {showValidationError && <div className="error-message">Sva polja moraju biti popunjena!</div>}
       <div className="error-message">{errorMessage}</div>
-      <div className="forgot-password">Forgot password? <span onClick={() => handleActionChange('ForgotPassword')}>Send via email!</span> </div>
+      
+      <div className="forgot-password">Zaboravili ste lozinku? <span onClick={() => handleActionChange('ForgotPassword')}>Pošaljite na mail!</span> </div>
       <div className="submit-container">
       {loading ? <div className='loading-container'> <LoadingSpinner /></div> :
-        <div className={action === "Login" ? "submit" : "submit gray"} onClick={handleSubmit}>Login</div>}
-        <div className={action === "Register" ? "submit gray" : "submit"} onClick={() => handleActionChange("Register")}>Register</div>
+        <div className={action === "Login" ? "submit" : "submit gray"} onClick={handleSubmit}>Prijavi se</div>}
+        <div className={action === "Register" ? "submit gray" : "submit"} onClick={() => handleActionChange("Register")}>Kreiraj nalog</div>
       </div>
     </div>
   )

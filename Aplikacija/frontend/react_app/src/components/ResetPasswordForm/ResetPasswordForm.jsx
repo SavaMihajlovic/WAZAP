@@ -66,7 +66,7 @@ const ResetPasswordForm = () => {
   return (
     <div className="reset-password-container">
       <div className="reset-header">
-        <div className="reset-header-text">Reset Password</div>
+        <div className="reset-header-text">Resetuj lozinku</div>
         <div className="reset-underline"></div>
       </div>
       <div className="reset-inputs">

@@ -54,9 +54,9 @@ export const Home = ({theme}) => {
       <div className='overlay'></div>
 
       <div className='content'>
-        <h1>Welcome</h1>
-        <p>To WAZAP.</p>
-        <Link to="/about" className="about-button">About us</Link>
+        <h1>Dobrodošli</h1>
+        <p>na WAZAP.</p>
+        <Link to="/about" className="about-button">O nama</Link>
         <Footer theme={theme} />
       </div>
     </div>
