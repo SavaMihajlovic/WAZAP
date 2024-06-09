@@ -89,8 +89,19 @@ public async Task<ActionResult> AddRequest(int userId, string typeOfJob, string?
      public async Task<ActionResult> GetAll(){
         try{
             var zahtevPosao = await Context.ZahtevPosao
-            .Include(p => p.Radnik)
-            .Include(p => p.Admin).ToListAsync();
+            .Include(p => p.Radnik).ThenInclude(p => p!.Korisnik)
+            .Select(p => new 
+            {
+                p.ID,
+                p.Tip_Posla,
+                p.Status,
+                p.Opis,
+                radnikID = p.Radnik!.ID,
+                p.Radnik.Korisnik.Ime,
+                p.Radnik.Korisnik.Prezime,
+                adminID = (int?)p.Admin!.ID,
+                
+            }).ToListAsync();
             return Ok(zahtevPosao);
         }
         catch(Exception ex)
@@ -102,7 +113,17 @@ public async Task<ActionResult> AddRequest(int userId, string typeOfJob, string?
      public async Task<ActionResult> GetAllStatus(string status){
         try{
             if(status != "pending" && status != "completed" && status != "blocked"){}
-            var zahtevPosao = await Context.ZahtevPosao.Where(p => p.Status == status).ToListAsync();
+            var zahtevPosao = await Context.ZahtevPosao.Include(p => p.Radnik).ThenInclude(p => p!.Korisnik).Where(p => p.Status == status).Select(p => new
+            {
+                p.ID,
+                p.Tip_Posla,
+                p.Status,
+                p.Opis,
+                radnikID = p.Radnik!.ID,
+                p.Radnik.Korisnik.Ime,
+                p.Radnik.Korisnik.Prezime,
+                adminID = (int?)p.Admin!.ID,
+            }).ToListAsync();
             return Ok(zahtevPosao);
         }
         catch(Exception ex)
@@ -215,7 +236,4 @@ public async Task<ActionResult> AddRequest(int userId, string typeOfJob, string?
             return BadRequest(ex.Message);
         }
     }
-    
-
-
 }

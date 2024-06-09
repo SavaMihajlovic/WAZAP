@@ -18,7 +18,7 @@ export const HomeRadnik = ({ theme }) => {
             <div className='overlay'></div>
 
             <div className='content'>
-                <h1>{userName} , dobrodošli</h1>
+                <h1>{userName}, dobrodošli</h1>
                 <p>na WAZAP.</p>
                 <Footer theme={theme} userType="Radnik" />
             </div>

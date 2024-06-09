@@ -57,7 +57,6 @@ const RequestsTable = ({ theme }) => {
     }
     
     filteredData.sort((a, b) => a.id - b.id);
-  
     return filteredData;
   };
 
@@ -83,10 +82,10 @@ const RequestsTable = ({ theme }) => {
 
         if (selectedType === 'ZahtevIzdavanje' && request === 'verifikacija') {
 
-        const responseSlikaLica = await axios.get(`http://localhost:5212/ZahtevIzdavanje/GetImage/${row.kupac.id}`, {
+        const responseSlikaLica = await axios.get(`http://localhost:5212/ZahtevIzdavanje/GetImage/${row.kupacID}`, {
           responseType: 'arraybuffer',
         });
-        const responseSlikaUverenja = await axios.get(`http://localhost:5212/ZahtevIzdavanje/GetImageUverenje/${row.kupac.id}`, {
+        const responseSlikaUverenja = await axios.get(`http://localhost:5212/ZahtevIzdavanje/GetImageUverenje/${row.kupacID}`, {
           responseType: 'arraybuffer',
         });
 
@@ -100,10 +99,10 @@ const RequestsTable = ({ theme }) => {
 
       } else {
         
-        const responseSlikaLica = await axios.get(`http://localhost:5212/ZahtevPosao/GetImage/${row.radnik.id}`, {
+        const responseSlikaLica = await axios.get(`http://localhost:5212/ZahtevPosao/GetImage/${row.radnikID}`, {
           responseType: 'arraybuffer',
         });
-        const responseSlikaSertifikata = await axios.get(`http://localhost:5212/ZahtevPosao/GetImageSertifikat/${row.radnik.id}`, {
+        const responseSlikaSertifikata = await axios.get(`http://localhost:5212/ZahtevPosao/GetImageSertifikat/${row.radnikID}`, {
           responseType: 'arraybuffer',
         });
 
@@ -309,6 +308,8 @@ const RequestsTable = ({ theme }) => {
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Tip karte</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Status</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>KID</Th>
+                  <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Ime kupača</Th>
+                  <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Prezime kupača</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>AID</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black', textAlign: 'center', margin: 'auto', width: '50px' }}>Datum od</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black', textAlign: 'center', margin: 'auto', width: '50px' }}>Datum do</Th>
@@ -321,6 +322,8 @@ const RequestsTable = ({ theme }) => {
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Status</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black', textAlign: 'center', margin: 'auto', width: '50px' }}>Opis</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>SRID</Th>
+                  <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Ime radnika</Th>
+                  <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Prezime radnika</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>AID</Th>
                   <Th style={{ color: theme === 'dark' ? 'white' : 'black' }}>Verifikacija zahteva</Th>
                 </Tr>
@@ -342,8 +345,10 @@ const RequestsTable = ({ theme }) => {
                       <Td border='none'>{row.id}</Td>
                       <Td border='none'>{row.tip_Karte}</Td>
                       <Td border='none'>{row.status}</Td>
-                      <Td border='none'>{row.kupac && row.kupac.id ? row.kupac.id : ''}</Td>
-                      <Td border='none'>{row.admin && row.admin.id ? row.admin.id : ''}</Td>
+                      <Td border='none'>{row.kupacID ? row.kupacID : ''}</Td>
+                      <Td border='none'>{row.ime}</Td>
+                      <Td border='none'>{row.prezime}</Td>
+                      <Td border='none'>{row.adminID ? row.adminID : ''}</Td>
                       <Td border='none'>{row.datumOd}</Td>
                       <Td border='none'>{row.datumDo}</Td>
                       <Td border='none'>
@@ -388,8 +393,10 @@ const RequestsTable = ({ theme }) => {
                           Prikaži
                         </Button>
                       </Td>
-                      <Td border='none'>{row.radnik && row.radnik.id ? row.radnik.id : ''}</Td>
-                      <Td border='none'>{row.admin && row.admin.id ? row.admin.id : ''}</Td>
+                      <Td border='none'>{row.radnikID ? row.radnikID : ''}</Td>
+                      <Td border='none'>{row.ime}</Td>
+                      <Td border='none'>{row.prezime}</Td>
+                      <Td border='none'>{row.adminID ? row.adminID : ''}</Td>
                       <Td border='none'>
                         <Button 
                           width='150px' 

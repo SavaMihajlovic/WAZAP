@@ -73,7 +73,18 @@ public class ZahtevIzdavanjeController : ControllerBase
      [HttpGet("GetAll")]
      public async Task<ActionResult> GetAll(){
         try{
-            var zahtevIzdavanje = await Context.ZahtevIzdavanje.Include(p => p.Admin).Include(p => p.Kupac).ToListAsync();
+            var zahtevIzdavanje = await Context.ZahtevIzdavanje.Include(p => p.Kupac).ThenInclude(p => p!.Korisnik).Include(p => p.Admin).Select(p => new
+            {
+                p.ID,
+                p.Tip_Karte,
+                p.Status,
+                kupacID = p.Kupac!.ID,
+                p.Kupac.Korisnik.Ime,
+                p.Kupac.Korisnik.Prezime,
+                adminID =  (int?)p.Admin!.ID, 
+                p.DatumOd,
+                p.DatumDo
+            }).ToListAsync();
             return Ok(zahtevIzdavanje);
         }
         catch(Exception ex)
@@ -85,7 +96,18 @@ public class ZahtevIzdavanjeController : ControllerBase
      public async Task<ActionResult> GetAllStatus(string status){
         try{
             if(status != "pending" && status != "readyForPayment" && status != "completed" && status != "blocked"){}
-            var zahtevIzdavanje = await Context.ZahtevIzdavanje.Where(p => p.Status == status).ToListAsync();
+            var zahtevIzdavanje = await Context.ZahtevIzdavanje.Include(p => p.Kupac).ThenInclude(p => p!.Korisnik).Where(p => p.Status == status).Select(p => new
+            {
+                p.ID,
+                p.Tip_Karte,
+                p.Status,
+                kupacID = p.Kupac!.ID,
+                p.Kupac.Korisnik.Ime,
+                p.Kupac.Korisnik.Prezime,
+                adminID = (int?)p.Admin!.ID,
+                p.DatumOd,
+                p.DatumDo
+            }).ToListAsync();
             return Ok(zahtevIzdavanje);
         }
         catch(Exception ex)
@@ -229,7 +251,4 @@ public class ZahtevIzdavanjeController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-
-   
-
 }
